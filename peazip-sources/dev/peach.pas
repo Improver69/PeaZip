@@ -795,20 +795,26 @@ type
      ComboBoxARC: TComboBox;
      ComboBoxARC2: TComboBox;
      ComboBoxARCalgo: TComboBox;
-     ComboBoxArchive1: TComboBox;
+     // Changed by Improver69
+     cbPredefinedArchiveSizes: TComboBox;
+
      ComboBoxArchiveAct: TComboBox;
-     ComboBoxArchive2: TComboBox;
-     ComboBoxArchive3: TComboBox;
-     ComboBoxArchive4: TComboBox;
-     ComboBoxArchive5: TComboBox;
-     ComboBoxArchive6: TComboBox;
-     ComboBoxArchive7: TComboBox;
-     ComboBoxArchive8: TComboBox;
+     // Changed by Improver69
+     cbSpanTypeOfSize: TComboBox;
+     cbCompressionMethod: TComboBox;
+     cbCompressionLevel: TComboBox;
+     cbDictionarySize: TComboBox;
+     cbWordSize: TComboBox;
+     cbArchiveCreationType: TComboBox;
+     cbMaxCPUThreads: TComboBox;
+
      ComboBoxArchive9: TComboBox;
      ComboBoxArchiveAct1: TComboBox;
      ComboBoxArchiveCustom: TComboBox;
      ComboBoxArchiveCustom1: TComboBox;
-     ComboBoxArchivePasses: TComboBox;
+     // Changed by Improver69
+     cbArchivePasses: TComboBox;
+
      ComboBoxArchivePaths: TComboBox;
      ComboBoxArchivePaths1: TComboBox;
      ComboBoxArchiveSolid: TComboBox;
@@ -3454,9 +3460,9 @@ type
       procedure ColorButton2ColorChanged(Sender: TObject);
       procedure ColorButton3ColorChanged(Sender: TObject);
       procedure ComboBox1Change(Sender: TObject);
-      procedure ComboBoxArchive2Change(Sender: TObject);
-      procedure ComboBoxArchive3CloseUp(Sender: TObject);
-      procedure ComboBoxArchive4CloseUp(Sender: TObject);
+      procedure cbSpanTypeOfSizeChange(Sender: TObject);
+      procedure cbCompressionMethodCloseUp(Sender: TObject);
+      procedure cbCompressionLevelCloseUp(Sender: TObject);
       procedure ComboBoxArchive9CloseUp(Sender: TObject);
       procedure ComboBoxBrowserChange(Sender: TObject);
       procedure ComboBoxDragChange(Sender: TObject);
@@ -3471,8 +3477,8 @@ type
       procedure ComboBoxTARChange(Sender: TObject);
       procedure ComboBoxWDChange(Sender: TObject);
       procedure ComboBoxARC2Change(Sender: TObject);
-      procedure ComboBoxArchive7Change(Sender: TObject);
-      procedure ComboBoxArchive8Change(Sender: TObject);
+      procedure cbArchiveCreationTypeChange(Sender: TObject);
+      procedure cbMaxCPUThreadsChange(Sender: TObject);
       procedure ComboBoxArchiveAct1Change(Sender: TObject);
       procedure ComboBoxArchiveActChange(Sender: TObject);
       procedure ComboBoxLibreChange(Sender: TObject);
@@ -5044,7 +5050,7 @@ type
       procedure ColorButton1ColorChanged(Sender: TObject);
       procedure ComboBoxARCalgoChange(Sender: TObject);
       procedure ComboBoxARCChange(Sender: TObject);
-      procedure ComboBoxArchive1Change(Sender: TObject);
+      procedure cbPredefinedArchiveSizesChange(Sender: TObject);
       procedure ComboBoxArcSolidChange(Sender: TObject);
       procedure ComboBoxPAQ1Change(Sender: TObject);
       procedure ComboBoxPEA2Change(Sender: TObject);
@@ -5393,7 +5399,7 @@ procedure navgoup;
 procedure rsearch;
 procedure setquickextractmenu;
 procedure update_listview;
-procedure ComboBoxArchive4_onchange;
+procedure cbCompressionLevel_onchange;
 procedure run_websearch(s:ansistring);
 procedure quickextract(dest,sel:ansistring);
 procedure toggle_view;
@@ -5405,7 +5411,7 @@ procedure eraseselected_list(erasemode:integer);
 procedure loadpm;
 procedure setpm(pmfun:integer);
 procedure on_checkboxseparateclick;
-procedure ComboBoxArchive1_onchange;
+procedure cbPredefinedArchiveSizes_onchange;
 procedure openappn(n:integer);
 procedure openadvappn(n:integer);
 procedure websearch_sel;
@@ -10134,20 +10140,20 @@ RadioGroup0.Items[16]:=STR_ZSTD;
 RadioGroup0.Items[17]:=STR_ZPAQ;
 RadioGroup0.Items[18]:=txt_lastused;
 status0:=APPMAIN+' '+PEAZIPVERSION+PEAZIPREVISION;
-ComboBoxArchive1.Items.Strings[0]:=txt_singlevol;
-ComboBoxArchive1.Items.Strings[1]:=txt_customsize;
-ComboBoxArchive1.Items.Strings[2]:=txt_fd;
-ComboBoxArchive1.Items.Strings[3]:=txt_attach10;
-ComboBoxArchive1.Items.Strings[4]:=txt_4_8_attach25;
-ComboBoxArchive1.Items.Strings[5]:=txt_cd650;
-ComboBoxArchive1.Items.Strings[6]:=txt_cd700;
-ComboBoxArchive1.Items.Strings[7]:=txt_fat32;
-ComboBoxArchive1.Items.Strings[8]:=txt_dvd;
-ComboBoxArchive1.Items.Strings[9]:=txt_dvddl;
-ComboBoxArchive1.Items.Strings[10]:='25 GB Blu-Ray';
-ComboBoxArchive1.Items.Strings[11]:='50 GB Blu-Ray DL';
-ComboBoxArchive1.Items.Strings[12]:='100 GB Blu-Ray XL3';
-ComboBoxArchive1.Items.Strings[13]:='128 GB Blu-Ray XL4';
+cbPredefinedArchiveSizes.Items.Strings[0]:=txt_singlevol;
+cbPredefinedArchiveSizes.Items.Strings[1]:=txt_customsize;
+cbPredefinedArchiveSizes.Items.Strings[2]:=txt_fd;
+cbPredefinedArchiveSizes.Items.Strings[3]:=txt_attach10;
+cbPredefinedArchiveSizes.Items.Strings[4]:=txt_4_8_attach25;
+cbPredefinedArchiveSizes.Items.Strings[5]:=txt_cd650;
+cbPredefinedArchiveSizes.Items.Strings[6]:=txt_cd700;
+cbPredefinedArchiveSizes.Items.Strings[7]:=txt_fat32;
+cbPredefinedArchiveSizes.Items.Strings[8]:=txt_dvd;
+cbPredefinedArchiveSizes.Items.Strings[9]:=txt_dvddl;
+cbPredefinedArchiveSizes.Items.Strings[10]:='25 GB Blu-Ray';
+cbPredefinedArchiveSizes.Items.Strings[11]:='50 GB Blu-Ray DL';
+cbPredefinedArchiveSizes.Items.Strings[12]:='100 GB Blu-Ray XL3';
+cbPredefinedArchiveSizes.Items.Strings[13]:='128 GB Blu-Ray XL4';
 CheckBoxTarBefore.Caption:=txt_tarbefore;
 CheckBoxTarBefore.Hint:=txt_tarbefore_hint;
 cbadvf1.Caption:=txt_advfilters;
@@ -11033,11 +11039,11 @@ ComboBoxPEACompression1.Items.Strings[3]:=txt_nocompress_hint;
 ComboBoxPEA3.Items.Strings[13]:=txt_none2;
 ComboBoxPEA4.Items.Strings[13]:=txt_none2;
 ComboBoxSplit3.Items.Strings[13]:=txt_none2;
-ComboBoxArchive7.Items.Strings[0]:=txt_newarchive;
-ComboBoxArchive7.Items.Strings[1]:=txt_add_existing_archive;
-ComboBoxArchive7.Items.Strings[2]:=txt_update;
-ComboBoxArchive7.Items.Strings[3]:=txt_6_3_uar;
-ComboBoxArchive7.Items.Strings[4]:=txt_6_3_syn;
+cbArchiveCreationType.Items.Strings[0]:=txt_newarchive;
+cbArchiveCreationType.Items.Strings[1]:=txt_add_existing_archive;
+cbArchiveCreationType.Items.Strings[2]:=txt_update;
+cbArchiveCreationType.Items.Strings[3]:=txt_6_3_uar;
+cbArchiveCreationType.Items.Strings[4]:=txt_6_3_syn;
 ComboBoxArchiveAct.Items.Strings[0]:=txt_newarchive;
 ComboBoxArchiveAct.Items.Strings[1]:=txt_add_existing_archive;
 ComboBoxArchiveAct.Items.Strings[2]:=txt_update;
@@ -11048,15 +11054,15 @@ ComboBoxArchiveAct1.Items.Strings[1]:=txt_add_existing_archive;
 ComboBoxArchiveAct1.Items.Strings[2]:=txt_update;
 ComboBoxArchiveAct1.Items.Strings[3]:=txt_6_3_uar;
 ComboBoxArchiveAct1.Items.Strings[4]:=txt_6_3_syn;
-ComboBoxArchive8.Items.Strings[0]:=txt_singlethread;
-ComboBoxArchive8.Items.Strings[1]:=txt_multithreading;
+cbMaxCPUThreads.Items.Strings[0]:=txt_singlethread;
+cbMaxCPUThreads.Items.Strings[1]:=txt_multithreading;
 ComboBoxmemuse.Items.Strings[0]:=txt_default;
-ComboBoxArchive4.Items.Strings[0]:=txt_level_store;
-ComboBoxArchive4.Items.Strings[1]:=txt_level_fastest;
-ComboBoxArchive4.Items.Strings[2]:=txt_level_fast;
-ComboBoxArchive4.Items.Strings[3]:=txt_level_normal;
-ComboBoxArchive4.Items.Strings[4]:=txt_level_maximum;
-ComboBoxArchive4.Items.Strings[5]:=txt_level_ultra;
+cbCompressionLevel.Items.Strings[0]:=txt_level_store;
+cbCompressionLevel.Items.Strings[1]:=txt_level_fastest;
+cbCompressionLevel.Items.Strings[2]:=txt_level_fast;
+cbCompressionLevel.Items.Strings[3]:=txt_level_normal;
+cbCompressionLevel.Items.Strings[4]:=txt_level_maximum;
+cbCompressionLevel.Items.Strings[5]:=txt_level_ultra;
 ComboBoxArchiveSolid.Items.Strings[0]:=txt_nonsolid;
 ComboBoxArchiveSolid.Items.Strings[18]:=txt_solid;
 ComboBoxArchiveSolid.Items.Strings[19]:=txt_solid_extension;
@@ -11121,14 +11127,14 @@ RadioGroup0.Items.Strings[10]:=txt_split;
 RadioGroup0.Items.Strings[18]:=txt_lastused;
 ComboBoxPEACompression1.Text:=txt_default_compression;
 ComboBoxUPX.Text:=txt_best;
-ComboBoxArchive8.Text:=txt_multithreading;
+cbMaxCPUThreads.Text:=txt_multithreading;
 ComboBoxArchiveCustom.Text:=txt_pio;
 ComboBoxArcSolid.Text:=txt_solid_auto;
 ComboBoxARC2.Text:=txt_newarchive;
 EditOpenIn.Text:=txt_none;
 ComboBoxOverwrite.Text:=txt_ren_extracted;
 ComboBoxArchiveCustom1.Text:=txt_pio;
-ComboBoxArchive7.Text:=txt_newarchive;
+cbArchiveCreationType.Text:=txt_newarchive;
 except end;
 end;
 end;
@@ -17551,7 +17557,7 @@ Form_peach.checkboxconvert0.Font.Style:=[fsItalic];
 Form_peach.checkboxconvert1.Font.Style:=[fsItalic];
 Form_peach.CheckBoxTarBefore.Font.Style:=[fsItalic];
 Form_peach.checkboxsameext.Font.Style:=[fsItalic];
-Form_peach.ComboBoxArchive7.Font.Style:=[fsItalic];
+Form_peach.cbArchiveCreationType.Font.Style:=[fsItalic];
 Form_peach.ComboBoxArchivePaths.Font.Style:=[fsItalic];
 Form_peach.Label7za5.Font.Style:=[fsItalic];
 Form_peach.Label7za6.Font.Style:=[fsItalic];
@@ -17569,7 +17575,7 @@ Form_peach.checkboxconvert0.Font.Style:=[];
 Form_peach.checkboxconvert1.Font.Style:=[];
 Form_peach.CheckBoxTarBefore.Font.Style:=[];
 Form_peach.checkboxsameext.Font.Style:=[];
-Form_peach.ComboBoxArchive7.Font.Style:=[];
+Form_peach.cbArchiveCreationType.Font.Style:=[];
 Form_peach.ComboBoxArchivePaths.Font.Style:=[];
 Form_peach.Label7za5.Font.Style:=[];
 Form_peach.Label7za6.Font.Style:=[];
@@ -18371,11 +18377,11 @@ readln(conf,s);
 readln(conf,s);
 readln(conf,s);
 try
-form_peach.ComboBoxArchive7.ItemIndex:=strtoint(s);
+form_peach.cbArchiveCreationType.ItemIndex:=strtoint(s);
 except
-form_peach.ComboBoxArchive7.ItemIndex:=0;
+form_peach.cbArchiveCreationType.ItemIndex:=0;
 end;
-defaultarchiveaction:=form_peach.ComboBoxArchive7.ItemIndex;
+defaultarchiveaction:=form_peach.cbArchiveCreationType.ItemIndex;
 readln(conf,s);
 readln(conf,s);
 readln(conf,s); showsearchbar:=strtoint(s);
@@ -19077,9 +19083,9 @@ writeln(conf,inttostr(spansize));
 writeln(conf,inttostr(spanunit));
 writeln(conf,'');
 writeln(conf,'[advanced 7z / p7zip compression settings]');
-if (dontsavecustom7z=true) or (dontsavecustomzip=true) then writeln(conf,inttostr(advopdictionary)) else writeln(conf,inttostr(Form_peach.ComboBoxArchive5.ItemIndex));
-if (dontsavecustom7z=true) or (dontsavecustomzip=true) then writeln(conf,inttostr(advopword)) else writeln(conf,inttostr(Form_peach.ComboBoxArchive6.ItemIndex));
-if (dontsavecustom7z=true) or (dontsavecustomzip=true) then writeln(conf,inttostr(advoppasses)) else writeln(conf,inttostr(Form_peach.ComboBoxArchivePasses.ItemIndex));
+if (dontsavecustom7z=true) or (dontsavecustomzip=true) then writeln(conf,inttostr(advopdictionary)) else writeln(conf,inttostr(Form_peach.cbDictionarySize.ItemIndex));
+if (dontsavecustom7z=true) or (dontsavecustomzip=true) then writeln(conf,inttostr(advopword)) else writeln(conf,inttostr(Form_peach.cbWordSize.ItemIndex));
+if (dontsavecustom7z=true) or (dontsavecustomzip=true) then writeln(conf,inttostr(advoppasses)) else writeln(conf,inttostr(Form_peach.cbArchivePasses.ItemIndex));
 if (dontsavecustom7z=true) or (dontsavecustomzip=true) then writeln(conf,inttostr(advopblocksize)) else writeln(conf,inttostr(Form_peach.ComboBoxArchiveSolid.ItemIndex));
 writeln(conf,'');
 writeln(conf,'[auto close PeaZip when task completes]');
@@ -19244,7 +19250,7 @@ writeln(conf,'[immediate execution of custom compression profile or preset]');
 writeln(conf,inttostr(immediate_execution));
 writeln(conf,'');
 writeln(conf,'[default archive creation action (new archive, add, update...)]');
-if Form_peach.LabelStatus4.caption='' then writeln(conf,inttostr(form_peach.ComboBoxArchive7.ItemIndex))
+if Form_peach.LabelStatus4.caption='' then writeln(conf,inttostr(form_peach.cbArchiveCreationType.ItemIndex))
 else writeln(conf,inttostr(defaultarchiveaction));
 writeln(conf,'');
 writeln(conf,'[show search bar, and position]');
@@ -23061,14 +23067,244 @@ procedure set_multi(s:ansistring); //sets multithreading option for 7za
 begin
 if s='on' then //allow multithread selection for Compression (LZMA/2 and BZip2), may be replaced by code more oriented toward processors number
    begin
-   Form_peach.ComboBoxArchive8.Enabled:=true;
-   Form_peach.ComboBoxArchive8.ItemIndex:=multi_option;
+   Form_peach.cbMaxCPUThreads.Enabled:=true;
+   Form_peach.cbMaxCPUThreads.ItemIndex:=multi_option;
    end;
 if s='off' then //disallow multithread selection since Compression algorithms used are not supported
    begin
-   Form_peach.ComboBoxArchive8.Enabled:=false;
-   //Form_peach.ComboBoxArchive8.ItemIndex:=0;
+   Form_peach.cbMaxCPUThreads.Enabled:=false;
+   //Form_peach.cbMaxCPUThreads.ItemIndex:=0;
    end;
+end;
+// Added procedures by Improver69 for smallest code and speed
+// cbDictionarySize
+
+procedure SetcbDictionarySize;
+begin
+  Form_peach.cbDictionarySize.Clear;
+  if (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.DropDownCount := 20
+  else
+     Form_peach.cbDictionarySize.DropDownCount := 26;
+
+  if (compression_method='LZMA') or (compression_method='LZMA2') then
+     Form_peach.cbDictionarySize.Items.Append('64 KB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') then
+     Form_peach.cbDictionarySize.Items.Append('256 KB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('1 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('2 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('3 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('4 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('6 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('8 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('12 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('16 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('24 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('32 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('48 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('64 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('96 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('128 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('192 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('256 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('384 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('512 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('768 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='PPMd') then
+     Form_peach.cbDictionarySize.Items.Append('1024 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') then
+     Form_peach.cbDictionarySize.Items.Append('1536 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') then
+     Form_peach.cbDictionarySize.Items.Append('2048 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') then
+     Form_peach.cbDictionarySize.Items.Append('3072 MB');
+  if (compression_method='LZMA') or (compression_method='LZMA2') then
+     Form_peach.cbDictionarySize.Items.Append('3840 MB');
+     
+     
+     
+  if (compression_method='BZip2') then
+  begin
+    Form_peach.cbDictionarySize.DropDownCount := 9;
+    Form_peach.cbDictionarySize.Items.Append('100 Kb');
+    Form_peach.cbDictionarySize.Items.Append('200 Kb');
+    Form_peach.cbDictionarySize.Items.Append('300 Kb');
+    Form_peach.cbDictionarySize.Items.Append('400 Kb');
+    Form_peach.cbDictionarySize.Items.Append('500 Kb');
+    Form_peach.cbDictionarySize.Items.Append('600 Kb');
+    Form_peach.cbDictionarySize.Items.Append('700 Kb');
+    Form_peach.cbDictionarySize.Items.Append('800 Kb');
+    Form_peach.cbDictionarySize.Items.Append('900 Kb');
+  end;
+end;
+
+procedure setcbWordSize;
+begin
+  Form_peach.cbWordSize.Clear;
+  if (compression_method='LZMA') or (compression_method='LZMA2') or (compression_method='Deflate') then
+  begin
+    Form_peach.cbWordSize.DropDownCount:=12;
+    Form_peach.cbWordSize.Items.Append('8');
+    Form_peach.cbWordSize.Items.Append('12');
+    Form_peach.cbWordSize.Items.Append('16');
+    Form_peach.cbWordSize.Items.Append('24');
+    Form_peach.cbWordSize.Items.Append('32');
+    Form_peach.cbWordSize.Items.Append('48');
+    Form_peach.cbWordSize.Items.Append('64');
+    Form_peach.cbWordSize.Items.Append('96');
+    Form_peach.cbWordSize.Items.Append('128');
+    Form_peach.cbWordSize.Items.Append('192');
+    Form_peach.cbWordSize.Items.Append('256');
+    if (compression_method <> 'Deflate') then
+       Form_peach.cbWordSize.Items.Append('273')
+    else
+       Form_peach.cbWordSize.Items.Append('258');
+  end
+  else
+  if (compression_method='PMMd') then
+  begin
+    Form_peach.cbWordSize.DropDownCount:=15;
+    Form_peach.cbWordSize.Items.Append('2');
+    Form_peach.cbWordSize.Items.Append('3');
+    Form_peach.cbWordSize.Items.Append('4');
+    Form_peach.cbWordSize.Items.Append('5');
+    Form_peach.cbWordSize.Items.Append('6');
+    Form_peach.cbWordSize.Items.Append('7');
+    Form_peach.cbWordSize.Items.Append('8');
+    Form_peach.cbWordSize.Items.Append('10');
+    Form_peach.cbWordSize.Items.Append('12');
+    Form_peach.cbWordSize.Items.Append('14');
+    Form_peach.cbWordSize.Items.Append('16');
+    Form_peach.cbWordSize.Items.Append('20');
+    Form_peach.cbWordSize.Items.Append('24');
+    Form_peach.cbWordSize.Items.Append('28');
+    Form_peach.cbWordSize.Items.Append('32');
+  end;
+end;
+
+procedure SetcbCompressionType;
+begin
+  Form_peach.cbCompressionType.Clear;
+  // Modified by Improver69
+  {
+  if (archive_type<>'zip') then
+     Form_peach.cbCompressionType.DropDownCount:=4
+  else
+     Form_peach.cbCompressionType.DropDownCount:=5;
+  if (archive_type='zip') then
+  begin
+    Form_peach.cbCompressionType.Items.Append('Deflate');
+    Form_peach.cbCompressionType.Items.Append('Deflate64');
+  end;
+  Form_peach.cbCompressionType.Items.Append('LZMA');
+  if (archive_type <> 'zip') then
+  Form_peach.cbCompressionType.Items.Append('LZMA2');
+  Form_peach.cbCompressionType.Items.Append('PPMd');
+  Form_peach.cbCompressionType.Items.Append('BZip2');
+  }
+  {$IFDEF MSWINDOWS}
+     Form_peach.cbCompressionType.DropDownCount:=13;
+  {$ELSE}
+     Form_peach.cbCompressionType.DropDownCount:=13;
+  {$ENDIF}
+   Form_peach.cbCompressionType.Items.Append('LZMA');
+   Form_peach.cbCompressionType.Items.Append('LZMA2');
+   Form_peach.cbCompressionType.Items.Append('PPMd');
+   Form_peach.cbCompressionType.Items.Append('BZip2');
+   {$IFDEF MSWINDOWS}
+      Form_peach.cbCompressionType.Items.Append('Brotli');
+      Form_peach.cbCompressionType.Items.Append('FLZMA2');
+      Form_peach.cbCompressionType.Items.Append('Lizard_fastLZ4');
+      Form_peach.cbCompressionType.Items.Append('Lizard_LIZv1');
+      Form_peach.cbCompressionType.Items.Append('Lizard_fastLZ4+Huffman');
+      Form_peach.cbCompressionType.Items.Append('Lizard_LIZv1+Huffman');
+      Form_peach.cbCompressionType.Items.Append('LZ4');
+      Form_peach.cbCompressionType.Items.Append('LZ5');
+      Form_peach.cbCompressionType.Items.Append('Zstd');
+   {$ELSE}
+      Form_peach.cbCompressionType.Items.Append('/Brotli');
+      Form_peach.cbCompressionType.Items.Append('FLZMA2');
+      Form_peach.cbCompressionType.Items.Append('/Lizard_fastLZ4');
+      Form_peach.cbCompressionType.Items.Append('/Lizard_LIZv1');
+      Form_peach.cbCompressionType.Items.Append('/Lizard_fastLZ4+Huffman');
+      Form_peach.cbCompressionType.Items.Append('/Lizard_LIZv1+Huffman');
+      Form_peach.cbCompressionType.Items.Append('LZ4');
+      Form_peach.cbCompressionType.Items.Append('/LZ5');
+      Form_peach.cbCompressionType.Items.Append('Zstd');
+   {$ENDIF}
+end;
+
+procedure SetcbCompressionLevel;
+begin
+  Form_peach.cbCompressionLevel.Clear;
+  if (archive_type <> 'xz') or (archive_type <> 'bz2') or (archive_type <> 'gz') then
+  begin
+    Form_peach.cbCompressionLevel.DropDownCount:=6;
+    Form_peach.cbCompressionLevel.Items.Append(txt_level_store);
+  end
+  else
+    Form_peach.cbCompressionLevel.DropDownCount:=5;
+  Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
+  Form_peach.cbCompressionLevel.Items.Append(txt_level_fast);
+  Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
+  Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
+  Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
+end;
+
+procedure SetcbArchivePasses;
+begin
+  Form_peach.cbArchivePasses.Clear;
+  if (compression_method='BZip2') or (compression_method='BZip2') then
+     Form_peach.cbArchivePasses.DropDownCount:=10
+  else
+     Form_peach.cbArchivePasses.DropDownCount:=15;
+  Form_peach.cbArchivePasses.Items.Append('1');
+  Form_peach.cbArchivePasses.Items.Append('2');
+  Form_peach.cbArchivePasses.Items.Append('3');
+  Form_peach.cbArchivePasses.Items.Append('4');
+  Form_peach.cbArchivePasses.Items.Append('5');
+  Form_peach.cbArchivePasses.Items.Append('6');
+  Form_peach.cbArchivePasses.Items.Append('7');
+  Form_peach.cbArchivePasses.Items.Append('8');
+  Form_peach.cbArchivePasses.Items.Append('9');
+  Form_peach.cbArchivePasses.Items.Append('10');
+  if (compression_method='BZip2') or (compression_method='BZip2') then
+     exit;
+  Form_peach.cbArchivePasses.Items.Append('11');
+  Form_peach.cbArchivePasses.Items.Append('12');
+  Form_peach.cbArchivePasses.Items.Append('13');
+  Form_peach.cbArchivePasses.Items.Append('14');
+  Form_peach.cbArchivePasses.Items.Append('15');
+end;
+
+Procedure SetCompressionLevel (CompressionLevelIndex, DictionarySizeIndex, WordSizeIndex, ArchiveSolidIndex, ArchivePassesIndex : byte);
+begin
+  Form_peach.cbCompressionLevel.ItemIndex:=CompressionLevelIndex;
+  Form_peach.cbDictionarySize.ItemIndex:=DictionarySizeIndex;
+  Form_peach.cbWordSize.ItemIndex:=WordSizeIndex;
+  if Form_peach.ComboBoxArchiveSolid.Enabled = true then
+     Form_peach.ComboBoxArchiveSolid.ItemIndex:=ArchiveSolidIndex;
+  if Form_peach.cbArchivePasses.Enabled = true then
+     Form_peach.cbArchivePasses.ItemIndex:=ArchivePassesIndex;
 end;
 
 procedure set_values(archive_type,compression_method,compression_level:ansistring);
@@ -23088,31 +23324,31 @@ if archive_type='7z' then
    begin
    Form_peach.CheckBoxMQS.Enabled:=true;
    Form_peach.ComboBoxArchiveSolid.Enabled:=true;
-   Form_peach.ComboBoxArchive3.Clear;
-   Form_peach.ComboBoxArchive3.DropDownCount:=15;
-   Form_peach.ComboBoxArchive3.Items.Append('LZMA');
-   Form_peach.ComboBoxArchive3.Items.Append('LZMA2');
-   Form_peach.ComboBoxArchive3.Items.Append('PPMd');
-   Form_peach.ComboBoxArchive3.Items.Append('BZip2');
-   Form_peach.ComboBoxArchive3.Items.Append('Brotli');
-   Form_peach.ComboBoxArchive3.Items.Append('FLZMA2');
-   Form_peach.ComboBoxArchive3.Items.Append('Lizard_fastLZ4');
-   Form_peach.ComboBoxArchive3.Items.Append('Lizard_LIZv1');
-   Form_peach.ComboBoxArchive3.Items.Append('Lizard_fastLZ4+Huffman');
-   Form_peach.ComboBoxArchive3.Items.Append('Lizard_LIZv1+Huffman');
-   Form_peach.ComboBoxArchive3.Items.Append('LZ4');
-   Form_peach.ComboBoxArchive3.Items.Append('LZ5');
-   Form_peach.ComboBoxArchive3.Items.Append('Zstd');
-   Form_peach.ComboBoxArchive3.Items.Append('Deflate');
-   Form_peach.ComboBoxArchive3.Items.Append('Deflate64');
-   Form_peach.ComboBoxArchive4.Clear;
-   Form_peach.ComboBoxArchive4.DropDownCount:=6;
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_store);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fastest);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fast);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_normal);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_maximum);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_ultra);
+   Form_peach.cbCompressionMethod.Clear;
+   Form_peach.cbCompressionMethod.DropDownCount:=15;
+   Form_peach.cbCompressionMethod.Items.Append('LZMA');
+   Form_peach.cbCompressionMethod.Items.Append('LZMA2');
+   Form_peach.cbCompressionMethod.Items.Append('PPMd');
+   Form_peach.cbCompressionMethod.Items.Append('BZip2');
+   Form_peach.cbCompressionMethod.Items.Append('Brotli');
+   Form_peach.cbCompressionMethod.Items.Append('FLZMA2');
+   Form_peach.cbCompressionMethod.Items.Append('Lizard_fastLZ4');
+   Form_peach.cbCompressionMethod.Items.Append('Lizard_LIZv1');
+   Form_peach.cbCompressionMethod.Items.Append('Lizard_fastLZ4+Huffman');
+   Form_peach.cbCompressionMethod.Items.Append('Lizard_LIZv1+Huffman');
+   Form_peach.cbCompressionMethod.Items.Append('LZ4');
+   Form_peach.cbCompressionMethod.Items.Append('LZ5');
+   Form_peach.cbCompressionMethod.Items.Append('Zstd');
+   Form_peach.cbCompressionMethod.Items.Append('Deflate');
+   Form_peach.cbCompressionMethod.Items.Append('Deflate64');
+   Form_peach.cbCompressionLevel.Clear;
+   Form_peach.cbCompressionLevel.DropDownCount:=6;
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_store);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fast);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
    Form_peach.Label7za18.Visible:=true;
    Form_peach.Subtitle7zaopt2.Visible:=true;
    Form_peach.Combobox7zalgo.Visible:=true;
@@ -23123,345 +23359,345 @@ if archive_type='7z' then
    if compression_level=txt_level_store then
       begin
       set_multi('off');
-      Form_peach.ComboBoxArchive4.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=0;
       compression_method:='';
-      Form_peach.ComboBoxArchive3.Clear;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=false;
-      Form_peach.ComboBoxArchive5.Enabled:=false;
-      Form_peach.ComboBoxArchive6.Enabled:=false;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.Clear;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=false;
+      Form_peach.cbDictionarySize.Enabled:=false;
+      Form_peach.cbWordSize.Enabled:=false;
+      Form_peach.cbArchivePasses.Enabled:=false;
       Form_peach.ComboBoxArchiveSolid.Enabled:=false;
       end;
    if compression_method='LZMA' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=0;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=25;
-      Form_peach.ComboBoxArchive5.Items.Append('256 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('1 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('6 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('8 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('12 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('16 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('24 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('32 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('48 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('64 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('96 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('128 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('192 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('256 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('384 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('512 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('768 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1024 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1536 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2048 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3072 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4096 MB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=12;
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchive6.Items.Append('48');
-      Form_peach.ComboBoxArchive6.Items.Append('64');
-      Form_peach.ComboBoxArchive6.Items.Append('96');
-      Form_peach.ComboBoxArchive6.Items.Append('128');
-      Form_peach.ComboBoxArchive6.Items.Append('192');
-      Form_peach.ComboBoxArchive6.Items.Append('256');
-      Form_peach.ComboBoxArchive6.Items.Append('273');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.ItemIndex:=0;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=25;
+      Form_peach.cbDictionarySize.Items.Append('256 KB');
+      Form_peach.cbDictionarySize.Items.Append('1 MB');
+      Form_peach.cbDictionarySize.Items.Append('2 MB');
+      Form_peach.cbDictionarySize.Items.Append('3 MB');
+      Form_peach.cbDictionarySize.Items.Append('4 MB');
+      Form_peach.cbDictionarySize.Items.Append('6 MB');
+      Form_peach.cbDictionarySize.Items.Append('8 MB');
+      Form_peach.cbDictionarySize.Items.Append('12 MB');
+      Form_peach.cbDictionarySize.Items.Append('16 MB');
+      Form_peach.cbDictionarySize.Items.Append('24 MB');
+      Form_peach.cbDictionarySize.Items.Append('32 MB');
+      Form_peach.cbDictionarySize.Items.Append('48 MB');
+      Form_peach.cbDictionarySize.Items.Append('64 MB');
+      Form_peach.cbDictionarySize.Items.Append('96 MB');
+      Form_peach.cbDictionarySize.Items.Append('128 MB');
+      Form_peach.cbDictionarySize.Items.Append('192 MB');
+      Form_peach.cbDictionarySize.Items.Append('256 MB');
+      Form_peach.cbDictionarySize.Items.Append('384 MB');
+      Form_peach.cbDictionarySize.Items.Append('512 MB');
+      Form_peach.cbDictionarySize.Items.Append('768 MB');
+      Form_peach.cbDictionarySize.Items.Append('1024 MB');
+      Form_peach.cbDictionarySize.Items.Append('1536 MB');
+      Form_peach.cbDictionarySize.Items.Append('2048 MB');
+      Form_peach.cbDictionarySize.Items.Append('3072 MB');
+      Form_peach.cbDictionarySize.Items.Append('4096 MB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=12;
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbWordSize.Items.Append('48');
+      Form_peach.cbWordSize.Items.Append('64');
+      Form_peach.cbWordSize.Items.Append('96');
+      Form_peach.cbWordSize.Items.Append('128');
+      Form_peach.cbWordSize.Items.Append('192');
+      Form_peach.cbWordSize.Items.Append('256');
+      Form_peach.cbWordSize.Items.Append('273');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=6;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=4;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=4;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=10;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=12;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=10;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=10;
+         Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=12;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=12;
+         Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       end;
    if compression_method='LZMA2' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=1;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=25;
-      Form_peach.ComboBoxArchive5.Items.Append('256 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('1 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('6 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('8 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('12 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('16 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('24 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('32 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('48 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('64 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('96 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('128 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('192 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('256 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('384 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('512 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('768 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1024 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1536 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2048 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3072 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4096 MB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=12;
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchive6.Items.Append('48');
-      Form_peach.ComboBoxArchive6.Items.Append('64');
-      Form_peach.ComboBoxArchive6.Items.Append('96');
-      Form_peach.ComboBoxArchive6.Items.Append('128');
-      Form_peach.ComboBoxArchive6.Items.Append('192');
-      Form_peach.ComboBoxArchive6.Items.Append('256');
-      Form_peach.ComboBoxArchive6.Items.Append('273');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.ItemIndex:=1;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=25;
+      Form_peach.cbDictionarySize.Items.Append('256 KB');
+      Form_peach.cbDictionarySize.Items.Append('1 MB');
+      Form_peach.cbDictionarySize.Items.Append('2 MB');
+      Form_peach.cbDictionarySize.Items.Append('3 MB');
+      Form_peach.cbDictionarySize.Items.Append('4 MB');
+      Form_peach.cbDictionarySize.Items.Append('6 MB');
+      Form_peach.cbDictionarySize.Items.Append('8 MB');
+      Form_peach.cbDictionarySize.Items.Append('12 MB');
+      Form_peach.cbDictionarySize.Items.Append('16 MB');
+      Form_peach.cbDictionarySize.Items.Append('24 MB');
+      Form_peach.cbDictionarySize.Items.Append('32 MB');
+      Form_peach.cbDictionarySize.Items.Append('48 MB');
+      Form_peach.cbDictionarySize.Items.Append('64 MB');
+      Form_peach.cbDictionarySize.Items.Append('96 MB');
+      Form_peach.cbDictionarySize.Items.Append('128 MB');
+      Form_peach.cbDictionarySize.Items.Append('192 MB');
+      Form_peach.cbDictionarySize.Items.Append('256 MB');
+      Form_peach.cbDictionarySize.Items.Append('384 MB');
+      Form_peach.cbDictionarySize.Items.Append('512 MB');
+      Form_peach.cbDictionarySize.Items.Append('768 MB');
+      Form_peach.cbDictionarySize.Items.Append('1024 MB');
+      Form_peach.cbDictionarySize.Items.Append('1536 MB');
+      Form_peach.cbDictionarySize.Items.Append('2048 MB');
+      Form_peach.cbDictionarySize.Items.Append('3072 MB');
+      Form_peach.cbDictionarySize.Items.Append('4096 MB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=12;
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbWordSize.Items.Append('48');
+      Form_peach.cbWordSize.Items.Append('64');
+      Form_peach.cbWordSize.Items.Append('96');
+      Form_peach.cbWordSize.Items.Append('128');
+      Form_peach.cbWordSize.Items.Append('192');
+      Form_peach.cbWordSize.Items.Append('256');
+      Form_peach.cbWordSize.Items.Append('273');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=7;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=4;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=4;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=11;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=10;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=10;
+         Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=14;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=12;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=12;
+         Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=15;
          end;
       end;
    if compression_method='PPMd' then
       begin
       set_multi('off');
-      Form_peach.ComboBoxArchive3.ItemIndex:=2;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=21;
-      Form_peach.ComboBoxArchive5.Items.Append('1 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('6 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('8 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('12 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('16 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('24 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('32 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('48 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('64 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('96 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('128 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('192 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('256 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('384 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('512 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('768 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1024 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1536 MB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=15;
-      Form_peach.ComboBoxArchive6.Items.Append('2');
-      Form_peach.ComboBoxArchive6.Items.Append('3');
-      Form_peach.ComboBoxArchive6.Items.Append('4');
-      Form_peach.ComboBoxArchive6.Items.Append('5');
-      Form_peach.ComboBoxArchive6.Items.Append('6');
-      Form_peach.ComboBoxArchive6.Items.Append('7');
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('10');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('14');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('20');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('28');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.ItemIndex:=2;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=21;
+      Form_peach.cbDictionarySize.Items.Append('1 MB');
+      Form_peach.cbDictionarySize.Items.Append('2 MB');
+      Form_peach.cbDictionarySize.Items.Append('3 MB');
+      Form_peach.cbDictionarySize.Items.Append('4 MB');
+      Form_peach.cbDictionarySize.Items.Append('6 MB');
+      Form_peach.cbDictionarySize.Items.Append('8 MB');
+      Form_peach.cbDictionarySize.Items.Append('12 MB');
+      Form_peach.cbDictionarySize.Items.Append('16 MB');
+      Form_peach.cbDictionarySize.Items.Append('24 MB');
+      Form_peach.cbDictionarySize.Items.Append('32 MB');
+      Form_peach.cbDictionarySize.Items.Append('48 MB');
+      Form_peach.cbDictionarySize.Items.Append('64 MB');
+      Form_peach.cbDictionarySize.Items.Append('96 MB');
+      Form_peach.cbDictionarySize.Items.Append('128 MB');
+      Form_peach.cbDictionarySize.Items.Append('192 MB');
+      Form_peach.cbDictionarySize.Items.Append('256 MB');
+      Form_peach.cbDictionarySize.Items.Append('384 MB');
+      Form_peach.cbDictionarySize.Items.Append('512 MB');
+      Form_peach.cbDictionarySize.Items.Append('768 MB');
+      Form_peach.cbDictionarySize.Items.Append('1024 MB');
+      Form_peach.cbDictionarySize.Items.Append('1536 MB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=15;
+      Form_peach.cbWordSize.Items.Append('2');
+      Form_peach.cbWordSize.Items.Append('3');
+      Form_peach.cbWordSize.Items.Append('4');
+      Form_peach.cbWordSize.Items.Append('5');
+      Form_peach.cbWordSize.Items.Append('6');
+      Form_peach.cbWordSize.Items.Append('7');
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('10');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('14');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('20');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('28');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=2;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=2;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=8;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=3;
-         Form_peach.ComboBoxArchive6.ItemIndex:=2;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=3;
+         Form_peach.cbWordSize.ItemIndex:=2;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=10;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=7;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=7;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=12;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=11;
-         Form_peach.ComboBoxArchive6.ItemIndex:=10;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=11;
+         Form_peach.cbWordSize.ItemIndex:=10;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=15;
-         Form_peach.ComboBoxArchive6.ItemIndex:=14;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=15;
+         Form_peach.cbWordSize.ItemIndex:=14;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       end;
    if compression_method='BZip2' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=3;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=9;
-      Form_peach.ComboBoxArchive5.Items.Append('100 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('200 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('300 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('400 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('500 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('600 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('700 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('800 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('900 KB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchivePasses.DropDownCount:=10;
-      Form_peach.ComboBoxArchivePasses.Items.Append('1');
-      Form_peach.ComboBoxArchivePasses.Items.Append('2');
-      Form_peach.ComboBoxArchivePasses.Items.Append('3');
-      Form_peach.ComboBoxArchivePasses.Items.Append('4');
-      Form_peach.ComboBoxArchivePasses.Items.Append('5');
-      Form_peach.ComboBoxArchivePasses.Items.Append('6');
-      Form_peach.ComboBoxArchivePasses.Items.Append('7');
-      Form_peach.ComboBoxArchivePasses.Items.Append('8');
-      Form_peach.ComboBoxArchivePasses.Items.Append('9');
-      Form_peach.ComboBoxArchivePasses.Items.Append('10');
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=false;
-      Form_peach.ComboBoxArchivePasses.Enabled:=true;
+      Form_peach.cbCompressionMethod.ItemIndex:=3;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=9;
+      Form_peach.cbDictionarySize.Items.Append('100 KB');
+      Form_peach.cbDictionarySize.Items.Append('200 KB');
+      Form_peach.cbDictionarySize.Items.Append('300 KB');
+      Form_peach.cbDictionarySize.Items.Append('400 KB');
+      Form_peach.cbDictionarySize.Items.Append('500 KB');
+      Form_peach.cbDictionarySize.Items.Append('600 KB');
+      Form_peach.cbDictionarySize.Items.Append('700 KB');
+      Form_peach.cbDictionarySize.Items.Append('800 KB');
+      Form_peach.cbDictionarySize.Items.Append('900 KB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbArchivePasses.DropDownCount:=10;
+      Form_peach.cbArchivePasses.Items.Append('1');
+      Form_peach.cbArchivePasses.Items.Append('2');
+      Form_peach.cbArchivePasses.Items.Append('3');
+      Form_peach.cbArchivePasses.Items.Append('4');
+      Form_peach.cbArchivePasses.Items.Append('5');
+      Form_peach.cbArchivePasses.Items.Append('6');
+      Form_peach.cbArchivePasses.Items.Append('7');
+      Form_peach.cbArchivePasses.Items.Append('8');
+      Form_peach.cbArchivePasses.Items.Append('9');
+      Form_peach.cbArchivePasses.Items.Append('10');
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=false;
+      Form_peach.cbArchivePasses.Enabled:=true;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=4;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=4;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=4;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=6;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=7;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=1;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=1;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=7;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=7;
          end;
       end;
@@ -23477,401 +23713,401 @@ if archive_type='7z' then
       begin
       set_multi('on');
       case compression_method of
-         'Brotli': Form_peach.ComboBoxArchive3.ItemIndex:=4;
-         'Lizard_fastLZ4': Form_peach.ComboBoxArchive3.ItemIndex:=6;
-         'Lizard_LIZv1': Form_peach.ComboBoxArchive3.ItemIndex:=7;
-         'Lizard_fastLZ4+Huffman': Form_peach.ComboBoxArchive3.ItemIndex:=8;
-         'Lizard_LIZv1+Huffman': Form_peach.ComboBoxArchive3.ItemIndex:=9;
-         'LZ4': Form_peach.ComboBoxArchive3.ItemIndex:=10;
-         'LZ5': Form_peach.ComboBoxArchive3.ItemIndex:=11;
-         'Zstd': Form_peach.ComboBoxArchive3.ItemIndex:=12;
+         'Brotli': Form_peach.cbCompressionMethod.ItemIndex:=4;
+         'Lizard_fastLZ4': Form_peach.cbCompressionMethod.ItemIndex:=6;
+         'Lizard_LIZv1': Form_peach.cbCompressionMethod.ItemIndex:=7;
+         'Lizard_fastLZ4+Huffman': Form_peach.cbCompressionMethod.ItemIndex:=8;
+         'Lizard_LIZv1+Huffman': Form_peach.cbCompressionMethod.ItemIndex:=9;
+         'LZ4': Form_peach.cbCompressionMethod.ItemIndex:=10;
+         'LZ5': Form_peach.cbCompressionMethod.ItemIndex:=11;
+         'Zstd': Form_peach.cbCompressionMethod.ItemIndex:=12;
          end;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=0;
-      Form_peach.ComboBoxArchive5.Enabled:=False;
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=0;
-      Form_peach.ComboBoxArchive6.Enabled:=False;
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=0;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=0;
+      Form_peach.cbDictionarySize.Enabled:=False;
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=0;
+      Form_peach.cbWordSize.Enabled:=False;
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=0;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=4;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=8;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=12;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       end;
    if compression_method='FLZMA2' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=5;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=22;
-      Form_peach.ComboBoxArchive5.Items.Append('64 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('1 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('6 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('8 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('12 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('16 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('24 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('32 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('48 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('64 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('96 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('128 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('192 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('256 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('384 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('512 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('768 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1024 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1536 MB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=12;
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchive6.Items.Append('48');
-      Form_peach.ComboBoxArchive6.Items.Append('64');
-      Form_peach.ComboBoxArchive6.Items.Append('96');
-      Form_peach.ComboBoxArchive6.Items.Append('128');
-      Form_peach.ComboBoxArchive6.Items.Append('192');
-      Form_peach.ComboBoxArchive6.Items.Append('256');
-      Form_peach.ComboBoxArchive6.Items.Append('273');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.ItemIndex:=5;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=22;
+      Form_peach.cbDictionarySize.Items.Append('64 KB');
+      Form_peach.cbDictionarySize.Items.Append('1 MB');
+      Form_peach.cbDictionarySize.Items.Append('2 MB');
+      Form_peach.cbDictionarySize.Items.Append('3 MB');
+      Form_peach.cbDictionarySize.Items.Append('4 MB');
+      Form_peach.cbDictionarySize.Items.Append('6 MB');
+      Form_peach.cbDictionarySize.Items.Append('8 MB');
+      Form_peach.cbDictionarySize.Items.Append('12 MB');
+      Form_peach.cbDictionarySize.Items.Append('16 MB');
+      Form_peach.cbDictionarySize.Items.Append('24 MB');
+      Form_peach.cbDictionarySize.Items.Append('32 MB');
+      Form_peach.cbDictionarySize.Items.Append('48 MB');
+      Form_peach.cbDictionarySize.Items.Append('64 MB');
+      Form_peach.cbDictionarySize.Items.Append('96 MB');
+      Form_peach.cbDictionarySize.Items.Append('128 MB');
+      Form_peach.cbDictionarySize.Items.Append('192 MB');
+      Form_peach.cbDictionarySize.Items.Append('256 MB');
+      Form_peach.cbDictionarySize.Items.Append('384 MB');
+      Form_peach.cbDictionarySize.Items.Append('512 MB');
+      Form_peach.cbDictionarySize.Items.Append('768 MB');
+      Form_peach.cbDictionarySize.Items.Append('1024 MB');
+      Form_peach.cbDictionarySize.Items.Append('1536 MB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=12;
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbWordSize.Items.Append('48');
+      Form_peach.cbWordSize.Items.Append('64');
+      Form_peach.cbWordSize.Items.Append('96');
+      Form_peach.cbWordSize.Items.Append('128');
+      Form_peach.cbWordSize.Items.Append('192');
+      Form_peach.cbWordSize.Items.Append('256');
+      Form_peach.cbWordSize.Items.Append('273');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=4;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=1;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=1;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=8;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=12;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=10;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=10;
+         Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=12;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=12;
+         Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       end;
 if compression_method='Deflate' then
    begin
    set_multi('on');
-   Form_peach.ComboBoxArchive3.ItemIndex:=13;
-   Form_peach.ComboBoxArchive5.Clear;
-   Form_peach.ComboBoxArchive5.DropDownCount:=1;
-   Form_peach.ComboBoxArchive5.Items.Append('32 KB');
-   Form_peach.ComboBoxArchive6.Clear;
-   Form_peach.ComboBoxArchive6.DropDownCount:=12;
-   Form_peach.ComboBoxArchive6.Items.Append('8');
-   Form_peach.ComboBoxArchive6.Items.Append('12');
-   Form_peach.ComboBoxArchive6.Items.Append('16');
-   Form_peach.ComboBoxArchive6.Items.Append('24');
-   Form_peach.ComboBoxArchive6.Items.Append('32');
-   Form_peach.ComboBoxArchive6.Items.Append('48');
-   Form_peach.ComboBoxArchive6.Items.Append('64');
-   Form_peach.ComboBoxArchive6.Items.Append('96');
-   Form_peach.ComboBoxArchive6.Items.Append('128');
-   Form_peach.ComboBoxArchive6.Items.Append('192');
-   Form_peach.ComboBoxArchive6.Items.Append('256');
-   Form_peach.ComboBoxArchive6.Items.Append('258');
-   Form_peach.ComboBoxArchivePasses.Clear;
-   Form_peach.ComboBoxArchivePasses.DropDownCount:=15;
-   Form_peach.ComboBoxArchivePasses.Items.Append('1');
-   Form_peach.ComboBoxArchivePasses.Items.Append('2');
-   Form_peach.ComboBoxArchivePasses.Items.Append('3');
-   Form_peach.ComboBoxArchivePasses.Items.Append('4');
-   Form_peach.ComboBoxArchivePasses.Items.Append('5');
-   Form_peach.ComboBoxArchivePasses.Items.Append('6');
-   Form_peach.ComboBoxArchivePasses.Items.Append('7');
-   Form_peach.ComboBoxArchivePasses.Items.Append('8');
-   Form_peach.ComboBoxArchivePasses.Items.Append('9');
-   Form_peach.ComboBoxArchivePasses.Items.Append('10');
-   Form_peach.ComboBoxArchivePasses.Items.Append('11');
-   Form_peach.ComboBoxArchivePasses.Items.Append('12');
-   Form_peach.ComboBoxArchivePasses.Items.Append('13');
-   Form_peach.ComboBoxArchivePasses.Items.Append('14');
-   Form_peach.ComboBoxArchivePasses.Items.Append('15');
-   Form_peach.ComboBoxArchive3.Enabled:=true;
-   Form_peach.ComboBoxArchive5.Enabled:=true;
-   Form_peach.ComboBoxArchive6.Enabled:=true;
-   Form_peach.ComboBoxArchivePasses.Enabled:=true;
+   Form_peach.cbCompressionMethod.ItemIndex:=13;
+   Form_peach.cbDictionarySize.Clear;
+   Form_peach.cbDictionarySize.DropDownCount:=1;
+   Form_peach.cbDictionarySize.Items.Append('32 KB');
+   Form_peach.cbWordSize.Clear;
+   Form_peach.cbWordSize.DropDownCount:=12;
+   Form_peach.cbWordSize.Items.Append('8');
+   Form_peach.cbWordSize.Items.Append('12');
+   Form_peach.cbWordSize.Items.Append('16');
+   Form_peach.cbWordSize.Items.Append('24');
+   Form_peach.cbWordSize.Items.Append('32');
+   Form_peach.cbWordSize.Items.Append('48');
+   Form_peach.cbWordSize.Items.Append('64');
+   Form_peach.cbWordSize.Items.Append('96');
+   Form_peach.cbWordSize.Items.Append('128');
+   Form_peach.cbWordSize.Items.Append('192');
+   Form_peach.cbWordSize.Items.Append('256');
+   Form_peach.cbWordSize.Items.Append('258');
+   Form_peach.cbArchivePasses.Clear;
+   Form_peach.cbArchivePasses.DropDownCount:=15;
+   Form_peach.cbArchivePasses.Items.Append('1');
+   Form_peach.cbArchivePasses.Items.Append('2');
+   Form_peach.cbArchivePasses.Items.Append('3');
+   Form_peach.cbArchivePasses.Items.Append('4');
+   Form_peach.cbArchivePasses.Items.Append('5');
+   Form_peach.cbArchivePasses.Items.Append('6');
+   Form_peach.cbArchivePasses.Items.Append('7');
+   Form_peach.cbArchivePasses.Items.Append('8');
+   Form_peach.cbArchivePasses.Items.Append('9');
+   Form_peach.cbArchivePasses.Items.Append('10');
+   Form_peach.cbArchivePasses.Items.Append('11');
+   Form_peach.cbArchivePasses.Items.Append('12');
+   Form_peach.cbArchivePasses.Items.Append('13');
+   Form_peach.cbArchivePasses.Items.Append('14');
+   Form_peach.cbArchivePasses.Items.Append('15');
+   Form_peach.cbCompressionMethod.Enabled:=true;
+   Form_peach.cbDictionarySize.Enabled:=true;
+   Form_peach.cbWordSize.Enabled:=true;
+   Form_peach.cbArchivePasses.Enabled:=true;
    if compression_level=txt_level_fastest then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=1;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=4;//4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=1;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=4;//4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=4;
       end;
    if compression_level=txt_level_fast then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=2;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=4;//4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=2;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=4;//4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=8;
       end;
    if compression_level=txt_level_normal then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=3;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=3;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=12;
       end;
    if compression_level=txt_level_maximum then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=4;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=6;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=2;
+      Form_peach.cbCompressionLevel.ItemIndex:=4;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=6;
+      Form_peach.cbArchivePasses.ItemIndex:=2;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
       end;
    if compression_level=txt_level_ultra then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=5;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=8;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=9;
+      Form_peach.cbCompressionLevel.ItemIndex:=5;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=8;
+      Form_peach.cbArchivePasses.ItemIndex:=9;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
       end;
    end;
 if compression_method='Deflate64' then
    begin
    set_multi('on');
-   Form_peach.ComboBoxArchive3.ItemIndex:=14;
-   Form_peach.ComboBoxArchive5.Clear;
-   Form_peach.ComboBoxArchive5.DropDownCount:=1;
-   Form_peach.ComboBoxArchive5.Items.Append('64 KB');
-   Form_peach.ComboBoxArchive6.Clear;
-   Form_peach.ComboBoxArchive6.DropDownCount:=12;
-   Form_peach.ComboBoxArchive6.Items.Append('8');
-   Form_peach.ComboBoxArchive6.Items.Append('12');
-   Form_peach.ComboBoxArchive6.Items.Append('16');
-   Form_peach.ComboBoxArchive6.Items.Append('24');
-   Form_peach.ComboBoxArchive6.Items.Append('32');
-   Form_peach.ComboBoxArchive6.Items.Append('48');
-   Form_peach.ComboBoxArchive6.Items.Append('64');
-   Form_peach.ComboBoxArchive6.Items.Append('96');
-   Form_peach.ComboBoxArchive6.Items.Append('128');
-   Form_peach.ComboBoxArchive6.Items.Append('192');
-   Form_peach.ComboBoxArchive6.Items.Append('256');
-   Form_peach.ComboBoxArchive6.Items.Append('257');
-   Form_peach.ComboBoxArchivePasses.Clear;
-   Form_peach.ComboBoxArchivePasses.DropDownCount:=15;
-   Form_peach.ComboBoxArchivePasses.Items.Append('1');
-   Form_peach.ComboBoxArchivePasses.Items.Append('2');
-   Form_peach.ComboBoxArchivePasses.Items.Append('3');
-   Form_peach.ComboBoxArchivePasses.Items.Append('4');
-   Form_peach.ComboBoxArchivePasses.Items.Append('5');
-   Form_peach.ComboBoxArchivePasses.Items.Append('6');
-   Form_peach.ComboBoxArchivePasses.Items.Append('7');
-   Form_peach.ComboBoxArchivePasses.Items.Append('8');
-   Form_peach.ComboBoxArchivePasses.Items.Append('9');
-   Form_peach.ComboBoxArchivePasses.Items.Append('10');
-   Form_peach.ComboBoxArchivePasses.Items.Append('11');
-   Form_peach.ComboBoxArchivePasses.Items.Append('12');
-   Form_peach.ComboBoxArchivePasses.Items.Append('13');
-   Form_peach.ComboBoxArchivePasses.Items.Append('14');
-   Form_peach.ComboBoxArchivePasses.Items.Append('15');
-   Form_peach.ComboBoxArchive3.Enabled:=true;
-   Form_peach.ComboBoxArchive5.Enabled:=true;
-   Form_peach.ComboBoxArchive6.Enabled:=true;
-   Form_peach.ComboBoxArchivePasses.Enabled:=true;
+   Form_peach.cbCompressionMethod.ItemIndex:=14;
+   Form_peach.cbDictionarySize.Clear;
+   Form_peach.cbDictionarySize.DropDownCount:=1;
+   Form_peach.cbDictionarySize.Items.Append('64 KB');
+   Form_peach.cbWordSize.Clear;
+   Form_peach.cbWordSize.DropDownCount:=12;
+   Form_peach.cbWordSize.Items.Append('8');
+   Form_peach.cbWordSize.Items.Append('12');
+   Form_peach.cbWordSize.Items.Append('16');
+   Form_peach.cbWordSize.Items.Append('24');
+   Form_peach.cbWordSize.Items.Append('32');
+   Form_peach.cbWordSize.Items.Append('48');
+   Form_peach.cbWordSize.Items.Append('64');
+   Form_peach.cbWordSize.Items.Append('96');
+   Form_peach.cbWordSize.Items.Append('128');
+   Form_peach.cbWordSize.Items.Append('192');
+   Form_peach.cbWordSize.Items.Append('256');
+   Form_peach.cbWordSize.Items.Append('257');
+   Form_peach.cbArchivePasses.Clear;
+   Form_peach.cbArchivePasses.DropDownCount:=15;
+   Form_peach.cbArchivePasses.Items.Append('1');
+   Form_peach.cbArchivePasses.Items.Append('2');
+   Form_peach.cbArchivePasses.Items.Append('3');
+   Form_peach.cbArchivePasses.Items.Append('4');
+   Form_peach.cbArchivePasses.Items.Append('5');
+   Form_peach.cbArchivePasses.Items.Append('6');
+   Form_peach.cbArchivePasses.Items.Append('7');
+   Form_peach.cbArchivePasses.Items.Append('8');
+   Form_peach.cbArchivePasses.Items.Append('9');
+   Form_peach.cbArchivePasses.Items.Append('10');
+   Form_peach.cbArchivePasses.Items.Append('11');
+   Form_peach.cbArchivePasses.Items.Append('12');
+   Form_peach.cbArchivePasses.Items.Append('13');
+   Form_peach.cbArchivePasses.Items.Append('14');
+   Form_peach.cbArchivePasses.Items.Append('15');
+   Form_peach.cbCompressionMethod.Enabled:=true;
+   Form_peach.cbDictionarySize.Enabled:=true;
+   Form_peach.cbWordSize.Enabled:=true;
+   Form_peach.cbArchivePasses.Enabled:=true;
    if compression_level=txt_level_fastest then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=1;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=4;//4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=1;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=4;//4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=4;
       end;
    if compression_level=txt_level_fast then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=2;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=4;//4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=2;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=4;//4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=8;
       end;
    if compression_level=txt_level_normal then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=3;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=3;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=12;
       end;
    if compression_level=txt_level_maximum then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=4;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=6;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=2;
+      Form_peach.cbCompressionLevel.ItemIndex:=4;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=6;
+      Form_peach.cbArchivePasses.ItemIndex:=2;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
       end;
    if compression_level=txt_level_ultra then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=5;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=8;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=9;
+      Form_peach.cbCompressionLevel.ItemIndex:=5;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=8;
+      Form_peach.cbArchivePasses.ItemIndex:=9;
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
       end;
    end;
 if archive_type='xz' then
    begin
    Form_peach.ComboBoxArchiveSolid.Enabled:=true;
-   Form_peach.ComboBoxArchive3.Clear;
-   Form_peach.ComboBoxArchive3.DropDownCount:=1;
-   Form_peach.ComboBoxArchive3.Items.Append('LZMA2');
-   Form_peach.ComboBoxArchive3.ItemIndex:=0;
-   Form_peach.ComboBoxArchive4.Clear;
-   Form_peach.ComboBoxArchive4.DropDownCount:=5;
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fastest);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fast);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_normal);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_maximum);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_ultra);
+   Form_peach.cbCompressionMethod.Clear;
+   Form_peach.cbCompressionMethod.DropDownCount:=1;
+   Form_peach.cbCompressionMethod.Items.Append('LZMA2');
+   Form_peach.cbCompressionMethod.ItemIndex:=0;
+   Form_peach.cbCompressionLevel.Clear;
+   Form_peach.cbCompressionLevel.DropDownCount:=5;
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fast);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
    Form_peach.Label7za18.Visible:=true;
    Form_peach.Label7za18.Visible:=false;
    Form_peach.Combobox7zalgo.Visible:=false;
    if compression_method='LZMA2' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=1;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=25;
-      Form_peach.ComboBoxArchive5.Items.Append('256 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('1 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('6 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('8 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('12 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('16 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('24 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('32 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('48 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('64 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('96 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('128 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('192 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('256 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('384 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('512 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('768 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1024 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1536 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2048 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3072 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4096 MB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=12;
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchive6.Items.Append('48');
-      Form_peach.ComboBoxArchive6.Items.Append('64');
-      Form_peach.ComboBoxArchive6.Items.Append('96');
-      Form_peach.ComboBoxArchive6.Items.Append('128');
-      Form_peach.ComboBoxArchive6.Items.Append('192');
-      Form_peach.ComboBoxArchive6.Items.Append('256');
-      Form_peach.ComboBoxArchive6.Items.Append('273');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.ItemIndex:=1;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=25;
+      Form_peach.cbDictionarySize.Items.Append('256 KB');
+      Form_peach.cbDictionarySize.Items.Append('1 MB');
+      Form_peach.cbDictionarySize.Items.Append('2 MB');
+      Form_peach.cbDictionarySize.Items.Append('3 MB');
+      Form_peach.cbDictionarySize.Items.Append('4 MB');
+      Form_peach.cbDictionarySize.Items.Append('6 MB');
+      Form_peach.cbDictionarySize.Items.Append('8 MB');
+      Form_peach.cbDictionarySize.Items.Append('12 MB');
+      Form_peach.cbDictionarySize.Items.Append('16 MB');
+      Form_peach.cbDictionarySize.Items.Append('24 MB');
+      Form_peach.cbDictionarySize.Items.Append('32 MB');
+      Form_peach.cbDictionarySize.Items.Append('48 MB');
+      Form_peach.cbDictionarySize.Items.Append('64 MB');
+      Form_peach.cbDictionarySize.Items.Append('96 MB');
+      Form_peach.cbDictionarySize.Items.Append('128 MB');
+      Form_peach.cbDictionarySize.Items.Append('192 MB');
+      Form_peach.cbDictionarySize.Items.Append('256 MB');
+      Form_peach.cbDictionarySize.Items.Append('384 MB');
+      Form_peach.cbDictionarySize.Items.Append('512 MB');
+      Form_peach.cbDictionarySize.Items.Append('768 MB');
+      Form_peach.cbDictionarySize.Items.Append('1024 MB');
+      Form_peach.cbDictionarySize.Items.Append('1536 MB');
+      Form_peach.cbDictionarySize.Items.Append('2048 MB');
+      Form_peach.cbDictionarySize.Items.Append('3072 MB');
+      Form_peach.cbDictionarySize.Items.Append('4096 MB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=12;
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbWordSize.Items.Append('48');
+      Form_peach.cbWordSize.Items.Append('64');
+      Form_peach.cbWordSize.Items.Append('96');
+      Form_peach.cbWordSize.Items.Append('128');
+      Form_peach.cbWordSize.Items.Append('192');
+      Form_peach.cbWordSize.Items.Append('256');
+      Form_peach.cbWordSize.Items.Append('273');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=0;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=0;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=7;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=4;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=4;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=11;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=10;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=10;
+         Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=14;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=12;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=12;
+         Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=15;
          end;
       end;
@@ -23879,84 +24115,84 @@ if archive_type='xz' then
 if archive_type='wim' then
    begin
    set_multi('off');
-   Form_peach.ComboBoxArchive3.Clear;
-   Form_peach.ComboBoxArchive3.DropDownCount:=1;
-   Form_peach.ComboBoxArchive3.Items.Append('');
-   Form_peach.ComboBoxArchive4.Clear;
-   Form_peach.ComboBoxArchive4.DropDownCount:=1;
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_store);
-   Form_peach.ComboBoxArchive5.Clear;
-   Form_peach.ComboBoxArchive5.DropDownCount:=1;
-   Form_peach.ComboBoxArchive5.Items.Append('');
-   Form_peach.ComboBoxArchive6.Clear;
-   Form_peach.ComboBoxArchive6.DropDownCount:=1;
-   Form_peach.ComboBoxArchive6.Items.Append('');
-   Form_peach.ComboBoxArchivePasses.Clear;
-   Form_peach.ComboBoxArchive3.ItemIndex:=0;
-   Form_peach.ComboBoxArchive4.ItemIndex:=0;
-   Form_peach.ComboBoxArchive5.ItemIndex:=0;
-   Form_peach.ComboBoxArchive6.ItemIndex:=0;
-   Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
-   Form_peach.ComboBoxArchive3.Enabled:=false;
-   Form_peach.ComboBoxArchive5.Enabled:=false;
-   Form_peach.ComboBoxArchive6.Enabled:=false;
+   Form_peach.cbCompressionMethod.Clear;
+   Form_peach.cbCompressionMethod.DropDownCount:=1;
+   Form_peach.cbCompressionMethod.Items.Append('');
+   Form_peach.cbCompressionLevel.Clear;
+   Form_peach.cbCompressionLevel.DropDownCount:=1;
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_store);
+   Form_peach.cbDictionarySize.Clear;
+   Form_peach.cbDictionarySize.DropDownCount:=1;
+   Form_peach.cbDictionarySize.Items.Append('');
+   Form_peach.cbWordSize.Clear;
+   Form_peach.cbWordSize.DropDownCount:=1;
+   Form_peach.cbWordSize.Items.Append('');
+   Form_peach.cbArchivePasses.Clear;
+   Form_peach.cbCompressionMethod.ItemIndex:=0;
+   Form_peach.cbCompressionLevel.ItemIndex:=0;
+   Form_peach.cbDictionarySize.ItemIndex:=0;
+   Form_peach.cbWordSize.ItemIndex:=0;
+   Form_peach.cbArchivePasses.ItemIndex:=0;
+   Form_peach.cbCompressionMethod.Enabled:=false;
+   Form_peach.cbDictionarySize.Enabled:=false;
+   Form_peach.cbWordSize.Enabled:=false;
    Form_peach.Label7za18.Visible:=false;
    Form_peach.Combobox7zalgo.Visible:=false;
-   Form_peach.ComboBoxArchivePasses.Enabled:=false;
+   Form_peach.cbArchivePasses.Enabled:=false;
    end;
 if archive_type='tar' then
    begin
    set_multi('off');
-   Form_peach.ComboBoxArchive3.Clear;
-   Form_peach.ComboBoxArchive3.DropDownCount:=1;
-   Form_peach.ComboBoxArchive3.Items.Append('');
-   Form_peach.ComboBoxArchive4.Clear;
-   Form_peach.ComboBoxArchive4.DropDownCount:=1;
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_store);
-   Form_peach.ComboBoxArchive5.Clear;
-   Form_peach.ComboBoxArchive5.DropDownCount:=1;
-   Form_peach.ComboBoxArchive5.Items.Append('');
-   Form_peach.ComboBoxArchive6.Clear;
-   Form_peach.ComboBoxArchive6.DropDownCount:=1;
-   Form_peach.ComboBoxArchive6.Items.Append('');
-   Form_peach.ComboBoxArchivePasses.Clear;
-   Form_peach.ComboBoxArchive3.ItemIndex:=0;
-   Form_peach.ComboBoxArchive4.ItemIndex:=0;
-   Form_peach.ComboBoxArchive5.ItemIndex:=0;
-   Form_peach.ComboBoxArchive6.ItemIndex:=0;
-   Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
-   Form_peach.ComboBoxArchive3.Enabled:=false;
-   Form_peach.ComboBoxArchive5.Enabled:=false;
-   Form_peach.ComboBoxArchive6.Enabled:=false;
+   Form_peach.cbCompressionMethod.Clear;
+   Form_peach.cbCompressionMethod.DropDownCount:=1;
+   Form_peach.cbCompressionMethod.Items.Append('');
+   Form_peach.cbCompressionLevel.Clear;
+   Form_peach.cbCompressionLevel.DropDownCount:=1;
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_store);
+   Form_peach.cbDictionarySize.Clear;
+   Form_peach.cbDictionarySize.DropDownCount:=1;
+   Form_peach.cbDictionarySize.Items.Append('');
+   Form_peach.cbWordSize.Clear;
+   Form_peach.cbWordSize.DropDownCount:=1;
+   Form_peach.cbWordSize.Items.Append('');
+   Form_peach.cbArchivePasses.Clear;
+   Form_peach.cbCompressionMethod.ItemIndex:=0;
+   Form_peach.cbCompressionLevel.ItemIndex:=0;
+   Form_peach.cbDictionarySize.ItemIndex:=0;
+   Form_peach.cbWordSize.ItemIndex:=0;
+   Form_peach.cbArchivePasses.ItemIndex:=0;
+   Form_peach.cbCompressionMethod.Enabled:=false;
+   Form_peach.cbDictionarySize.Enabled:=false;
+   Form_peach.cbWordSize.Enabled:=false;
    Form_peach.Label7za18.Visible:=false;
    Form_peach.Combobox7zalgo.Visible:=false;
-   Form_peach.ComboBoxArchivePasses.Enabled:=false;
+   Form_peach.cbArchivePasses.Enabled:=false;
    end;
 if archive_type='zip' then
    begin
-   Form_peach.ComboBoxArchive3.Clear;
+   Form_peach.cbCompressionMethod.Clear;
    {$IFDEF MSWINDOWS}
-   Form_peach.ComboBoxArchive3.DropDownCount:=6;
+   Form_peach.cbCompressionMethod.DropDownCount:=6;
    {$ELSE}
-   Form_peach.ComboBoxArchive3.DropDownCount:=7;
+   Form_peach.cbCompressionMethod.DropDownCount:=7;
    {$ENDIF}
-   Form_peach.ComboBoxArchive3.Items.Append('Deflate');
-   Form_peach.ComboBoxArchive3.Items.Append('Deflate64');
-   Form_peach.ComboBoxArchive3.Items.Append('BZip2');
-   Form_peach.ComboBoxArchive3.Items.Append('LZMA');
-   Form_peach.ComboBoxArchive3.Items.Append('PPMd');
-   Form_peach.ComboBoxArchive3.Items.Append('XZ');
+   Form_peach.cbCompressionMethod.Items.Append('Deflate');
+   Form_peach.cbCompressionMethod.Items.Append('Deflate64');
+   Form_peach.cbCompressionMethod.Items.Append('BZip2');
+   Form_peach.cbCompressionMethod.Items.Append('LZMA');
+   Form_peach.cbCompressionMethod.Items.Append('PPMd');
+   Form_peach.cbCompressionMethod.Items.Append('XZ');
    {$IFNDEF MSWINDOWS}
-   Form_peach.ComboBoxArchive3.Items.Append('Zstd');
+   Form_peach.cbCompressionMethod.Items.Append('Zstd');
    {$ENDIF}
-   Form_peach.ComboBoxArchive4.Clear;
-   Form_peach.ComboBoxArchive4.DropDownCount:=6;
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_store);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fastest);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fast);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_normal);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_maximum);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_ultra);
+   Form_peach.cbCompressionLevel.Clear;
+   Form_peach.cbCompressionLevel.DropDownCount:=6;
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_store);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fast);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
    Form_peach.Label7za18.Visible:=true;
    Form_peach.Subtitle7zaopt2.Visible:=true;
    Form_peach.Combobox7zalgo.Visible:=true;
@@ -23968,470 +24204,470 @@ if archive_type='zip' then
    if compression_level=txt_level_store then
       begin
       set_multi('off');
-      Form_peach.ComboBoxArchive4.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=0;
       compression_method:='';
-      Form_peach.ComboBoxArchive3.Clear;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=false;
-      Form_peach.ComboBoxArchive5.Enabled:=false;
-      Form_peach.ComboBoxArchive6.Enabled:=false;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.Clear;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=false;
+      Form_peach.cbDictionarySize.Enabled:=false;
+      Form_peach.cbWordSize.Enabled:=false;
+      Form_peach.cbArchivePasses.Enabled:=false;
       end;
    if compression_method='Deflate' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=0;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=1;
-      Form_peach.ComboBoxArchive5.Items.Append('32 KB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=12;
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchive6.Items.Append('48');
-      Form_peach.ComboBoxArchive6.Items.Append('64');
-      Form_peach.ComboBoxArchive6.Items.Append('96');
-      Form_peach.ComboBoxArchive6.Items.Append('128');
-      Form_peach.ComboBoxArchive6.Items.Append('192');
-      Form_peach.ComboBoxArchive6.Items.Append('256');
-      Form_peach.ComboBoxArchive6.Items.Append('258');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchivePasses.DropDownCount:=15;
-      Form_peach.ComboBoxArchivePasses.Items.Append('1');
-      Form_peach.ComboBoxArchivePasses.Items.Append('2');
-      Form_peach.ComboBoxArchivePasses.Items.Append('3');
-      Form_peach.ComboBoxArchivePasses.Items.Append('4');
-      Form_peach.ComboBoxArchivePasses.Items.Append('5');
-      Form_peach.ComboBoxArchivePasses.Items.Append('6');
-      Form_peach.ComboBoxArchivePasses.Items.Append('7');
-      Form_peach.ComboBoxArchivePasses.Items.Append('8');
-      Form_peach.ComboBoxArchivePasses.Items.Append('9');
-      Form_peach.ComboBoxArchivePasses.Items.Append('10');
-      Form_peach.ComboBoxArchivePasses.Items.Append('11');
-      Form_peach.ComboBoxArchivePasses.Items.Append('12');
-      Form_peach.ComboBoxArchivePasses.Items.Append('13');
-      Form_peach.ComboBoxArchivePasses.Items.Append('14');
-      Form_peach.ComboBoxArchivePasses.Items.Append('15');
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=true;
+      Form_peach.cbCompressionMethod.ItemIndex:=0;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=1;
+      Form_peach.cbDictionarySize.Items.Append('32 KB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=12;
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbWordSize.Items.Append('48');
+      Form_peach.cbWordSize.Items.Append('64');
+      Form_peach.cbWordSize.Items.Append('96');
+      Form_peach.cbWordSize.Items.Append('128');
+      Form_peach.cbWordSize.Items.Append('192');
+      Form_peach.cbWordSize.Items.Append('256');
+      Form_peach.cbWordSize.Items.Append('258');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbArchivePasses.DropDownCount:=15;
+      Form_peach.cbArchivePasses.Items.Append('1');
+      Form_peach.cbArchivePasses.Items.Append('2');
+      Form_peach.cbArchivePasses.Items.Append('3');
+      Form_peach.cbArchivePasses.Items.Append('4');
+      Form_peach.cbArchivePasses.Items.Append('5');
+      Form_peach.cbArchivePasses.Items.Append('6');
+      Form_peach.cbArchivePasses.Items.Append('7');
+      Form_peach.cbArchivePasses.Items.Append('8');
+      Form_peach.cbArchivePasses.Items.Append('9');
+      Form_peach.cbArchivePasses.Items.Append('10');
+      Form_peach.cbArchivePasses.Items.Append('11');
+      Form_peach.cbArchivePasses.Items.Append('12');
+      Form_peach.cbArchivePasses.Items.Append('13');
+      Form_peach.cbArchivePasses.Items.Append('14');
+      Form_peach.cbArchivePasses.Items.Append('15');
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=true;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;//4;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;//4;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;//4;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;//4;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=2;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=6;
+         Form_peach.cbArchivePasses.ItemIndex:=2;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=8;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=9;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=8;
+         Form_peach.cbArchivePasses.ItemIndex:=9;
          end;
       end;
    if compression_method='Deflate64' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=1;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=1;
-      Form_peach.ComboBoxArchive5.Items.Append('64 KB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=12;
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchive6.Items.Append('48');
-      Form_peach.ComboBoxArchive6.Items.Append('64');
-      Form_peach.ComboBoxArchive6.Items.Append('96');
-      Form_peach.ComboBoxArchive6.Items.Append('128');
-      Form_peach.ComboBoxArchive6.Items.Append('192');
-      Form_peach.ComboBoxArchive6.Items.Append('256');
-      Form_peach.ComboBoxArchive6.Items.Append('257');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchivePasses.DropDownCount:=15;
-      Form_peach.ComboBoxArchivePasses.Items.Append('1');
-      Form_peach.ComboBoxArchivePasses.Items.Append('2');
-      Form_peach.ComboBoxArchivePasses.Items.Append('3');
-      Form_peach.ComboBoxArchivePasses.Items.Append('4');
-      Form_peach.ComboBoxArchivePasses.Items.Append('5');
-      Form_peach.ComboBoxArchivePasses.Items.Append('6');
-      Form_peach.ComboBoxArchivePasses.Items.Append('7');
-      Form_peach.ComboBoxArchivePasses.Items.Append('8');
-      Form_peach.ComboBoxArchivePasses.Items.Append('9');
-      Form_peach.ComboBoxArchivePasses.Items.Append('10');
-      Form_peach.ComboBoxArchivePasses.Items.Append('11');
-      Form_peach.ComboBoxArchivePasses.Items.Append('12');
-      Form_peach.ComboBoxArchivePasses.Items.Append('13');
-      Form_peach.ComboBoxArchivePasses.Items.Append('14');
-      Form_peach.ComboBoxArchivePasses.Items.Append('15');
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=true;
+      Form_peach.cbCompressionMethod.ItemIndex:=1;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=1;
+      Form_peach.cbDictionarySize.Items.Append('64 KB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=12;
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbWordSize.Items.Append('48');
+      Form_peach.cbWordSize.Items.Append('64');
+      Form_peach.cbWordSize.Items.Append('96');
+      Form_peach.cbWordSize.Items.Append('128');
+      Form_peach.cbWordSize.Items.Append('192');
+      Form_peach.cbWordSize.Items.Append('256');
+      Form_peach.cbWordSize.Items.Append('257');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbArchivePasses.DropDownCount:=15;
+      Form_peach.cbArchivePasses.Items.Append('1');
+      Form_peach.cbArchivePasses.Items.Append('2');
+      Form_peach.cbArchivePasses.Items.Append('3');
+      Form_peach.cbArchivePasses.Items.Append('4');
+      Form_peach.cbArchivePasses.Items.Append('5');
+      Form_peach.cbArchivePasses.Items.Append('6');
+      Form_peach.cbArchivePasses.Items.Append('7');
+      Form_peach.cbArchivePasses.Items.Append('8');
+      Form_peach.cbArchivePasses.Items.Append('9');
+      Form_peach.cbArchivePasses.Items.Append('10');
+      Form_peach.cbArchivePasses.Items.Append('11');
+      Form_peach.cbArchivePasses.Items.Append('12');
+      Form_peach.cbArchivePasses.Items.Append('13');
+      Form_peach.cbArchivePasses.Items.Append('14');
+      Form_peach.cbArchivePasses.Items.Append('15');
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=true;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;//4;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;//4;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;//4;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;//4;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=2;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=6;
+         Form_peach.cbArchivePasses.ItemIndex:=2;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=8;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=9;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=8;
+         Form_peach.cbArchivePasses.ItemIndex:=9;
          end;
       end;
    if compression_method='BZip2' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=2;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=9;
-      Form_peach.ComboBoxArchive5.Items.Append('100 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('200 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('300 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('400 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('500 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('600 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('700 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('800 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('900 KB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchivePasses.DropDownCount:=10;
-      Form_peach.ComboBoxArchivePasses.Items.Append('1');
-      Form_peach.ComboBoxArchivePasses.Items.Append('2');
-      Form_peach.ComboBoxArchivePasses.Items.Append('3');
-      Form_peach.ComboBoxArchivePasses.Items.Append('4');
-      Form_peach.ComboBoxArchivePasses.Items.Append('5');
-      Form_peach.ComboBoxArchivePasses.Items.Append('6');
-      Form_peach.ComboBoxArchivePasses.Items.Append('7');
-      Form_peach.ComboBoxArchivePasses.Items.Append('8');
-      Form_peach.ComboBoxArchivePasses.Items.Append('9');
-      Form_peach.ComboBoxArchivePasses.Items.Append('10');
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=false;
-      Form_peach.ComboBoxArchivePasses.Enabled:=true;
+      Form_peach.cbCompressionMethod.ItemIndex:=2;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=9;
+      Form_peach.cbDictionarySize.Items.Append('100 KB');
+      Form_peach.cbDictionarySize.Items.Append('200 KB');
+      Form_peach.cbDictionarySize.Items.Append('300 KB');
+      Form_peach.cbDictionarySize.Items.Append('400 KB');
+      Form_peach.cbDictionarySize.Items.Append('500 KB');
+      Form_peach.cbDictionarySize.Items.Append('600 KB');
+      Form_peach.cbDictionarySize.Items.Append('700 KB');
+      Form_peach.cbDictionarySize.Items.Append('800 KB');
+      Form_peach.cbDictionarySize.Items.Append('900 KB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbArchivePasses.DropDownCount:=10;
+      Form_peach.cbArchivePasses.Items.Append('1');
+      Form_peach.cbArchivePasses.Items.Append('2');
+      Form_peach.cbArchivePasses.Items.Append('3');
+      Form_peach.cbArchivePasses.Items.Append('4');
+      Form_peach.cbArchivePasses.Items.Append('5');
+      Form_peach.cbArchivePasses.Items.Append('6');
+      Form_peach.cbArchivePasses.Items.Append('7');
+      Form_peach.cbArchivePasses.Items.Append('8');
+      Form_peach.cbArchivePasses.Items.Append('9');
+      Form_peach.cbArchivePasses.Items.Append('10');
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=false;
+      Form_peach.cbArchivePasses.Enabled:=true;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=4;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=4;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=0;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=1;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=1;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=0;
-         Form_peach.ComboBoxArchivePasses.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=0;
+         Form_peach.cbArchivePasses.ItemIndex:=6;
          end;
       end;
    if compression_method='LZMA' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=3;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=25;
-      Form_peach.ComboBoxArchive5.Items.Append('256 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('1 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('6 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('8 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('12 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('16 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('24 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('32 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('48 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('64 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('96 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('128 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('192 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('256 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('384 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('512 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('768 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1024 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1536 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2048 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3072 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4096 MB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=12;
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchive6.Items.Append('48');
-      Form_peach.ComboBoxArchive6.Items.Append('64');
-      Form_peach.ComboBoxArchive6.Items.Append('96');
-      Form_peach.ComboBoxArchive6.Items.Append('128');
-      Form_peach.ComboBoxArchive6.Items.Append('192');
-      Form_peach.ComboBoxArchive6.Items.Append('256');
-      Form_peach.ComboBoxArchive6.Items.Append('273');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.ItemIndex:=3;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=25;
+      Form_peach.cbDictionarySize.Items.Append('256 KB');
+      Form_peach.cbDictionarySize.Items.Append('1 MB');
+      Form_peach.cbDictionarySize.Items.Append('2 MB');
+      Form_peach.cbDictionarySize.Items.Append('3 MB');
+      Form_peach.cbDictionarySize.Items.Append('4 MB');
+      Form_peach.cbDictionarySize.Items.Append('6 MB');
+      Form_peach.cbDictionarySize.Items.Append('8 MB');
+      Form_peach.cbDictionarySize.Items.Append('12 MB');
+      Form_peach.cbDictionarySize.Items.Append('16 MB');
+      Form_peach.cbDictionarySize.Items.Append('24 MB');
+      Form_peach.cbDictionarySize.Items.Append('32 MB');
+      Form_peach.cbDictionarySize.Items.Append('48 MB');
+      Form_peach.cbDictionarySize.Items.Append('64 MB');
+      Form_peach.cbDictionarySize.Items.Append('96 MB');
+      Form_peach.cbDictionarySize.Items.Append('128 MB');
+      Form_peach.cbDictionarySize.Items.Append('192 MB');
+      Form_peach.cbDictionarySize.Items.Append('256 MB');
+      Form_peach.cbDictionarySize.Items.Append('384 MB');
+      Form_peach.cbDictionarySize.Items.Append('512 MB');
+      Form_peach.cbDictionarySize.Items.Append('768 MB');
+      Form_peach.cbDictionarySize.Items.Append('1024 MB');
+      Form_peach.cbDictionarySize.Items.Append('1536 MB');
+      Form_peach.cbDictionarySize.Items.Append('2048 MB');
+      Form_peach.cbDictionarySize.Items.Append('3072 MB');
+      Form_peach.cbDictionarySize.Items.Append('4096 MB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=12;
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbWordSize.Items.Append('48');
+      Form_peach.cbWordSize.Items.Append('64');
+      Form_peach.cbWordSize.Items.Append('96');
+      Form_peach.cbWordSize.Items.Append('128');
+      Form_peach.cbWordSize.Items.Append('192');
+      Form_peach.cbWordSize.Items.Append('256');
+      Form_peach.cbWordSize.Items.Append('273');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=4;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=4;
+         Form_peach.cbWordSize.ItemIndex:=4;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=4;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=10;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=10;
+         Form_peach.cbWordSize.ItemIndex:=6;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=12;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=12;
+         Form_peach.cbWordSize.ItemIndex:=6;
          end;
       end;
    if compression_method='PPMd' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=4;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=9;
-      Form_peach.ComboBoxArchive5.Items.Append('1 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('8 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('16 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('32 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('64 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('128 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('256 MB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=15;
-      Form_peach.ComboBoxArchive6.Items.Append('2');
-      Form_peach.ComboBoxArchive6.Items.Append('3');
-      Form_peach.ComboBoxArchive6.Items.Append('4');
-      Form_peach.ComboBoxArchive6.Items.Append('5');
-      Form_peach.ComboBoxArchive6.Items.Append('6');
-      Form_peach.ComboBoxArchive6.Items.Append('7');
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('9');
-      Form_peach.ComboBoxArchive6.Items.Append('10');
-      Form_peach.ComboBoxArchive6.Items.Append('11');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('13');
-      Form_peach.ComboBoxArchive6.Items.Append('14');
-      Form_peach.ComboBoxArchive6.Items.Append('15');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.ItemIndex:=4;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=9;
+      Form_peach.cbDictionarySize.Items.Append('1 MB');
+      Form_peach.cbDictionarySize.Items.Append('2 MB');
+      Form_peach.cbDictionarySize.Items.Append('4 MB');
+      Form_peach.cbDictionarySize.Items.Append('8 MB');
+      Form_peach.cbDictionarySize.Items.Append('16 MB');
+      Form_peach.cbDictionarySize.Items.Append('32 MB');
+      Form_peach.cbDictionarySize.Items.Append('64 MB');
+      Form_peach.cbDictionarySize.Items.Append('128 MB');
+      Form_peach.cbDictionarySize.Items.Append('256 MB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=15;
+      Form_peach.cbWordSize.Items.Append('2');
+      Form_peach.cbWordSize.Items.Append('3');
+      Form_peach.cbWordSize.Items.Append('4');
+      Form_peach.cbWordSize.Items.Append('5');
+      Form_peach.cbWordSize.Items.Append('6');
+      Form_peach.cbWordSize.Items.Append('7');
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('9');
+      Form_peach.cbWordSize.Items.Append('10');
+      Form_peach.cbWordSize.Items.Append('11');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('13');
+      Form_peach.cbWordSize.Items.Append('14');
+      Form_peach.cbWordSize.Items.Append('15');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=2;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=2;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=2;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=2;
+         Form_peach.cbWordSize.ItemIndex:=4;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=4;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=4;
+         Form_peach.cbWordSize.ItemIndex:=6;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=6;
-         Form_peach.ComboBoxArchive6.ItemIndex:=8;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=6;
+         Form_peach.cbWordSize.ItemIndex:=8;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=7;
-         Form_peach.ComboBoxArchive6.ItemIndex:=10;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=7;
+         Form_peach.cbWordSize.ItemIndex:=10;
          end;
       end;
 
    if compression_method='XZ' then
       begin
       set_multi('on');
-      Form_peach.ComboBoxArchive3.ItemIndex:=5;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=25;
-      Form_peach.ComboBoxArchive5.Items.Append('256 KB');
-      Form_peach.ComboBoxArchive5.Items.Append('1 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('6 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('8 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('12 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('16 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('24 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('32 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('48 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('64 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('96 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('128 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('192 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('256 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('384 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('512 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('768 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1024 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('1536 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('2048 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('3072 MB');
-      Form_peach.ComboBoxArchive5.Items.Append('4096 MB');
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=12;
-      Form_peach.ComboBoxArchive6.Items.Append('8');
-      Form_peach.ComboBoxArchive6.Items.Append('12');
-      Form_peach.ComboBoxArchive6.Items.Append('16');
-      Form_peach.ComboBoxArchive6.Items.Append('24');
-      Form_peach.ComboBoxArchive6.Items.Append('32');
-      Form_peach.ComboBoxArchive6.Items.Append('48');
-      Form_peach.ComboBoxArchive6.Items.Append('64');
-      Form_peach.ComboBoxArchive6.Items.Append('96');
-      Form_peach.ComboBoxArchive6.Items.Append('128');
-      Form_peach.ComboBoxArchive6.Items.Append('192');
-      Form_peach.ComboBoxArchive6.Items.Append('256');
-      Form_peach.ComboBoxArchive6.Items.Append('273');
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchive5.Enabled:=true;
-      Form_peach.ComboBoxArchive6.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
+      Form_peach.cbCompressionMethod.ItemIndex:=5;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=25;
+      Form_peach.cbDictionarySize.Items.Append('256 KB');
+      Form_peach.cbDictionarySize.Items.Append('1 MB');
+      Form_peach.cbDictionarySize.Items.Append('2 MB');
+      Form_peach.cbDictionarySize.Items.Append('3 MB');
+      Form_peach.cbDictionarySize.Items.Append('4 MB');
+      Form_peach.cbDictionarySize.Items.Append('6 MB');
+      Form_peach.cbDictionarySize.Items.Append('8 MB');
+      Form_peach.cbDictionarySize.Items.Append('12 MB');
+      Form_peach.cbDictionarySize.Items.Append('16 MB');
+      Form_peach.cbDictionarySize.Items.Append('24 MB');
+      Form_peach.cbDictionarySize.Items.Append('32 MB');
+      Form_peach.cbDictionarySize.Items.Append('48 MB');
+      Form_peach.cbDictionarySize.Items.Append('64 MB');
+      Form_peach.cbDictionarySize.Items.Append('96 MB');
+      Form_peach.cbDictionarySize.Items.Append('128 MB');
+      Form_peach.cbDictionarySize.Items.Append('192 MB');
+      Form_peach.cbDictionarySize.Items.Append('256 MB');
+      Form_peach.cbDictionarySize.Items.Append('384 MB');
+      Form_peach.cbDictionarySize.Items.Append('512 MB');
+      Form_peach.cbDictionarySize.Items.Append('768 MB');
+      Form_peach.cbDictionarySize.Items.Append('1024 MB');
+      Form_peach.cbDictionarySize.Items.Append('1536 MB');
+      Form_peach.cbDictionarySize.Items.Append('2048 MB');
+      Form_peach.cbDictionarySize.Items.Append('3072 MB');
+      Form_peach.cbDictionarySize.Items.Append('4096 MB');
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=12;
+      Form_peach.cbWordSize.Items.Append('8');
+      Form_peach.cbWordSize.Items.Append('12');
+      Form_peach.cbWordSize.Items.Append('16');
+      Form_peach.cbWordSize.Items.Append('24');
+      Form_peach.cbWordSize.Items.Append('32');
+      Form_peach.cbWordSize.Items.Append('48');
+      Form_peach.cbWordSize.Items.Append('64');
+      Form_peach.cbWordSize.Items.Append('96');
+      Form_peach.cbWordSize.Items.Append('128');
+      Form_peach.cbWordSize.Items.Append('192');
+      Form_peach.cbWordSize.Items.Append('256');
+      Form_peach.cbWordSize.Items.Append('273');
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbDictionarySize.Enabled:=true;
+      Form_peach.cbWordSize.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
-         Form_peach.ComboBoxArchive5.ItemIndex:=0;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
+         Form_peach.cbDictionarySize.ItemIndex:=0;
+         Form_peach.cbWordSize.ItemIndex:=4;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
-         Form_peach.ComboBoxArchive5.ItemIndex:=4;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
+         Form_peach.cbDictionarySize.ItemIndex:=4;
+         Form_peach.cbWordSize.ItemIndex:=4;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
-         Form_peach.ComboBoxArchive5.ItemIndex:=8;
-         Form_peach.ComboBoxArchive6.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
+         Form_peach.cbDictionarySize.ItemIndex:=8;
+         Form_peach.cbWordSize.ItemIndex:=4;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
-         Form_peach.ComboBoxArchive5.ItemIndex:=10;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
+         Form_peach.cbDictionarySize.ItemIndex:=10;
+         Form_peach.cbWordSize.ItemIndex:=6;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
-         Form_peach.ComboBoxArchive5.ItemIndex:=12;
-         Form_peach.ComboBoxArchive6.ItemIndex:=6;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
+         Form_peach.cbDictionarySize.ItemIndex:=12;
+         Form_peach.cbWordSize.ItemIndex:=6;
          end;
       end;
    {$IFNDEF MSWINDOWS}
@@ -24439,42 +24675,42 @@ if archive_type='zip' then
       begin
       set_multi('on');
       case compression_method of
-         'Zstd': Form_peach.ComboBoxArchive3.ItemIndex:=6;
+         'Zstd': Form_peach.cbCompressionMethod.ItemIndex:=6;
          end;
-      Form_peach.ComboBoxArchive5.Clear;
-      Form_peach.ComboBoxArchive5.DropDownCount:=0;
-      Form_peach.ComboBoxArchive5.Enabled:=False;
-      Form_peach.ComboBoxArchive6.Clear;
-      Form_peach.ComboBoxArchive6.DropDownCount:=0;
-      Form_peach.ComboBoxArchive6.Enabled:=False;
-      Form_peach.ComboBoxArchivePasses.Clear;
-      Form_peach.ComboBoxArchive3.Enabled:=true;
-      Form_peach.ComboBoxArchivePasses.Enabled:=false;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=0;
+      Form_peach.cbDictionarySize.Clear;
+      Form_peach.cbDictionarySize.DropDownCount:=0;
+      Form_peach.cbDictionarySize.Enabled:=False;
+      Form_peach.cbWordSize.Clear;
+      Form_peach.cbWordSize.DropDownCount:=0;
+      Form_peach.cbWordSize.Enabled:=False;
+      Form_peach.cbArchivePasses.Clear;
+      Form_peach.cbCompressionMethod.Enabled:=true;
+      Form_peach.cbArchivePasses.Enabled:=false;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=0;
       if compression_level=txt_level_fastest then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=1;
+         Form_peach.cbCompressionLevel.ItemIndex:=1;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=4;
          end;
       if compression_level=txt_level_fast then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=2;
+         Form_peach.cbCompressionLevel.ItemIndex:=2;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=8;
          end;
       if compression_level=txt_level_normal then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=3;
+         Form_peach.cbCompressionLevel.ItemIndex:=3;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=12;
          end;
       if compression_level=txt_level_maximum then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=4;
+         Form_peach.cbCompressionLevel.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       if compression_level=txt_level_ultra then
          begin
-         Form_peach.ComboBoxArchive4.ItemIndex:=5;
+         Form_peach.cbCompressionLevel.ItemIndex:=5;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
       end;
@@ -24483,171 +24719,171 @@ if archive_type='zip' then
 if archive_type='bz2' then
    begin
    set_multi('on');
-   Form_peach.ComboBoxArchive3.Clear;
-   Form_peach.ComboBoxArchive3.DropDownCount:=1;
-   Form_peach.ComboBoxArchive3.Items.Append('BZip2');
-   Form_peach.ComboBoxArchive3.ItemIndex:=0;
-   Form_peach.ComboBoxArchive4.Clear;
-   Form_peach.ComboBoxArchive4.DropDownCount:=5;
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fastest);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fast);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_normal);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_maximum);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_ultra);
-   Form_peach.ComboBoxArchive5.Clear;
-   Form_peach.ComboBoxArchive5.DropDownCount:=9;
-   Form_peach.ComboBoxArchive5.Items.Append('100 KB');
-   Form_peach.ComboBoxArchive5.Items.Append('200 KB');
-   Form_peach.ComboBoxArchive5.Items.Append('300 KB');
-   Form_peach.ComboBoxArchive5.Items.Append('400 KB');
-   Form_peach.ComboBoxArchive5.Items.Append('500 KB');
-   Form_peach.ComboBoxArchive5.Items.Append('600 KB');
-   Form_peach.ComboBoxArchive5.Items.Append('700 KB');
-   Form_peach.ComboBoxArchive5.Items.Append('800 KB');
-   Form_peach.ComboBoxArchive5.Items.Append('900 KB');
-   Form_peach.ComboBoxArchive6.Clear;
-   Form_peach.ComboBoxArchivePasses.Clear;
-   Form_peach.ComboBoxArchivePasses.DropDownCount:=10;
-   Form_peach.ComboBoxArchivePasses.Items.Append('1');
-   Form_peach.ComboBoxArchivePasses.Items.Append('2');
-   Form_peach.ComboBoxArchivePasses.Items.Append('3');
-   Form_peach.ComboBoxArchivePasses.Items.Append('4');
-   Form_peach.ComboBoxArchivePasses.Items.Append('5');
-   Form_peach.ComboBoxArchivePasses.Items.Append('6');
-   Form_peach.ComboBoxArchivePasses.Items.Append('7');
-   Form_peach.ComboBoxArchivePasses.Items.Append('8');
-   Form_peach.ComboBoxArchivePasses.Items.Append('9');
-   Form_peach.ComboBoxArchivePasses.Items.Append('10');
-   Form_peach.ComboBoxArchive3.Enabled:=true;
-   Form_peach.ComboBoxArchive5.Enabled:=true;
-   Form_peach.ComboBoxArchive6.Enabled:=false;
+   Form_peach.cbCompressionMethod.Clear;
+   Form_peach.cbCompressionMethod.DropDownCount:=1;
+   Form_peach.cbCompressionMethod.Items.Append('BZip2');
+   Form_peach.cbCompressionMethod.ItemIndex:=0;
+   Form_peach.cbCompressionLevel.Clear;
+   Form_peach.cbCompressionLevel.DropDownCount:=5;
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fast);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
+   Form_peach.cbDictionarySize.Clear;
+   Form_peach.cbDictionarySize.DropDownCount:=9;
+   Form_peach.cbDictionarySize.Items.Append('100 KB');
+   Form_peach.cbDictionarySize.Items.Append('200 KB');
+   Form_peach.cbDictionarySize.Items.Append('300 KB');
+   Form_peach.cbDictionarySize.Items.Append('400 KB');
+   Form_peach.cbDictionarySize.Items.Append('500 KB');
+   Form_peach.cbDictionarySize.Items.Append('600 KB');
+   Form_peach.cbDictionarySize.Items.Append('700 KB');
+   Form_peach.cbDictionarySize.Items.Append('800 KB');
+   Form_peach.cbDictionarySize.Items.Append('900 KB');
+   Form_peach.cbWordSize.Clear;
+   Form_peach.cbArchivePasses.Clear;
+   Form_peach.cbArchivePasses.DropDownCount:=10;
+   Form_peach.cbArchivePasses.Items.Append('1');
+   Form_peach.cbArchivePasses.Items.Append('2');
+   Form_peach.cbArchivePasses.Items.Append('3');
+   Form_peach.cbArchivePasses.Items.Append('4');
+   Form_peach.cbArchivePasses.Items.Append('5');
+   Form_peach.cbArchivePasses.Items.Append('6');
+   Form_peach.cbArchivePasses.Items.Append('7');
+   Form_peach.cbArchivePasses.Items.Append('8');
+   Form_peach.cbArchivePasses.Items.Append('9');
+   Form_peach.cbArchivePasses.Items.Append('10');
+   Form_peach.cbCompressionMethod.Enabled:=true;
+   Form_peach.cbDictionarySize.Enabled:=true;
+   Form_peach.cbWordSize.Enabled:=false;
    Form_peach.Label7za18.Visible:=false;
    Form_peach.Combobox7zalgo.Visible:=false;
-   Form_peach.ComboBoxArchivePasses.Enabled:=true;
+   Form_peach.cbArchivePasses.Enabled:=true;
    if compression_level=txt_level_fastest then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=0;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=0;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=0;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=0;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       end;
    if compression_level=txt_level_fast then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=1;
-      Form_peach.ComboBoxArchive5.ItemIndex:=4;
-      Form_peach.ComboBoxArchive6.ItemIndex:=0;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=1;
+      Form_peach.cbDictionarySize.ItemIndex:=4;
+      Form_peach.cbWordSize.ItemIndex:=0;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       end;
    if compression_level=txt_level_normal then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=2;
-      Form_peach.ComboBoxArchive5.ItemIndex:=8;
-      Form_peach.ComboBoxArchive6.ItemIndex:=0;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=2;
+      Form_peach.cbDictionarySize.ItemIndex:=8;
+      Form_peach.cbWordSize.ItemIndex:=0;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       end;
    if compression_level=txt_level_maximum then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=3;
-      Form_peach.ComboBoxArchive5.ItemIndex:=8;
-      Form_peach.ComboBoxArchive6.ItemIndex:=0;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=1;
+      Form_peach.cbCompressionLevel.ItemIndex:=3;
+      Form_peach.cbDictionarySize.ItemIndex:=8;
+      Form_peach.cbWordSize.ItemIndex:=0;
+      Form_peach.cbArchivePasses.ItemIndex:=1;
       end;
    if compression_level=txt_level_ultra then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=4;
-      Form_peach.ComboBoxArchive5.ItemIndex:=8;
-      Form_peach.ComboBoxArchive6.ItemIndex:=0;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=6;
+      Form_peach.cbCompressionLevel.ItemIndex:=4;
+      Form_peach.cbDictionarySize.ItemIndex:=8;
+      Form_peach.cbWordSize.ItemIndex:=0;
+      Form_peach.cbArchivePasses.ItemIndex:=6;
       end;
    end;
 if archive_type='gz' then
    begin
    set_multi('on');
-   Form_peach.ComboBoxArchive3.Clear;
-   Form_peach.ComboBoxArchive3.DropDownCount:=1;
-   Form_peach.ComboBoxArchive3.Items.Append('Deflate');
-   Form_peach.ComboBoxArchive3.ItemIndex:=0;
-   Form_peach.ComboBoxArchive4.Clear;
-   Form_peach.ComboBoxArchive4.DropDownCount:=5;
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fastest);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_fast);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_normal);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_maximum);
-   Form_peach.ComboBoxArchive4.Items.Append(txt_level_ultra);
-   Form_peach.ComboBoxArchive5.Clear;
-   Form_peach.ComboBoxArchive5.DropDownCount:=1;
-   Form_peach.ComboBoxArchive5.Items.Append('32 KB');
-   Form_peach.ComboBoxArchive6.Clear;
-   Form_peach.ComboBoxArchive6.DropDownCount:=12;
-   Form_peach.ComboBoxArchive6.Items.Append('8');
-   Form_peach.ComboBoxArchive6.Items.Append('12');
-   Form_peach.ComboBoxArchive6.Items.Append('16');
-   Form_peach.ComboBoxArchive6.Items.Append('24');
-   Form_peach.ComboBoxArchive6.Items.Append('32');
-   Form_peach.ComboBoxArchive6.Items.Append('48');
-   Form_peach.ComboBoxArchive6.Items.Append('64');
-   Form_peach.ComboBoxArchive6.Items.Append('96');
-   Form_peach.ComboBoxArchive6.Items.Append('128');
-   Form_peach.ComboBoxArchive6.Items.Append('192');
-   Form_peach.ComboBoxArchive6.Items.Append('256');
-   Form_peach.ComboBoxArchive6.Items.Append('258');
-   Form_peach.ComboBoxArchivePasses.Clear;
-   Form_peach.ComboBoxArchivePasses.DropDownCount:=15;
-   Form_peach.ComboBoxArchivePasses.Items.Append('1');
-   Form_peach.ComboBoxArchivePasses.Items.Append('2');
-   Form_peach.ComboBoxArchivePasses.Items.Append('3');
-   Form_peach.ComboBoxArchivePasses.Items.Append('4');
-   Form_peach.ComboBoxArchivePasses.Items.Append('5');
-   Form_peach.ComboBoxArchivePasses.Items.Append('6');
-   Form_peach.ComboBoxArchivePasses.Items.Append('7');
-   Form_peach.ComboBoxArchivePasses.Items.Append('8');
-   Form_peach.ComboBoxArchivePasses.Items.Append('9');
-   Form_peach.ComboBoxArchivePasses.Items.Append('10');
-   Form_peach.ComboBoxArchivePasses.Items.Append('11');
-   Form_peach.ComboBoxArchivePasses.Items.Append('12');
-   Form_peach.ComboBoxArchivePasses.Items.Append('13');
-   Form_peach.ComboBoxArchivePasses.Items.Append('14');
-   Form_peach.ComboBoxArchivePasses.Items.Append('15');
-   Form_peach.ComboBoxArchive3.Enabled:=true;
-   Form_peach.ComboBoxArchive5.Enabled:=true;
-   Form_peach.ComboBoxArchive6.Enabled:=true;
+   Form_peach.cbCompressionMethod.Clear;
+   Form_peach.cbCompressionMethod.DropDownCount:=1;
+   Form_peach.cbCompressionMethod.Items.Append('Deflate');
+   Form_peach.cbCompressionMethod.ItemIndex:=0;
+   Form_peach.cbCompressionLevel.Clear;
+   Form_peach.cbCompressionLevel.DropDownCount:=5;
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_fast);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
+   Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
+   Form_peach.cbDictionarySize.Clear;
+   Form_peach.cbDictionarySize.DropDownCount:=1;
+   Form_peach.cbDictionarySize.Items.Append('32 KB');
+   Form_peach.cbWordSize.Clear;
+   Form_peach.cbWordSize.DropDownCount:=12;
+   Form_peach.cbWordSize.Items.Append('8');
+   Form_peach.cbWordSize.Items.Append('12');
+   Form_peach.cbWordSize.Items.Append('16');
+   Form_peach.cbWordSize.Items.Append('24');
+   Form_peach.cbWordSize.Items.Append('32');
+   Form_peach.cbWordSize.Items.Append('48');
+   Form_peach.cbWordSize.Items.Append('64');
+   Form_peach.cbWordSize.Items.Append('96');
+   Form_peach.cbWordSize.Items.Append('128');
+   Form_peach.cbWordSize.Items.Append('192');
+   Form_peach.cbWordSize.Items.Append('256');
+   Form_peach.cbWordSize.Items.Append('258');
+   Form_peach.cbArchivePasses.Clear;
+   Form_peach.cbArchivePasses.DropDownCount:=15;
+   Form_peach.cbArchivePasses.Items.Append('1');
+   Form_peach.cbArchivePasses.Items.Append('2');
+   Form_peach.cbArchivePasses.Items.Append('3');
+   Form_peach.cbArchivePasses.Items.Append('4');
+   Form_peach.cbArchivePasses.Items.Append('5');
+   Form_peach.cbArchivePasses.Items.Append('6');
+   Form_peach.cbArchivePasses.Items.Append('7');
+   Form_peach.cbArchivePasses.Items.Append('8');
+   Form_peach.cbArchivePasses.Items.Append('9');
+   Form_peach.cbArchivePasses.Items.Append('10');
+   Form_peach.cbArchivePasses.Items.Append('11');
+   Form_peach.cbArchivePasses.Items.Append('12');
+   Form_peach.cbArchivePasses.Items.Append('13');
+   Form_peach.cbArchivePasses.Items.Append('14');
+   Form_peach.cbArchivePasses.Items.Append('15');
+   Form_peach.cbCompressionMethod.Enabled:=true;
+   Form_peach.cbDictionarySize.Enabled:=true;
+   Form_peach.cbWordSize.Enabled:=true;
    Form_peach.Label7za18.Visible:=false;
    Form_peach.Combobox7zalgo.Visible:=false;
-   Form_peach.ComboBoxArchivePasses.Enabled:=true;
+   Form_peach.cbArchivePasses.Enabled:=true;
    if compression_level=txt_level_fastest then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=0;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=0;//4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=0;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=0;//4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       end;
    if compression_level=txt_level_fast then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=1;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=2;//4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=1;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=2;//4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       end;
    if compression_level=txt_level_normal then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=2;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=4;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=0;
+      Form_peach.cbCompressionLevel.ItemIndex:=2;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=4;
+      Form_peach.cbArchivePasses.ItemIndex:=0;
       end;
    if compression_level=txt_level_maximum then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=3;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=6;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=2;
+      Form_peach.cbCompressionLevel.ItemIndex:=3;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=6;
+      Form_peach.cbArchivePasses.ItemIndex:=2;
       end;
    if compression_level=txt_level_ultra then
       begin
-      Form_peach.ComboBoxArchive4.ItemIndex:=4;
-      Form_peach.ComboBoxArchive5.ItemIndex:=0;
-      Form_peach.ComboBoxArchive6.ItemIndex:=8;
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=9;
+      Form_peach.cbCompressionLevel.ItemIndex:=4;
+      Form_peach.cbDictionarySize.ItemIndex:=0;
+      Form_peach.cbWordSize.ItemIndex:=8;
+      Form_peach.cbArchivePasses.ItemIndex:=9;
       end;
    end;
 if openw_all7z=1 then Form_peach.CheckBoxArchiveOF.State:=cbChecked
@@ -24663,12 +24899,12 @@ if sort7zbytype=1 then Form_peach.CheckBoxMQS.State:=cbChecked
 else Form_peach.CheckBoxMQS.State:=cbUnChecked;
 if loadadvdefaults=true then
    begin
-   if (advopdictionary>=0) and (advopdictionary<Form_peach.ComboBoxArchive5.Items.Count) then
-      Form_peach.ComboBoxArchive5.ItemIndex:=advopdictionary;
-   if (advopword>=0) and (advopword<Form_peach.ComboBoxArchive6.Items.Count) then
-      Form_peach.ComboBoxArchive6.ItemIndex:=advopword;
-   if (advoppasses>=0) and (advoppasses<Form_peach.ComboBoxArchivePasses.Items.Count) then
-      Form_peach.ComboBoxArchivePasses.ItemIndex:=advoppasses;
+   if (advopdictionary>=0) and (advopdictionary<Form_peach.cbDictionarySize.Items.Count) then
+      Form_peach.cbDictionarySize.ItemIndex:=advopdictionary;
+   if (advopword>=0) and (advopword<Form_peach.cbWordSize.Items.Count) then
+      Form_peach.cbWordSize.ItemIndex:=advopword;
+   if (advoppasses>=0) and (advoppasses<Form_peach.cbArchivePasses.Items.Count) then
+      Form_peach.cbArchivePasses.ItemIndex:=advoppasses;
    if (advopblocksize>=0) and (advopblocksize<Form_peach.ComboBoxArchiveSolid.Items.Count) then
       Form_peach.ComboBoxArchiveSolid.ItemIndex:=advopblocksize;
    end;
@@ -24677,7 +24913,7 @@ end;
 
 procedure change_imagesplit;
 begin
-   case Form_peach.ComboBoxArchive1.ItemIndex of
+   case Form_peach.cbPredefinedArchiveSizes.ItemIndex of
       0: Form_peach.ImageSplit.Picture.Bitmap:=nil;
       1: Form_peach.ImageSplit.Picture.Bitmap:=nil;
       2: Form_peach.ImageSplit.Picture.Bitmap:=Bfd_supported;
@@ -25781,11 +26017,11 @@ end;
 procedure setcompressionlevel7zindex;
 begin
 case archive_type of
-'7z': Form_peach.ComboBoxArchive4.ItemIndex:=level_7z;
-'xz': Form_peach.ComboBoxArchive4.ItemIndex:=level_xz;
-'zip': Form_peach.ComboBoxArchive4.ItemIndex:=level_zip;
-'bz2': Form_peach.ComboBoxArchive4.ItemIndex:=level_bzip2;
-'gz': Form_peach.ComboBoxArchive4.ItemIndex:=level_gz;
+'7z': Form_peach.cbCompressionLevel.ItemIndex:=level_7z;
+'xz': Form_peach.cbCompressionLevel.ItemIndex:=level_xz;
+'zip': Form_peach.cbCompressionLevel.ItemIndex:=level_zip;
+'bz2': Form_peach.cbCompressionLevel.ItemIndex:=level_bzip2;
+'gz': Form_peach.cbCompressionLevel.ItemIndex:=level_gz;
 end;
 end;
 
@@ -25867,17 +26103,17 @@ if (s<>'7Z') and (s<>'ARC') and (s<>'BROTLI') and (s<>'CUSTOM') and (s<>'ZSTD') 
 else Form_peach.ComboBoxArchive9.Enabled:=true;
 if s='7Z' then
    begin
-   Form_peach.ComboBoxArchive9.DropDownCount:=Form_peach.ComboBoxArchive4.DropDownCount;
-   for i:=0 to Form_peach.ComboBoxArchive4.Items.Count-1 do
-      Form_peach.ComboBoxArchive9.Items.Append(Form_peach.ComboBoxArchive4.Items[i]);
-   Form_peach.ComboBoxArchive9.ItemIndex:=Form_peach.ComboBoxArchive4.ItemIndex;
+   Form_peach.ComboBoxArchive9.DropDownCount:=Form_peach.cbCompressionLevel.DropDownCount;
+   for i:=0 to Form_peach.cbCompressionLevel.Items.Count-1 do
+      Form_peach.ComboBoxArchive9.Items.Append(Form_peach.cbCompressionLevel.Items[i]);
+   Form_peach.ComboBoxArchive9.ItemIndex:=Form_peach.cbCompressionLevel.ItemIndex;
    end;
 if s='CUSTOM' then
    if (havewinrar=true) and (userar=1) then
    begin
-   Form_peach.ComboBoxArchive9.DropDownCount:=Form_peach.ComboBoxArchive4.DropDownCount;
-   for i:=0 to Form_peach.ComboBoxArchive4.Items.Count-1 do
-      Form_peach.ComboBoxArchive9.Items.Append(Form_peach.ComboBoxArchive4.Items[i]);
+   Form_peach.ComboBoxArchive9.DropDownCount:=Form_peach.cbCompressionLevel.DropDownCount;
+   for i:=0 to Form_peach.cbCompressionLevel.Items.Count-1 do
+      Form_peach.ComboBoxArchive9.Items.Append(Form_peach.cbCompressionLevel.Items[i]);
    Form_peach.ComboBoxArchive9.ItemIndex:=level_rar;
    end;
 if s='ARC' then
@@ -25920,12 +26156,12 @@ begin
 case s of
 STR_7Z:
 begin
-Form_peach.Caption:=txt_create+' .'+archive_type+' | '+compression_level+', '+compression_method+' | '+Form_peach.ComboboxArchive7.Text;
+Form_peach.Caption:=txt_create+' .'+archive_type+' | '+compression_level+', '+compression_method+' | '+Form_peach.cbArchiveCreationType.Text;
 if (FormPW.EditUn7zaPW.Caption<>'') or (FormPW.EditName3.Caption<>'') then Form_peach.Caption:=Form_peach.Caption+' | '+Form_peach.ComboBox7zalgo.Text;
 end;
 STR_ZIP:
 begin
-Form_peach.Caption:=txt_create+' .'+archive_type+' | '+Form_peach.ComboBoxArchive4.Text+', '+compression_method+' | '+Form_peach.ComboboxArchive7.Text;
+Form_peach.Caption:=txt_create+' .'+archive_type+' | '+Form_peach.cbCompressionLevel.Text+', '+compression_method+' | '+Form_peach.cbArchiveCreationType.Text;
 if (FormPW.EditUn7zaPW.Caption<>'') or (FormPW.EditName3.Caption<>'') then Form_peach.Caption:=Form_peach.Caption+' | '+Form_peach.ComboBox7zalgo.Text;
 end;
 STR_ARC:
@@ -25938,7 +26174,7 @@ begin
 Form_peach.Caption:=txt_create+' .pea';
 if (FormPW.EditUn7zaPW.Caption<>'') or (FormPW.EditName3.Caption<>'') then Form_peach.Caption:=Form_peach.Caption+' | '+Form_peach.ComboBoxPEA2.Text;
 end;
-STR_BZIP2, STR_GZIP, STR_WIM, STR_XZ, STR_TAR: Form_peach.Caption:=txt_create+' .'+archive_type+' | '+Form_peach.ComboBoxArchive4.Text+' | '+Form_peach.ComboboxArchive7.Text;
+STR_BZIP2, STR_GZIP, STR_WIM, STR_XZ, STR_TAR: Form_peach.Caption:=txt_create+' .'+archive_type+' | '+Form_peach.cbCompressionLevel.Text+' | '+Form_peach.cbArchiveCreationType.Text;
 STR_ZPAQ, STR_QUAD, STR_BROTLI, STR_ZSTD: Form_peach.Caption:=txt_create+' .'+archive_type;
 STR_UPX: Form_peach.Caption:=txt_compress_executable;
 else
@@ -25947,7 +26183,7 @@ if (s=txt_custom) or (s=txt_custom+'/RAR') then Form_peach.Caption:=txt_custom;
 if s=txt_split then Form_peach.Caption:=txt_split;
 if s=txt_sfx+' '+STR_7Z then
    begin
-   Form_peach.Caption:=txt_create+' '+txt_sfx+' ('+STR_7Z+') | '+Form_peach.ComboBoxArchive4.Text+', '+compression_method+' | '+Form_peach.ComboboxArchive7.Text;
+   Form_peach.Caption:=txt_create+' '+txt_sfx+' ('+STR_7Z+') | '+Form_peach.cbCompressionLevel.Text+', '+compression_method+' | '+Form_peach.cbArchiveCreationType.Text;
    if (FormPW.EditUn7zaPW.Caption<>'') then Form_peach.Caption:=Form_peach.Caption+' | '+Form_peach.ComboBox7zalgo.Text;
    end;
 if s=txt_sfx+' '+STR_ARC then
@@ -25988,7 +26224,7 @@ var
    i:integer;
    s1,fnm:ansistring;
 begin
-Form_peach.ComboBoxArchive1.Enabled:=true;
+Form_peach.cbPredefinedArchiveSizes.Enabled:=true;
 Form_peach.Panel7za.Visible:=false;
 Form_peach.PanelARC.Visible:=false;
 Form_peach.PanelCustom.Visible:=false;
@@ -26002,10 +26238,10 @@ Form_peach.cbadvf1.Enabled:=false;
 Form_peach.CheckBoxArchive6.State:=cbUnchecked;
 subfun:='';
 disable_twofactor:=false;
-Form_peach.ComboBoxArchive1.ItemIndex:=defaultspanning;
+Form_peach.cbPredefinedArchiveSizes.ItemIndex:=defaultspanning;
 Form_peach.SpinEditArchive1.Value:=spansize;
-Form_peach.ComboBoxArchive2.ItemIndex:=spanunit;
-ComboBoxArchive1_onchange;
+Form_peach.cbSpanTypeOfSize.ItemIndex:=spanunit;
+cbPredefinedArchiveSizes_onchange;
 Form_peach.CheckBoxSeparate.Enabled:=true;
 Form_peach.CheckBoxSameArc.Enabled:=true;
 Form_peach.CheckBoxDeleteInput1.Enabled:=true;
@@ -26022,23 +26258,23 @@ if s=STR_7Z then
    setcompressionlevel7z;//set compression_level
    set_values(archive_type,compression_method,compression_level);
    getarccaption(s);
-   Form_peach.ComboBoxArchive4.Text:=txt_level_normal;
-   Form_peach.ComboBoxArchive4.Enabled:=true;
+   Form_peach.cbCompressionLevel.Text:=txt_level_normal;
+   Form_peach.cbCompressionLevel.Enabled:=true;
    Form_peach.CheckBoxTarBefore.Enabled:=true;
    Form_peach.CheckBoxTarBefore.State:=cbUnchecked;
    Form_peach.CheckBoxConvert.Enabled:=true;
-   if Form_peach.ComboBoxArchive1.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
+   if Form_peach.cbPredefinedArchiveSizes.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
    else Form_peach.CheckBoxArchive4.Enabled:=true;
    end;
 if s=STR_ARC then
    begin
    Form_peach.PanelARC.Visible:=true;
    Form_peach.cbadvf1.Enabled:=true;
-   Form_peach.ComboBoxArchive1.ItemIndex:=0;
+   Form_peach.cbPredefinedArchiveSizes.ItemIndex:=0;
    change_imagesplit;
-   Form_peach.ComboBoxArchive1.Enabled:=false;
+   Form_peach.cbPredefinedArchiveSizes.Enabled:=false;
    Form_peach.SpinEditArchive1.Visible:=false;
-   Form_peach.ComboBoxArchive2.Visible:=false;
+   Form_peach.cbSpanTypeOfSize.Visible:=false;
    archive_type:='arc';
    fun:='ARC';
    Form_peach.ComboBoxARC.ItemIndex:=level_arc;
@@ -26069,11 +26305,11 @@ if s=STR_BZIP2 then
    setcompressionlevel7z;//set compression_level
    set_values(archive_type,compression_method,compression_level);
    getarccaption(s);
-   Form_peach.ComboBoxArchive4.Text:=txt_level_normal;
-   Form_peach.ComboBoxArchive4.Enabled:=true;
+   Form_peach.cbCompressionLevel.Text:=txt_level_normal;
+   Form_peach.cbCompressionLevel.Enabled:=true;
    Form_peach.CheckBoxTarBefore.Enabled:=true;
    check_tarbefore(tdirs);
-   if Form_peach.ComboBoxArchive1.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
+   if Form_peach.cbPredefinedArchiveSizes.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
    else Form_peach.CheckBoxArchive4.Enabled:=true;
    end;
 if (s=txt_custom) or (s=txt_custom+'/RAR') then
@@ -26090,7 +26326,7 @@ if (s=txt_custom) or (s=txt_custom+'/RAR') then
       Form_peach.PanelRar.Visible:=true;
       Form_peach.EditExtCustom.Caption:='rar';
       Form_peach.EditOPcustom.Caption:='';
-      Form_peach.ComboBoxArchive1.Enabled:=true;
+      Form_peach.cbPredefinedArchiveSizes.Enabled:=true;
       Form_peach.ComboBoxArchive9.Enabled:=true;
       Form_peach.ComboBoxArchive9.ItemIndex:=level_rar;
       Form_peach.CheckBoxArchive4.Enabled:=true;
@@ -26105,9 +26341,9 @@ if (s=txt_custom) or (s=txt_custom+'/RAR') then
       Form_peach.PanelRar.Visible:=false;
       setnonrarcust;
       change_imagesplit;
-      Form_peach.ComboBoxArchive1.Enabled:=false;
+      Form_peach.cbPredefinedArchiveSizes.Enabled:=false;
       Form_peach.SpinEditArchive1.Visible:=false;
-      Form_peach.ComboBoxArchive2.Visible:=false;
+      Form_peach.cbSpanTypeOfSize.Visible:=false;
       Form_peach.ComboBoxArchive9.Enabled:=false;
       Form_peach.CheckBoxArchive4.Enabled:=false;
       Form_peach.ComboBoxArchiveAct.Enabled:=false;
@@ -26128,11 +26364,11 @@ if s=STR_GZIP then
    setcompressionlevel7z;//set compression_level
    set_values(archive_type,compression_method,compression_level);
    getarccaption(s);
-   Form_peach.ComboBoxArchive4.Text:=txt_level_normal;
-   Form_peach.ComboBoxArchive4.Enabled:=true;
+   Form_peach.cbCompressionLevel.Text:=txt_level_normal;
+   Form_peach.cbCompressionLevel.Enabled:=true;
    Form_peach.CheckBoxTarBefore.Enabled:=true;
    check_tarbefore(tdirs);
-   if Form_peach.ComboBoxArchive1.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
+   if Form_peach.cbPredefinedArchiveSizes.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
    else Form_peach.CheckBoxArchive4.Enabled:=true;
    end;
 if s=STR_WIM then
@@ -26146,12 +26382,12 @@ if s=STR_WIM then
    compression_level:=txt_level_store;
    set_values(archive_type,compression_method,compression_level);
    getarccaption(s);
-   Form_peach.ComboBoxArchive4.Text:=txt_level_store;
-   Form_peach.ComboBoxArchive4.Enabled:=false;
+   Form_peach.cbCompressionLevel.Text:=txt_level_store;
+   Form_peach.cbCompressionLevel.Enabled:=false;
    Form_peach.CheckBoxTarBefore.Enabled:=true;
    Form_peach.CheckBoxTarBefore.State:=cbUnchecked;
    Form_peach.CheckBoxConvert.Enabled:=true;
-   if Form_peach.ComboBoxArchive1.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
+   if Form_peach.cbPredefinedArchiveSizes.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
    else Form_peach.CheckBoxArchive4.Enabled:=true;
    end;
 if s=STR_XZ then
@@ -26165,21 +26401,21 @@ if s=STR_XZ then
    setcompressionlevel7z;//set compression_level
    set_values(archive_type,compression_method,compression_level);
    getarccaption(s);
-   Form_peach.ComboBoxArchive4.Text:=txt_level_normal;
-   Form_peach.ComboBoxArchive4.Enabled:=true;
+   Form_peach.cbCompressionLevel.Text:=txt_level_normal;
+   Form_peach.cbCompressionLevel.Enabled:=true;
    Form_peach.CheckBoxTarBefore.Enabled:=true;
    check_tarbefore(tdirs);
-   if Form_peach.ComboBoxArchive1.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
+   if Form_peach.cbPredefinedArchiveSizes.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
    else Form_peach.CheckBoxArchive4.Enabled:=true;
    end;
 if s=STR_ZPAQ then
    begin
    Form_peach.PanelPaq.Visible:=true;
-   Form_peach.ComboBoxArchive1.ItemIndex:=0;
+   Form_peach.cbPredefinedArchiveSizes.ItemIndex:=0;
    change_imagesplit;
-   Form_peach.ComboBoxArchive1.Enabled:=false;
+   Form_peach.cbPredefinedArchiveSizes.Enabled:=false;
    Form_peach.SpinEditArchive1.Visible:=false;
-   Form_peach.ComboBoxArchive2.Visible:=false;
+   Form_peach.cbSpanTypeOfSize.Visible:=false;
    fun:='PAQ';
    Form_peach.RadioGroupPaq.ItemIndex:=paqver;
    case Form_peach.RadioGroupPaq.ItemIndex of
@@ -26220,11 +26456,11 @@ if s=STR_PEA then
 if s=STR_QUAD then
    begin
    Form_peach.PanelQuad.Visible:=true;
-   Form_peach.ComboBoxArchive1.ItemIndex:=0;
+   Form_peach.cbPredefinedArchiveSizes.ItemIndex:=0;
    change_imagesplit;
-   Form_peach.ComboBoxArchive1.Enabled:=false;
+   Form_peach.cbPredefinedArchiveSizes.Enabled:=false;
    Form_peach.SpinEditArchive1.Visible:=false;
-   Form_peach.ComboBoxArchive2.Visible:=false;
+   Form_peach.cbSpanTypeOfSize.Visible:=false;
    fun:='QUAD';
    case Form_peach.RadioGroupQuad.ItemIndex of
       0: archive_type:='quad';
@@ -26254,11 +26490,11 @@ if s=STR_QUAD then
 if s=STR_BROTLI then
    begin
    Form_peach.PanelBrotli.Visible:=true;
-   Form_peach.ComboBoxArchive1.ItemIndex:=0;
+   Form_peach.cbPredefinedArchiveSizes.ItemIndex:=0;
    change_imagesplit;
-   Form_peach.ComboBoxArchive1.Enabled:=false;
+   Form_peach.cbPredefinedArchiveSizes.Enabled:=false;
    Form_peach.SpinEditArchive1.Visible:=false;
-   Form_peach.ComboBoxArchive2.Visible:=false;
+   Form_peach.cbSpanTypeOfSize.Visible:=false;
    fun:='BROTLI';
    archive_type:='br';
    Form_peach.ComboBoxArchive9.ItemIndex:=level_brotli;
@@ -26272,11 +26508,11 @@ if s=STR_BROTLI then
 if s=STR_ZSTD then
    begin
    Form_peach.PanelZstd.Visible:=true;
-   Form_peach.ComboBoxArchive1.ItemIndex:=0;
+   Form_peach.cbPredefinedArchiveSizes.ItemIndex:=0;
    change_imagesplit;
-   Form_peach.ComboBoxArchive1.Enabled:=false;
+   Form_peach.cbPredefinedArchiveSizes.Enabled:=false;
    Form_peach.SpinEditArchive1.Visible:=false;
-   Form_peach.ComboBoxArchive2.Visible:=false;
+   Form_peach.cbSpanTypeOfSize.Visible:=false;
    fun:='ZSTD';
    archive_type:='zst';
    Form_peach.ComboBoxArchive9.ItemIndex:=level_zstd;
@@ -26300,23 +26536,23 @@ if s=txt_sfx+' '+STR_7Z then
    set_values(archive_type,compression_method,compression_level);
    getarccaption(s);
    Form_peach.CheckBoxArchive6.State:=cbChecked;
-   Form_peach.ComboBoxArchive4.Text:=txt_level_normal;
-   Form_peach.ComboBoxArchive4.Enabled:=true;
+   Form_peach.cbCompressionLevel.Text:=txt_level_normal;
+   Form_peach.cbCompressionLevel.Enabled:=true;
    Form_peach.CheckBoxTarBefore.Enabled:=true;
    Form_peach.CheckBoxTarBefore.State:=cbUnchecked;
    Form_peach.CheckBoxConvert.Enabled:=true;
-   if Form_peach.ComboBoxArchive1.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
+   if Form_peach.cbPredefinedArchiveSizes.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
    else Form_peach.CheckBoxArchive4.Enabled:=true;
    end;
 if s=txt_sfx+' '+STR_ARC then
    begin
    Form_peach.PanelARC.Visible:=true;
    Form_peach.cbadvf1.Enabled:=true;
-   Form_peach.ComboBoxArchive1.ItemIndex:=0;
+   Form_peach.cbPredefinedArchiveSizes.ItemIndex:=0;
    change_imagesplit;
-   Form_peach.ComboBoxArchive1.Enabled:=false;
+   Form_peach.cbPredefinedArchiveSizes.Enabled:=false;
    Form_peach.SpinEditArchive1.Visible:=false;
-   Form_peach.ComboBoxArchive2.Visible:=false;
+   Form_peach.cbSpanTypeOfSize.Visible:=false;
    archive_type:='arc';
    fun:='ARC';
    disable_twofactor:=true;
@@ -26349,8 +26585,8 @@ if s=txt_split then
    Form_peach.CheckBoxTarBefore.Enabled:=true;
    //check_tarbefore(tdirs);
    Form_peach.CheckBoxSeparate.Checked:=true; on_checkboxseparateclick;
-   Form_peach.ComboBoxArchive1.ItemIndex:=1;
-   ComboBoxArchive1_onchange;
+   Form_peach.cbPredefinedArchiveSizes.ItemIndex:=1;
+   cbPredefinedArchiveSizes_onchange;
    Form_peach.CheckBoxArchive4.Enabled:=false;
    Form_peach.ComboBoxArchiveAct.Enabled:=false;
    end;
@@ -26365,12 +26601,12 @@ if s=STR_TAR then
    compression_level:=txt_level_store;
    set_values(archive_type,compression_method,compression_level);
    getarccaption(s);
-   Form_peach.ComboBoxArchive4.Text:=txt_level_store;
-   Form_peach.ComboBoxArchive4.Enabled:=false;
+   Form_peach.cbCompressionLevel.Text:=txt_level_store;
+   Form_peach.cbCompressionLevel.Enabled:=false;
    Form_peach.CheckBoxTarBefore.Enabled:=false;
    Form_peach.CheckBoxTarBefore.State:=cbUnchecked;
    Form_peach.CheckBoxConvert.Enabled:=true;
-   if Form_peach.ComboBoxArchive1.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
+   if Form_peach.cbPredefinedArchiveSizes.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
    else Form_peach.CheckBoxArchive4.Enabled:=true;
    end;
 if s=STR_UPX then
@@ -26378,11 +26614,11 @@ if s=STR_UPX then
    Form_peach.PanelUPX.Visible:=true;
    Form_peach.CheckBoxDeleteInput1.Enabled:=false;
    Form_peach.cbdeleteinputmode1.Enabled:=false;
-   Form_peach.ComboBoxArchive1.ItemIndex:=0;
+   Form_peach.cbPredefinedArchiveSizes.ItemIndex:=0;
    change_imagesplit;
-   Form_peach.ComboBoxArchive1.Enabled:=false;
+   Form_peach.cbPredefinedArchiveSizes.Enabled:=false;
    Form_peach.SpinEditArchive1.Visible:=false;
-   Form_peach.ComboBoxArchive2.Visible:=false;
+   Form_peach.cbSpanTypeOfSize.Visible:=false;
    archive_type:='upx';
    fun:='UPX';
    typehint:=txt_type_description_upx;
@@ -26412,12 +26648,12 @@ if s=STR_ZIP then
    setcompressionlevel7z;//set compression_level
    set_values(archive_type,compression_method,compression_level);
    getarccaption(s);
-   Form_peach.ComboBoxArchive4.Text:=txt_level_normal;
-   Form_peach.ComboBoxArchive4.Enabled:=true;
+   Form_peach.cbCompressionLevel.Text:=txt_level_normal;
+   Form_peach.cbCompressionLevel.Enabled:=true;
    Form_peach.CheckBoxTarBefore.Enabled:=true;
    Form_peach.CheckBoxTarBefore.State:=cbUnchecked;
    Form_peach.CheckBoxConvert.Enabled:=true;
-   if Form_peach.ComboBoxArchive1.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
+   if Form_peach.cbPredefinedArchiveSizes.ItemIndex > 0 then Form_peach.CheckBoxArchive4.Enabled:=false
    else Form_peach.CheckBoxArchive4.Enabled:=true;
    end;
 if (Form_peach.CheckBoxArchive6.State=cbChecked) then Form_peach.RadioGroupArchive.Visible:=true
@@ -35979,9 +36215,9 @@ if cbcustext.State=cbchecked then apcustext:=1 else apcustext:=0;
 apextcapt:=editcustext.Caption;
 if CheckBoxConvert0.State=cbchecked then appw:=1 else appw:=0;
 if CheckBoxConvert1.State=cbchecked then apverbose:=1 else apverbose:=0;
-apsplit:=comboboxarchive1.ItemIndex;
+apsplit:=cbPredefinedArchiveSizes.ItemIndex;
 apspin:=Spineditarchive1.Value;
-apsize:=comboboxarchive2.ItemIndex;
+apsize:=cbSpanTypeOfSize.ItemIndex;
 apdelete:=cbdeleteinputmode1.ItemIndex;
 if CheckBoxDeleteInput1.State=cbchecked then apdopt:=1 else apdopt:=0;
 //7z
@@ -35995,11 +36231,11 @@ vmethod_zip:=method_zip;
 if fun='BROTLI' then v9b:=ComboboxArchive9.Itemindex else v9b:=level_brotli;
 if (fun='CUSTOM') and (havewinrar=true) and (userar=1) then v9r:=ComboboxArchive9.Itemindex else v9r:=level_rar;
 if fun='ZSTD' then v9z:=ComboboxArchive9.Itemindex else v9z:=level_zstd;
-v7z1:=ComboboxArchive4.Itemindex;
-v7z2:=ComboboxArchive3.Itemindex;
-v7z3:=ComboboxArchive5.Itemindex;
-v7z4:=ComboboxArchive6.Itemindex;
-v7z5:=ComboboxArchivePasses.Itemindex;
+v7z1:=cbCompressionLevel.Itemindex;
+v7z2:=cbCompressionMethod.Itemindex;
+v7z3:=cbDictionarySize.Itemindex;
+v7z4:=cbWordSize.Itemindex;
+v7z5:=cbArchivePasses.Itemindex;
 v7z6:=ComboboxArchiveSolid.Itemindex;
 if CheckboxMQS.State=cbchecked then v7z7b:=1 else v7z7b:=0;
 if CheckboxArchiveOF.State=cbchecked then v7z7:=1 else v7z7:=0;
@@ -36015,8 +36251,8 @@ if Checkboxssp.State=cbchecked then v7z18:=1 else v7z18:=0;
 if CheckBoxBrotli.State=cbchecked then vbr1:=1 else vbr1:=0;
 if CheckBoxZstd.State=cbchecked then vzst1:=1 else vzst1:=0;
 v7z9:=RadiogroupArchive.Itemindex;
-v7z10:=ComboboxArchive7.Itemindex;
-v7z11:=ComboboxArchive8.Itemindex;
+v7z10:=cbArchiveCreationType.Itemindex;
+v7z11:=cbMaxCPUThreads.Itemindex;
 v7z11b:=Comboboxmemuse.Itemindex;
 v7z12:=EditOP.Text;
 if CheckboxArchive4.State=cbchecked then v7z13:=1 else v7z13:=0;
@@ -36067,11 +36303,11 @@ getarccaption(Form_peach.cbType.Text);
 if archive_type='zip' then algo_zipenc:=Form_peach.ComboBox7zalgo.ItemIndex;
 end;
 
-procedure ComboBoxArchive1_onchange;
+procedure cbPredefinedArchiveSizes_onchange;
 begin
 with Form_peach do
 begin
-if ComboBoxArchive1.ItemIndex > 0 then CheckBoxArchive4.Enabled:=false
+if cbPredefinedArchiveSizes.ItemIndex > 0 then CheckBoxArchive4.Enabled:=false
 else CheckBoxArchive4.Enabled:=true;
 if Form_peach.CheckBoxArchive4.Enabled=false then
    begin
@@ -36079,28 +36315,28 @@ if Form_peach.CheckBoxArchive4.Enabled=false then
    Form_peach.CheckBoxMailKeep.Visible:=false;
    end;
 change_imagesplit;
-if ComboBoxArchive1.ItemIndex = 1 then
+if cbPredefinedArchiveSizes.ItemIndex = 1 then
    begin
    SpinEditArchive1.Visible:=true;
-   ComboBoxArchive2.Visible:=true;
+   cbSpanTypeOfSize.Visible:=true;
    end
 else
    begin
    SpinEditArchive1.Visible:=false;
-   ComboBoxArchive2.Visible:=false;
+   cbSpanTypeOfSize.Visible:=false;
    end;
-defaultspanning:=ComboBoxArchive1.ItemIndex;
+defaultspanning:=cbPredefinedArchiveSizes.ItemIndex;
 spansize:=Form_peach.SpinEditArchive1.Value;
-spanunit:=Form_peach.ComboBoxArchive2.ItemIndex;
+spanunit:=Form_peach.cbSpanTypeOfSize.ItemIndex;
 end;
 end;
 
-procedure ComboBoxArchive3_onchange;
+procedure cbCompressionMethod_onchange;
 begin
 if settingvalues=false then
    with Form_peach do
       begin
-      compression_method:=ComboBoxArchive3.Text;
+      compression_method:=cbCompressionMethod.Text;
       if (cbType.Text=STR_7Z) or (cbType.Text=txt_sfx+' '+STR_7Z) then method_7z:=compression_method;
       if cbType.Text=STR_ZIP then method_zip:=compression_method;
       set_values(archive_type,compression_method,compression_level);
@@ -36519,10 +36755,10 @@ begin
 CheckBoxMQS_onclick;
 end;
 
-procedure on_ComboBoxArchive8Change;
+procedure on_cbMaxCPUThreadsChange;
 begin
-if Form_peach.ComboBoxArchive8.Enabled=true then
-   multi_option:=Form_peach.ComboBoxArchive8.ItemIndex;
+if Form_peach.cbMaxCPUThreads.Enabled=true then
+   multi_option:=Form_peach.cbMaxCPUThreads.ItemIndex;
 end;
 
 procedure on_ComboBoxmemuseChange;
@@ -36575,10 +36811,10 @@ if apverbose=1 then CheckBoxConvert1.State:=cbchecked else CheckBoxConvert1.Stat
 CheckBoxConvert1.visible:=Form_peach.CheckBoxConvert.Checked;
 if appw=1 then CheckBoxConvert0.State:=cbchecked else CheckBoxConvert0.State:=cbunchecked; on_checkboxconvert0;
 CheckBoxConvert0.visible:=Form_peach.CheckBoxConvert.Checked;
-comboboxarchive1.ItemIndex:=apsplit;
+cbPredefinedArchiveSizes.ItemIndex:=apsplit;
 Spineditarchive1.Value:=apspin;
-comboboxarchive2.ItemIndex:=apsize;
-ComboBoxArchive1_onchange;
+cbSpanTypeOfSize.ItemIndex:=apsize;
+cbPredefinedArchiveSizes_onchange;
 level_brotli:=v9b;
 level_rar:=v9r;
 level_zstd:=v9z;
@@ -36590,11 +36826,11 @@ level_gz:=vlevel_gz;
 level_zip:=vlevel_zip;
 method_7z:=vmethod_7z;
 method_zip:=vmethod_zip;
-ComboboxArchive4.Itemindex:=v7z1; ComboBoxArchive4_onchange;
-ComboboxArchive3.Itemindex:=v7z2; ComboBoxArchive3_onchange;
-ComboboxArchive5.Itemindex:=v7z3;
-ComboboxArchive6.Itemindex:=v7z4;
-ComboboxArchivePasses.Itemindex:=v7z5;
+cbCompressionLevel.Itemindex:=v7z1; cbCompressionLevel_onchange;
+cbCompressionMethod.Itemindex:=v7z2; cbCompressionMethod_onchange;
+cbDictionarySize.Itemindex:=v7z3;
+cbWordSize.Itemindex:=v7z4;
+cbArchivePasses.Itemindex:=v7z5;
 ComboboxArchiveSolid.Itemindex:=v7z6;
 if v7z7b=1 then CheckboxMQS.State:=cbchecked else CheckboxMQS.State:=cbunchecked; CheckboxMQS_onclick;
 if v7z7=1 then CheckboxArchiveOF.State:=cbchecked else CheckboxArchiveOF.State:=cbunchecked; CheckBoxArchiveOF_onclick;
@@ -36610,9 +36846,9 @@ if v7z18=1 then Checkboxssp.State:=cbchecked else Checkboxssp.State:=cbunchecked
 if vbr1=1 then CheckBoxBrotli.State:=cbchecked else CheckBoxBrotli.State:=cbunchecked; CheckBoxBrotli_onclick;
 if vzst1=1 then CheckBoxZstd.State:=cbchecked else CheckBoxZstd.State:=cbunchecked; CheckBoxZstd_onclick;
 RadiogroupArchive.Itemindex:=v7z9;
-ComboboxArchive7.Itemindex:=v7z10;
-ComboBoxArchiveAct.Itemindex:=ComboboxArchive7.Itemindex;
-ComboboxArchive8.Itemindex:=v7z11; on_ComboBoxArchive8Change;
+cbArchiveCreationType.Itemindex:=v7z10;
+ComboBoxArchiveAct.Itemindex:=cbArchiveCreationType.Itemindex;
+cbMaxCPUThreads.Itemindex:=v7z11; on_cbMaxCPUThreadsChange;
 Comboboxmemuse.Itemindex:=v7z11b; on_ComboBoxmemuseChange;
 EditOP.Text:=v7z12;
 if v7z13=1 then CheckboxArchive4.State:=cbchecked else CheckboxArchive4.State:=cbunchecked;
@@ -39083,7 +39319,7 @@ if (havewinrar=true) and (userar=1) then
    case Form_peach.ComboBoxArchiveAct.ItemIndex of
    0: begin
       archive_function:='a';
-      if Form_peach.ComboBoxArchive1.ItemIndex=0 then get_new_archive_name(out_param)//single archive
+      if Form_peach.cbPredefinedArchiveSizes.ItemIndex=0 then get_new_archive_name(out_param)//single archive
       else //multi volume archive
          begin
          if (fileexists(out_param+'.001') or fileexists(out_param) or checkdirexists(out_param+'.001') or checkdirexists(out_param)) then
@@ -39149,12 +39385,12 @@ if (havewinrar=true) and (userar=1) then
       end;
    if pw<>'' then Form_peach.EditOPcustom.Caption:=Form_peach.EditOPcustom.Caption+' '+pw;
    //rar split
-   case Form_peach.ComboBoxArchive1.ItemIndex of
+   case Form_peach.cbPredefinedArchiveSizes.ItemIndex of
    0: vol_size:=0; //will trigger to not use -v(size) switch
    1: begin
       try
          vol_size:=Form_peach.SpinEditArchive1.Value;
-         case Form_peach.ComboBoxArchive2.ItemIndex of
+         case Form_peach.cbSpanTypeOfSize.ItemIndex of
             1: vol_size:=vol_size*1024;
             2: vol_size:=vol_size*1024*1024;
             3: vol_size:=vol_size*1024*1024*1024;
@@ -39791,7 +40027,7 @@ else out_param:=s+'.'+archive_type;
 if updatingarchive_inarchive=false then
    begin
    if archive_type='zip' then
-      if (Form_peach.ComboBoxArchive3.Text<>'Deflate') and (Form_peach.ComboBoxArchive3.Text<>'Deflate64') then
+      if (Form_peach.cbCompressionMethod.Text<>'Deflate') and (Form_peach.cbCompressionMethod.Text<>'Deflate64') then
          if swzipx=1 then
             begin
             cutextension(out_param);
@@ -39807,10 +40043,10 @@ else
 apply_timestamptoname(out_param,1,0,'file');
 //archive function
 archive_function:='a';
-case Form_peach.ComboBoxArchive7.ItemIndex of
+case Form_peach.cbArchiveCreationType.ItemIndex of
    0: begin
       archive_function:='a';
-      if Form_peach.ComboBoxArchive1.ItemIndex=0 then get_new_archive_name(out_param)//single archive
+      if Form_peach.cbPredefinedArchiveSizes.ItemIndex=0 then get_new_archive_name(out_param)//single archive
       else //multi volume archive
          begin
          if (fileexists(out_param+'.001') or fileexists(out_param) or checkdirexists(out_param+'.001') or checkdirexists(out_param)) then
@@ -39933,12 +40169,12 @@ if Form_peach.ComboBox7zalgo.Visible=true then
 if (Form_peach.CheckBoxArchive4.Enabled=true) and (Form_peach.CheckBoxArchive4.State=cbChecked) then mail_option:='-seml' else mail_option:='';
 if mail_option='-seml' then if Form_peach.CheckBoxMailKeep.State=cbUnChecked then mail_option:=mail_option+'.';
 //multi volumes
-case Form_peach.ComboBoxArchive1.ItemIndex of
+case Form_peach.cbPredefinedArchiveSizes.ItemIndex of
    0: vol_size:=0; //will trigger to not use -v(size) switch
    1: begin
       try
          vol_size:=Form_peach.SpinEditArchive1.Value;
-         case Form_peach.ComboBoxArchive2.ItemIndex of
+         case Form_peach.cbSpanTypeOfSize.ItemIndex of
             1: vol_size:=vol_size*1024;
             2: vol_size:=vol_size*1024*1024;
             3: vol_size:=vol_size*1024*1024*1024;
@@ -39999,7 +40235,7 @@ case syntaxlevel7z of
 1: paramtime:='';
 end;
 //Compression level
-compression_level:=setarchivecomplevel(Form_peach.ComboBoxArchive3.Text,Form_peach.ComboBoxArchive4.Text);
+compression_level:=setarchivecomplevel(Form_peach.cbCompressionMethod.Text,Form_peach.cbCompressionLevel.Text);
 //compressor type
 if compression_level<>'-mx0' then
    begin
@@ -40037,17 +40273,17 @@ end;
 // multithreading
 thread_option:='';
 try
-s:=Form_peach.ComboBoxArchive3.Text;
+s:=Form_peach.cbCompressionMethod.Text;
 except
 s:='';
 end;
 if (archive_type='7z') or (archive_type='zip') or (archive_type='bz2') or (archive_type='xz') then
    begin
-   if Form_peach.ComboBoxArchive8.Enabled=false then thread_option:='-mmt=off'
+   if Form_peach.cbMaxCPUThreads.Enabled=false then thread_option:='-mmt=off'
    else
    if (s='Deflate') or (s='Deflate64') or (s='LZMA') or (s='LZMA2') or (s='BZip2') or (s='Brotli') or (s='FLZMA2') or (s='Lizard_fastLZ4') or (s='Lizard_LIZv1')
       or (s='Lizard_fastLZ4+Huffman') or (s='Lizard_LIZv1+Huffman') or (s='LZ4') or (s='LZ5') or (s='Zstd') then
-      case Form_peach.ComboBoxArchive8.ItemIndex of
+      case Form_peach.cbMaxCPUThreads.ItemIndex of
       0: thread_option:='-mmt=off';
       1: thread_option:='-mmt=on';
       2: thread_option:='-mmt=2';
@@ -40061,25 +40297,25 @@ if (archive_type='7z') or (archive_type='zip') or (archive_type='bz2') or (archi
       end;
    end;
 //passes, only for Deflate, Deflate64 and BZip2
-if (s='Deflate') or (s='Deflate64') or (s='BZip2') then passes_option:='-mpass='+Form_peach.ComboBoxArchivePasses.Text;
+if (s='Deflate') or (s='Deflate64') or (s='BZip2') then passes_option:='-mpass='+Form_peach.cbArchivePasses.Text;
 //word size
 word_option:='';
 if type_option<>'-tbzip2' then //bzip2 doesn't need word size option
    if (compressor_option<>'-m0=BZip2') and (compressor_option<>'-mm=BZip2') and (compressor_option<>'-m0=PPMd') then
-      if (compression_level<>'-mx0') and (Form_peach.ComboBoxArchive6.Enabled=true) then word_option:='-mfb='+Form_peach.ComboBoxArchive6.Text
+      if (compression_level<>'-mx0') and (Form_peach.cbWordSize.Enabled=true) then word_option:='-mfb='+Form_peach.cbWordSize.Text
       else word_option:='';
-if (compressor_option='-m0=PPMd') or (compressor_option='-mm=PPMd') then word_option:='-mo='+Form_peach.ComboBoxArchive6.Text; //if PPMd Compression is used, use model order instead of fast bytes
+if (compressor_option='-m0=PPMd') or (compressor_option='-mm=PPMd') then word_option:='-mo='+Form_peach.cbWordSize.Text; //if PPMd Compression is used, use model order instead of fast bytes
 //dictionary size
-if (compression_level<>'-mx0') and (Form_peach.ComboBoxArchive5.Enabled=true) then
+if (compression_level<>'-mx0') and (Form_peach.cbDictionarySize.Enabled=true) then
    begin
-   s:=Form_peach.ComboBoxArchive5.Items[Form_peach.ComboBoxArchive5.ItemIndex];//.Text may be not correctly valorized if both conditions are met: combobox has a single item and it is not in active tab
+   s:=Form_peach.cbDictionarySize.Items[Form_peach.cbDictionarySize.ItemIndex];//.Text may be not correctly valorized if both conditions are met: combobox has a single item and it is not in active tab
    setlength(s,length(s)-3);//remove ' *B' suffix
    dictionary_option:='-md='+s+'k';//treat the value as KB by default (modified if following conditions are encountered
    if (compressor_option='-m0=PPMd') or (compressor_option='-mm=PPMd') then dictionary_option:='-mmem='+s+'m'; //all PPMd dictionary sizes are expressed in MB; PPMd uses mem param instead of dictionary param
-   if ((compressor_option='-m0=LZMA') or (compressor_option='-mm=LZMA') or (compressor_option='-m0=LZMA2') or (compressor_option='-mm=LZMA2') or (compressor_option='-m0=FLZMA2')) and (Form_peach.ComboBoxArchive5.ItemIndex>0) then dictionary_option:='-md='+s+'m'; //all LZMA dictionary sizes but the first are expressed in MB
+   if ((compressor_option='-m0=LZMA') or (compressor_option='-mm=LZMA') or (compressor_option='-m0=LZMA2') or (compressor_option='-mm=LZMA2') or (compressor_option='-m0=FLZMA2')) and (Form_peach.cbDictionarySize.ItemIndex>0) then dictionary_option:='-md='+s+'m'; //all LZMA dictionary sizes but the first are expressed in MB
    if (compressor_option='-mm=Deflate') or (compressor_option='-mm=Deflate64') then dictionary_option:=''; //zip with Deflate and Deflate64 doesn't support dictionary size param
-   if (type_option='-txz') then if Form_peach.ComboBoxArchive5.ItemIndex>0 then dictionary_option:='-md='+s+'m';
-   if (type_option='-tzip') and (compressor_option='-mm=XZ') then if Form_peach.ComboBoxArchive5.ItemIndex>0 then dictionary_option:='-md='+s+'m';
+   if (type_option='-txz') then if Form_peach.cbDictionarySize.ItemIndex>0 then dictionary_option:='-md='+s+'m';
+   if (type_option='-tzip') and (compressor_option='-mm=XZ') then if Form_peach.cbDictionarySize.ItemIndex>0 then dictionary_option:='-md='+s+'m';
    if (type_option='-tgzip') then dictionary_option:=''; //gzip doesn't support dictionary size param
    if (type_option='-t7z') and ((compressor_option='-m0=Deflate') or (compressor_option='-m0=Deflate64')) then dictionary_option:=''; //7z with Deflate/Deflate64 does not support dictionary size option
    end
@@ -40776,12 +41012,12 @@ subfun:='archive';
 btfun:='pea';
 fun:='PEA';
 if check_input<>0 then exit;
-   case Form_peach.ComboBoxArchive1.ItemIndex of
+   case Form_peach.cbPredefinedArchiveSizes.ItemIndex of
       0: vol_size:=0; //trigger PEA to not split archive in volumes
       1: begin
          try
             vol_size:=Form_peach.SpinEditArchive1.Value;
-            case Form_peach.ComboBoxArchive2.ItemIndex of
+            case Form_peach.cbSpanTypeOfSize.ItemIndex of
                1: vol_size:=vol_size*1024;
                2: vol_size:=vol_size*1024*1024;
                3: vol_size:=vol_size*1024*1024*1024;
@@ -40974,12 +41210,12 @@ fun:='RFS';
       out_param:=s+NAMEVARSTR+inttostr(i);
       end;
    outname:=out_param+'.001';
-   case Form_peach.ComboBoxArchive1.ItemIndex of
+   case Form_peach.cbPredefinedArchiveSizes.ItemIndex of
       0: vol_size:=0; //trigger PEA to not split archive in volumes
       1: begin
          try
             vol_size:=Form_peach.SpinEditArchive1.Value;
-            case Form_peach.ComboBoxArchive2.ItemIndex of
+            case Form_peach.cbSpanTypeOfSize.ItemIndex of
                1: vol_size:=vol_size*1024;
                2: vol_size:=vol_size*1024*1024;
                3: vol_size:=vol_size*1024*1024*1024;
@@ -42248,8 +42484,8 @@ else //launch either or pealauncher or ConsoleCreate application, depending on r
          'archive','convert':
          begin
          if (Form_peach.stringgrid1.row=1) then unit_gwrap.pprogfirst:=true;
-         if Form_peach.ComboboxArchive7.Text<>'' then
-            unit_gwrap.paction:=Form_peach.ComboboxArchive7.Text
+         if Form_peach.cbArchiveCreationType.Text<>'' then
+            unit_gwrap.paction:=Form_peach.cbArchiveCreationType.Text
          else
             unit_gwrap.paction:='';
          if (Form_peach.stringgrid1.rowcount-1>1) and (Form_peach.CheckBoxSeparate.State=cbChecked) then
@@ -42951,29 +43187,29 @@ dmethod_7z:=method_7z;
 case level of
    'fastest' :
    begin
-   Form_peach.ComboBoxArchive4.ItemIndex:=1;
-   ComboBoxArchive4_onchange;
+   Form_peach.cbCompressionLevel.ItemIndex:=1;
+   cbCompressionLevel_onchange;
    end;
    'default' :
    begin
-   //Form_peach.ComboBoxArchive4.ItemIndex:=3;
-   //ComboBoxArchive4_onchange;
+   //Form_peach.cbCompressionLevel.ItemIndex:=3;
+   //cbCompressionLevel_onchange;
    end;
    'ultra' :
    begin
-   Form_peach.ComboBoxArchive4.ItemIndex:=5;
-   ComboBoxArchive4_onchange;
+   Form_peach.cbCompressionLevel.ItemIndex:=5;
+   cbCompressionLevel_onchange;
    end;
    'mail' :
    begin
-   //Form_peach.ComboBoxArchive4.ItemIndex:=3;
-   //ComboBoxArchive4_onchange;
+   //Form_peach.cbCompressionLevel.ItemIndex:=3;
+   //cbCompressionLevel_onchange;
    Form_peach.CheckBoxArchive4.Checked:=true;
    end;
    '7zencrypt' :
    begin
-   //Form_peach.ComboBoxArchive4.ItemIndex:=3;
-   //ComboBoxArchive4_onchange;
+   //Form_peach.cbCompressionLevel.ItemIndex:=3;
+   //cbCompressionLevel_onchange;
    Form_peach.ImagePassword1Click(nil);
    if (FormPW.EditUn7zaPW.Text='') and (FormPW.EditName3.Text='') then halt;
    end;
@@ -43020,23 +43256,23 @@ dmethod_zip:=method_zip;
 case level of
    'fastest' :
    begin
-   Form_peach.ComboBoxArchive4.ItemIndex:=1;
-   ComboBoxArchive4_onchange;
+   Form_peach.cbCompressionLevel.ItemIndex:=1;
+   cbCompressionLevel_onchange;
    end;
    'default' :
    begin
-   //Form_peach.ComboBoxArchive4.ItemIndex:=3;
-   //ComboBoxArchive4_onchange;
+   //Form_peach.cbCompressionLevel.ItemIndex:=3;
+   //cbCompressionLevel_onchange;
    end;
    'ultra' :
    begin
-   Form_peach.ComboBoxArchive4.ItemIndex:=5;
-   ComboBoxArchive4_onchange;
+   Form_peach.cbCompressionLevel.ItemIndex:=5;
+   cbCompressionLevel_onchange;
    end;
    'mail' :
    begin
-   //Form_peach.ComboBoxArchive4.ItemIndex:=3;
-   //ComboBoxArchive4_onchange;
+   //Form_peach.cbCompressionLevel.ItemIndex:=3;
+   //cbCompressionLevel_onchange;
    Form_peach.CheckBoxArchive4.Checked:=true;
    end;
    end;
@@ -46181,19 +46417,19 @@ begin
 on_ComboBox1Change;
 end;
 
-procedure TForm_peach.ComboBoxArchive2Change(Sender: TObject);
+procedure TForm_peach.cbSpanTypeOfSizeChange(Sender: TObject);
 begin
-spanunit:=ComboBoxArchive2.ItemIndex;
+spanunit:=cbSpanTypeOfSize.ItemIndex;
 end;
 
-procedure TForm_peach.ComboBoxArchive3CloseUp(Sender: TObject);
+procedure TForm_peach.cbCompressionMethodCloseUp(Sender: TObject);
 begin
-ComboBoxArchive3_onchange;
+cbCompressionMethod_onchange;
 end;
 
-procedure TForm_peach.ComboBoxArchive4CloseUp(Sender: TObject);
+procedure TForm_peach.cbCompressionLevelCloseUp(Sender: TObject);
 begin
-ComboBoxArchive4_onchange;
+cbCompressionLevel_onchange;
 end;
 
 procedure TForm_peach.ComboBoxBrowserChange(Sender: TObject);
@@ -46311,7 +46547,7 @@ begin
 on_ComboBoxARC2Change;
 end;
 
-procedure on_ComboBoxArchive7Change;
+procedure on_cbArchiveCreationTypeChange;
 begin
 if (Form_peach.CheckBoxArchive6.State=cbChecked) then
    getarccaption(txt_sfx+' '+STR_7Z)
@@ -46319,16 +46555,16 @@ else
    getarccaption(STR_7Z);
 end;
 
-procedure TForm_peach.ComboBoxArchive7Change(Sender: TObject);
+procedure TForm_peach.cbArchiveCreationTypeChange(Sender: TObject);
 begin
-ComboBoxArchiveAct.ItemIndex:=ComboBoxArchive7.ItemIndex;
-ComboBoxArchiveAct1.ItemIndex:=ComboBoxArchive7.ItemIndex;
-on_ComboBoxArchive7Change;
+ComboBoxArchiveAct.ItemIndex:=cbArchiveCreationType.ItemIndex;
+ComboBoxArchiveAct1.ItemIndex:=cbArchiveCreationType.ItemIndex;
+on_cbArchiveCreationTypeChange;
 end;
 
-procedure TForm_peach.ComboBoxArchive8Change(Sender: TObject);
+procedure TForm_peach.cbMaxCPUThreadsChange(Sender: TObject);
 begin
-on_ComboBoxArchive8Change;
+on_cbMaxCPUThreadsChange;
 end;
 
 procedure on_ComboBoxArchive9Change;
@@ -46341,8 +46577,8 @@ case fun of
    end;
    '7Z':
    begin
-   Form_peach.ComboBoxArchive4.ItemIndex:=Form_peach.ComboBoxArchive9.ItemIndex;
-   ComboBoxArchive4_onchange;
+   Form_peach.cbCompressionLevel.ItemIndex:=Form_peach.ComboBoxArchive9.ItemIndex;
+   cbCompressionLevel_onchange;
    end;
    'BROTLI': level_brotli:=Form_peach.ComboBoxArchive9.ItemIndex;
    'ZSTD': level_zstd:=Form_peach.ComboBoxArchive9.ItemIndex;
@@ -46357,16 +46593,16 @@ end;
 
 procedure TForm_peach.ComboBoxArchiveAct1Change(Sender: TObject);
 begin
-ComboBoxArchive7.ItemIndex:=ComboBoxArchiveAct1.ItemIndex;
+cbArchiveCreationType.ItemIndex:=ComboBoxArchiveAct1.ItemIndex;
 ComboBoxArchiveAct.ItemIndex:=ComboBoxArchiveAct1.ItemIndex;
-on_ComboBoxArchive7Change;
+on_cbArchiveCreationTypeChange;
 end;
 
 procedure TForm_peach.ComboBoxArchiveActChange(Sender: TObject);
 begin
-ComboBoxArchive7.ItemIndex:=ComboBoxArchiveAct.ItemIndex;
+cbArchiveCreationType.ItemIndex:=ComboBoxArchiveAct.ItemIndex;
 ComboBoxArchiveAct1.ItemIndex:=ComboBoxArchiveAct.ItemIndex;
-on_ComboBoxArchive7Change;
+on_cbArchiveCreationTypeChange;
 end;
 
 procedure TForm_peach.ctrlhistoryClick(Sender: TObject);
@@ -49331,8 +49567,8 @@ for i:=1 to Form_peach.StringGridList.RowCount-1 do
 Form_peach.StringGrid1.AutoSizeColumns;
 showpanel('archive');
 updatecontent(Form_peach.StringGrid1,tvolumes,tdirs,tfiles,tsize,true);
-//Form_peach.ComboBoxArchive7.ItemIndex:=0;//since release 8.7.0 remember the archive creation mode
-Form_peach.ComboBoxArchiveAct.Itemindex:=Form_peach.ComboboxArchive7.Itemindex;
+//Form_peach.cbArchiveCreationType.ItemIndex:=0;//since release 8.7.0 remember the archive creation mode
+Form_peach.ComboBoxArchiveAct.Itemindex:=Form_peach.cbArchiveCreationType.Itemindex;
 Form_peach.comboboxarc2.ItemIndex:=0;
 application.ProcessMessages;
 if enumd=1 then updatelayout('enum');
@@ -49340,8 +49576,8 @@ end;
 
 procedure resetmiscarchiveopt;
 begin
-Form_peach.comboboxarchive1.ItemIndex:=0;
-ComboBoxArchive1_onchange;
+Form_peach.cbPredefinedArchiveSizes.ItemIndex:=0;
+cbPredefinedArchiveSizes_onchange;
 end;
 
 procedure setupdatecontrols(encnt:boolean);
@@ -49447,8 +49683,8 @@ if (fextl='.7Z') or (fextl='.RAR') or (fextl='.TAR') or (fextl='.WIM') or (fextl
       '.ZIPX' : archive_type_select(STR_ZIP);
       '.WIM' : archive_type_select(STR_WIM);
       end;
-   if forceadd=true then Form_peach.ComboBoxArchive7.ItemIndex:=1 else Form_peach.ComboBoxArchive7.ItemIndex:=2;
-   Form_peach.ComboBoxArchiveAct.Itemindex:=Form_peach.ComboboxArchive7.Itemindex;
+   if forceadd=true then Form_peach.cbArchiveCreationType.ItemIndex:=1 else Form_peach.cbArchiveCreationType.ItemIndex:=2;
+   Form_peach.ComboBoxArchiveAct.Itemindex:=Form_peach.cbArchiveCreationType.Itemindex;
    end
 else
    if fextl='.ARC' then
@@ -49472,8 +49708,8 @@ else
             3: archive_type_select(STR_WIM);
             else archive_type_select(STR_ZIP);
             end;
-         if forceadd=true then Form_peach.ComboBoxArchive7.ItemIndex:=1 else Form_peach.ComboBoxArchive7.ItemIndex:=2;
-         Form_peach.ComboBoxArchiveAct.Itemindex:=Form_peach.ComboboxArchive7.Itemindex;
+         if forceadd=true then Form_peach.cbArchiveCreationType.ItemIndex:=1 else Form_peach.cbArchiveCreationType.ItemIndex:=2;
+         Form_peach.ComboBoxArchiveAct.Itemindex:=Form_peach.cbArchiveCreationType.Itemindex;
          end
       else
          begin
@@ -61825,23 +62061,23 @@ begin
 on_ComboBoxARCChange;
 end;
 
-procedure TForm_peach.ComboBoxArchive1Change(Sender: TObject);
+procedure TForm_peach.cbPredefinedArchiveSizesChange(Sender: TObject);
 begin
-ComboBoxArchive1_onchange;
+cbPredefinedArchiveSizes_onchange;
 end;
 
-procedure ComboBoxArchive4_onchange;
+procedure cbCompressionLevel_onchange;
 begin
 if settingvalues=false then
    with Form_peach do
       begin
-      compression_level:=ComboBoxArchive4.Text;
+      compression_level:=cbCompressionLevel.Text;
       case cbType.Text of
-         STR_7Z : level_7z:=ComboBoxArchive4.ItemIndex;
-         STR_XZ : level_xz:=ComboBoxArchive4.ItemIndex;
-         STR_BZIP2 : level_bzip2:=ComboBoxArchive4.ItemIndex;
-         STR_GZIP : level_gz:=ComboBoxArchive4.ItemIndex;
-         STR_ZIP : level_zip:=ComboBoxArchive4.ItemIndex;
+         STR_7Z : level_7z:=cbCompressionLevel.ItemIndex;
+         STR_XZ : level_xz:=cbCompressionLevel.ItemIndex;
+         STR_BZIP2 : level_bzip2:=cbCompressionLevel.ItemIndex;
+         STR_GZIP : level_gz:=cbCompressionLevel.ItemIndex;
+         STR_ZIP : level_zip:=cbCompressionLevel.ItemIndex;
          end;
       set_values(archive_type,compression_method,compression_level);
       getarccaption(Form_peach.cbType.Text);
@@ -63191,8 +63427,8 @@ else
          begin
          showpanel('archive');
          showpanel_trick;
-         if paramstr(1)='-add2archive-add' then begin ComboBoxArchive7.ItemIndex:=1; ComboBoxArchiveAct.Itemindex:=ComboboxArchive7.Itemindex; on_ComboBoxArchive7Change; end;
-         if paramstr(1)='-add2archive-update' then begin ComboBoxArchive7.ItemIndex:=2; ComboBoxArchiveAct.Itemindex:=ComboboxArchive7.Itemindex; on_ComboBoxArchive7Change; end;
+         if paramstr(1)='-add2archive-add' then begin cbArchiveCreationType.ItemIndex:=1; ComboBoxArchiveAct.Itemindex:=cbArchiveCreationType.Itemindex; on_cbArchiveCreationTypeChange; end;
+         if paramstr(1)='-add2archive-update' then begin cbArchiveCreationType.ItemIndex:=2; ComboBoxArchiveAct.Itemindex:=cbArchiveCreationType.Itemindex; on_cbArchiveCreationTypeChange; end;
          if paramstr(1)='-add2convert' then
             begin
             Form_peach.CheckBoxConvert.State:=cbChecked; Form_peach.CheckBoxConvertChange(nil);
@@ -63673,15 +63909,15 @@ else
       case paramstr(1) of
          '-add2archive-add':
          begin
-         ComboBoxArchive7.ItemIndex:=1;
-         ComboBoxArchiveAct.Itemindex:=ComboboxArchive7.Itemindex;
-         on_ComboBoxArchive7Change;
+         cbArchiveCreationType.ItemIndex:=1;
+         ComboBoxArchiveAct.Itemindex:=cbArchiveCreationType.Itemindex;
+         on_cbArchiveCreationTypeChange;
          end;
          '-add2archive-update':
          begin
-         ComboBoxArchive7.ItemIndex:=2;
-         ComboBoxArchiveAct.Itemindex:=ComboboxArchive7.Itemindex;
-         on_ComboBoxArchive7Change;
+         cbArchiveCreationType.ItemIndex:=2;
+         ComboBoxArchiveAct.Itemindex:=cbArchiveCreationType.Itemindex;
+         on_cbArchiveCreationTypeChange;
          end;
          '-add2convert':
          begin
@@ -66877,9 +67113,9 @@ begin
       writeln(t,'Action');
       writeln(t,inttostr(Form_peach.ComboBoxArchiveAct.ItemIndex));
       writeln(t,'Spanning');
-      writeln(t,inttostr(Form_peach.ComboBoxArchive1.ItemIndex));
+      writeln(t,inttostr(Form_peach.cbPredefinedArchiveSizes.ItemIndex));
       writeln(t,inttostr(Form_peach.SpinEditArchive1.Value));
-      writeln(t,inttostr(Form_peach.ComboBoxArchive2.ItemIndex));
+      writeln(t,inttostr(Form_peach.cbSpanTypeOfSize.ItemIndex));
       writeln(t,'Add to separate archives');
       if Form_peach.checkboxseparate.Checked=true then writeln(t,'1') else writeln(t,'0');
       writeln(t,'Archive to original path');
@@ -66911,13 +67147,13 @@ begin
       writeln(t,'');
       writeln(t,'BACKEND OPTIONS: 7z / p7zip');//7Z
       writeln(t,'Method');
-      writeln(t,inttostr(Form_peach.ComboBoxArchive3.ItemIndex));
+      writeln(t,inttostr(Form_peach.cbCompressionMethod.ItemIndex));
       writeln(t,'Dictionary');
-      writeln(t,inttostr(Form_peach.ComboBoxArchive5.ItemIndex));
+      writeln(t,inttostr(Form_peach.cbDictionarySize.ItemIndex));
       writeln(t,'Word');
-      writeln(t,inttostr(Form_peach.ComboBoxArchive6.ItemIndex));
+      writeln(t,inttostr(Form_peach.cbWordSize.ItemIndex));
       writeln(t,'Passes');
-      writeln(t,inttostr(Form_peach.ComboBoxArchivePasses.ItemIndex));
+      writeln(t,inttostr(Form_peach.cbArchivePasses.ItemIndex));
       writeln(t,'Solid block size');
       writeln(t,inttostr(Form_peach.ComboBoxArchiveSolid.ItemIndex));
       writeln(t,'Sort by name for solid compression');
@@ -66929,7 +67165,7 @@ begin
       writeln(t,'Paths: relative, full, absolute');
       writeln(t,inttostr(Form_peach.ComboBoxArchivePaths.ItemIndex));
       writeln(t,'Threads');
-      writeln(t,inttostr(Form_peach.ComboBoxArchive8.ItemIndex));
+      writeln(t,inttostr(Form_peach.cbMaxCPUThreads.ItemIndex));
       writeln(t,'Other options');
       writeln(t,Form_peach.EditOP.Text);
       writeln(t,'Include NT secutity info (WIM)');
@@ -67202,9 +67438,9 @@ begin
       readln(t,s); //action
       readln(t,s); Form_peach.ComboBoxArchiveAct.itemindex:=strtoint(s); Form_peach.ComboBoxArchiveActChange(nil);
       readln(t,s); //split
-      readln(t,s); Form_peach.ComboBoxArchive1.itemindex:=strtoint(s); ComboBoxArchive1_onchange;
+      readln(t,s); Form_peach.cbPredefinedArchiveSizes.itemindex:=strtoint(s); cbPredefinedArchiveSizes_onchange;
       readln(t,s); Form_peach.SpinEditArchive1.Value:=strtoint(s); Form_peach.SpinEditArchive1Change(nil);
-      readln(t,s); Form_peach.ComboBoxArchive2.itemindex:=strtoint(s); Form_peach.ComboBoxArchive2Change(nil);
+      readln(t,s); Form_peach.cbSpanTypeOfSize.itemindex:=strtoint(s); Form_peach.cbSpanTypeOfSizeChange(nil);
       readln(t,s); //separate
       readln(t,s1); if s1='1' then Form_peach.checkboxseparate.Checked:=true else Form_peach.checkboxseparate.Checked:=false; on_checkboxseparateclick;
       readln(t,s); //original path
@@ -67236,13 +67472,13 @@ begin
       readln(t,s);
       readln(t,s); //BACKEND 7z / p7zip
       readln(t,s); //method
-      readln(t,s); Form_peach.ComboBoxArchive3.itemindex:=strtoint(s); Form_peach.ComboBoxArchive3CloseUp(nil);
+      readln(t,s); Form_peach.cbCompressionMethod.itemindex:=strtoint(s); Form_peach.cbCompressionMethodCloseUp(nil);
       readln(t,s); //dictionary
-      readln(t,s); Form_peach.ComboBoxArchive5.itemindex:=strtoint(s);
+      readln(t,s); Form_peach.cbDictionarySize.itemindex:=strtoint(s);
       readln(t,s); //word
-      readln(t,s); Form_peach.ComboBoxArchive6.itemindex:=strtoint(s);
+      readln(t,s); Form_peach.cbWordSize.itemindex:=strtoint(s);
       readln(t,s); //passes
-      readln(t,s); Form_peach.ComboBoxArchivePasses.itemindex:=strtoint(s);
+      readln(t,s); Form_peach.cbArchivePasses.itemindex:=strtoint(s);
       readln(t,s); //solidsize
       readln(t,s); Form_peach.ComboBoxArchiveSolid.itemindex:=strtoint(s);
       readln(t,s); //sort by name
@@ -67254,7 +67490,7 @@ begin
       readln(t,s); //paths
       readln(t,s); Form_peach.ComboBoxArchivePaths.itemindex:=strtoint(s);
       readln(t,s); //threads
-      readln(t,s); Form_peach.ComboBoxArchive8.itemindex:=strtoint(s); Form_peach.ComboBoxArchive8Change(nil);
+      readln(t,s); Form_peach.cbMaxCPUThreads.itemindex:=strtoint(s); Form_peach.cbMaxCPUThreadsChange(nil);
       readln(t,s); //other
       readln(t,s); Form_peach.EditOP.Text:=s;
       readln(t,s); //nt security
@@ -69197,7 +69433,7 @@ end;
 procedure peazipdoreset;
 begin
 defaultarchiveaction:=0;
-form_peach.ComboBoxArchive7.ItemIndex:=0;
+form_peach.cbArchiveCreationType.ItemIndex:=0;
 archive_type_select(STR_7Z);
 archive_type_select(STR_ZIP);
 if ptmpcode<>'' then cleardir(ptmpdir,true,false);
