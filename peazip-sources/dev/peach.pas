@@ -21160,6 +21160,16 @@ for i:=1 to 8 do
    StringGridCustedit1.Cells[3,i]:='';
    StringGridCustedit1.Cells[4,i]:='';
    end;
+
+for i := 1 to 16 do
+    custedit[i]:='';
+for i := 1 to 8 do
+  begin
+    adveditbefore[i]:='';
+    adveditafter[i]:='';
+    adveditalt[i]:='';
+  end;
+{ Removed by Improver69
 custedit1:='';
 advedit1before:='';
 advedit1after:='';
@@ -21200,6 +21210,7 @@ custedit13:='';
 custedit14:='';
 custedit15:='';
 custedit16:='';
+}
 {$IFDEF MSWINDOWS}
 wingetprogramsfolder;
 wingetsystemfolder;
@@ -21207,62 +21218,62 @@ wingetappdatafolder;
 //try to find if some common applications are installed, preference for free software and for programs using same location for different versions
 //1 Google search, open with default system browser
 StringGridCustedit.Cells[1,1]:='Google';
-custedit1:='https://www.google.com/search?q=';
+custedit[1]:='https://www.google.com/search?q=';
 //2 Notepad
 StringGridCustedit.Cells[1,2]:='Notepad';
-custedit2:='notepad.exe';
+custedit[2]:='notepad.exe';
 //3 media players: VLC then Windows Media Player
 if fileexists(winpfolder+'VideoLAN\VLC\vlc.exe') then
    begin
    StringGridCustedit.Cells[1,3]:='VLC Media Player';
-   custedit3:=winpfolder+'VideoLAN\VLC\vlc.exe';
+   custedit[3]:=winpfolder+'VideoLAN\VLC\vlc.exe';
    end
 else
    begin
    StringGridCustedit.Cells[1,3]:='Windows Media Player';
-   custedit3:='wmplayer.exe';
+   custedit[3]:='wmplayer.exe';
    end;
 //4 image viewers FastStone then Irfan then XnView
 if fileexists(winpfolder32+'IrfanView\i_view32.exe') then
    begin
    StringGridCustedit.Cells[1,4]:='IrfanView';
-   custedit4:=winpfolder32+'IrfanView\i_view32.exe';
+   custedit[4]:=winpfolder32+'IrfanView\i_view32.exe';
    end;
 if fileexists(winpfolder32+'xnview\xnview.exe') then
    begin
    StringGridCustedit.Cells[1,4]:='XnView';
-   custedit4:=winpfolder32+'xnview\xnview.exe';
+   custedit[4]:=winpfolder32+'xnview\xnview.exe';
    end;
 if fileexists(winpfolder32+'FastStone Image Viewer\FSViewer.exe') then
    begin
    StringGridCustedit.Cells[1,4]:='FastStone Image Viewer';
-   custedit4:=winpfolder32+'FastStone Image Viewer\FSViewer.exe';
+   custedit[4]:=winpfolder32+'FastStone Image Viewer\FSViewer.exe';
    end;
 if fileexists(winpfolder+'xnview\xnview.exe') then
    begin
    StringGridCustedit.Cells[1,4]:='XnView';
-   custedit4:=winpfolder+'xnview\xnview.exe';
+   custedit[4]:=winpfolder+'xnview\xnview.exe';
    end;
 if fileexists(winpfolder+'IrfanView\i_view64.exe') then
    begin
    StringGridCustedit.Cells[1,4]:='IrfanView';
-   custedit4:=winpfolder+'IrfanView\i_view64.exe';
+   custedit[4]:=winpfolder+'IrfanView\i_view64.exe';
    end;
 if fileexists(winpfolder+'FastStone Image Viewer\FSViewer.exe') then
    begin
    StringGridCustedit.Cells[1,4]:='FastStone Image Viewer';
-   custedit4:=winpfolder+'FastStone Image Viewer\FSViewer.exe';
+   custedit[4]:=winpfolder+'FastStone Image Viewer\FSViewer.exe';
    end;
 //5 raster painting
 if fileexists(winpfolder+'Paint.NET\PaintDotNet.exe') then
    begin
    StringGridCustedit.Cells[1,5]:='Paint.NET';
-   custedit5:=winpfolder+'Paint.NET\PaintDotNet.exe';
+   custedit[5]:=winpfolder+'Paint.NET\PaintDotNet.exe';
    end
 else
    begin
    StringGridCustedit.Cells[1,5]:='MS Paint';
-   custedit5:='mspaint.exe';
+   custedit[5]:='mspaint.exe';
    end;
 //6 PDF Acrobat Reader DC, then PDF24 Reader, then older Acrobat Reader versions
 for iacro:=4 to 11 do
@@ -21270,18 +21281,18 @@ begin
 if fileexists(winpfolder32+'Adobe\Reader '+inttostr(iacro)+'.0\Reader\AcroRd32.exe') then
    begin
    StringGridCustedit.Cells[1,6]:='Acrobat Reader';
-   custedit6:=winpfolder32+'Adobe\Reader '+inttostr(iacro)+'.0\Reader\AcroRd32.exe';
+   custedit[6]:=winpfolder32+'Adobe\Reader '+inttostr(iacro)+'.0\Reader\AcroRd32.exe';
    end;
 end;
 if fileexists(winpfolder32+'PDF24\pdf24-Reader.exe') then
    begin
    StringGridCustedit.Cells[1,6]:='PDF24 Reader';
-   custedit6:=winpfolder32+'PDF24\pdf24-Reader.exe';
+   custedit[6]:=winpfolder32+'PDF24\pdf24-Reader.exe';
    end;
 if fileexists(winpfolder32+'Adobe\Acrobat Reader DC\Reader\AcroRd32.exe') then
    begin
    StringGridCustedit.Cells[1,6]:='Acrobat Reader DC';
-   custedit6:=winpfolder32+'Adobe\Acrobat Reader DC\Reader\AcroRd32.exe';
+   custedit[6]:=winpfolder32+'Adobe\Acrobat Reader DC\Reader\AcroRd32.exe';
    end;
 //7 documents Office, then Libre/Open Office then Wordpad
 //8 spreadsheet Office, then Libre/Open Office
@@ -21292,109 +21303,109 @@ if fileexists(winpfolder32+'Adobe\Acrobat Reader DC\Reader\AcroRd32.exe') then
 if fileexists(winpfolder+'Windows NT\Accessories\wordpad.exe') then
    begin
    StringGridCustedit.Cells[1,7]:='WordPad';
-   custedit7:=winpfolder+'Windows NT\Accessories\wordpad.exe';
+   custedit[7]:=winpfolder+'Windows NT\Accessories\wordpad.exe';
    end;
 if fileexists(winpfolder+'LibreOffice\program\writer.exe') then
    begin
    StringGridCustedit.Cells[1,7]:='Writer';
-   custedit7:=winpfolder+'LibreOffice\program\writer.exe';
+   custedit[7]:=winpfolder+'LibreOffice\program\writer.exe';
    end;
 if fileexists(winpfolder+'LibreOffice\program\calc.exe') then
    begin
    StringGridCustedit.Cells[1,8]:='Calc';
-   custedit8:=winpfolder+'LibreOffice\program\calc.exe';
+   custedit[8]:=winpfolder+'LibreOffice\program\calc.exe';
    end;
 if fileexists(winpfolder+'LibreOffice\program\impress.exe') then
    begin
    StringGridCustedit.Cells[1,9]:='Impress';
-   custedit9:=winpfolder+'LibreOffice\program\impress.exe';
+   custedit[9]:=winpfolder+'LibreOffice\program\impress.exe';
    end;
 if fileexists(winpfolder+'LibreOffice\program\base.exe') then
    begin
    StringGridCustedit.Cells[1,10]:='Base';
-   custedit10:=winpfolder+'LibreOffice\program\base.exe';
+   custedit[10]:=winpfolder+'LibreOffice\program\base.exe';
    end;
 if fileexists(winpfolder+'LibreOffice\program\draw.exe') then
    begin
    StringGridCustedit.Cells[1,12]:='Draw';
-   custedit12:=winpfolder+'LibreOffice\program\draw.exe';
+   custedit[12]:=winpfolder+'LibreOffice\program\draw.exe';
    end;
 if fileexists(winpfolder+'OpenOffice\program\writer.exe') then
    begin
    StringGridCustedit.Cells[1,7]:='Writer';
-   custedit7:=winpfolder+'OpenOffice\program\writer.exe';
+   custedit[7]:=winpfolder+'OpenOffice\program\writer.exe';
    end;
 if fileexists(winpfolder+'OpenOffice\program\calc.exe') then
    begin
    StringGridCustedit.Cells[1,8]:='Calc';
-   custedit8:=winpfolder+'OpenOffice\program\calc.exe';
+   custedit[8]:=winpfolder+'OpenOffice\program\calc.exe';
    end;
 if fileexists(winpfolder+'OpenOffice\program\impress.exe') then
    begin
    StringGridCustedit.Cells[1,9]:='Impress';
-   custedit9:=winpfolder+'OpenOffice\program\impress.exe';
+   custedit[9]:=winpfolder+'OpenOffice\program\impress.exe';
    end;
 if fileexists(winpfolder+'OpenOffice\program\base.exe') then
    begin
    StringGridCustedit.Cells[1,10]:='Base';
-   custedit10:=winpfolder+'OpenOffice\program\base.exe';
+   custedit[10]:=winpfolder+'OpenOffice\program\base.exe';
    end;
 if fileexists(winpfolder+'OpenOffice\program\draw.exe') then
    begin
    StringGridCustedit.Cells[1,12]:='Draw';
-   custedit12:=winpfolder+'OpenOffice\program\draw.exe';
+   custedit[12]:=winpfolder+'OpenOffice\program\draw.exe';
    end;
 for iooo:=4 to 9 do
 begin
 if fileexists(winpfolder+'LibreOffice '+inttostr(iooo)+'\program\writer.exe') then
    begin
    StringGridCustedit.Cells[1,7]:='Writer';
-   custedit7:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\writer.exe';
+   custedit[7]:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\writer.exe';
    end;
 if fileexists(winpfolder+'LibreOffice '+inttostr(iooo)+'\program\calc.exe') then
    begin
    StringGridCustedit.Cells[1,8]:='Calc';
-   custedit8:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\calc.exe';
+   custedit[8]:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\calc.exe';
    end;
 if fileexists(winpfolder+'LibreOffice '+inttostr(iooo)+'\program\impress.exe') then
    begin
    StringGridCustedit.Cells[1,9]:='Impress';
-   custedit9:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\impress.exe';
+   custedit[9]:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\impress.exe';
    end;
 if fileexists(winpfolder+'LibreOffice '+inttostr(iooo)+'\program\base.exe') then
    begin
    StringGridCustedit.Cells[1,10]:='Base';
-   custedit10:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\base.exe';
+   custedit[10]:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\base.exe';
    end;
 if fileexists(winpfolder+'LibreOffice '+inttostr(iooo)+'\program\draw.exe') then
    begin
    StringGridCustedit.Cells[1,12]:='Draw';
-   custedit12:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\draw.exe';
+   custedit[12]:=winpfolder+'LibreOffice '+inttostr(iooo)+'\program\draw.exe';
    end;
 if fileexists(winpfolder+'OpenOffice '+inttostr(iooo)+'\program\writer.exe') then
    begin
    StringGridCustedit.Cells[1,7]:='Writer';
-   custedit7:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\writer.exe';
+   custedit[7]:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\writer.exe';
    end;
 if fileexists(winpfolder+'OpenOffice '+inttostr(iooo)+'\program\calc.exe') then
    begin
    StringGridCustedit.Cells[1,8]:='Calc';
-   custedit8:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\calc.exe';
+   custedit[8]:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\calc.exe';
    end;
 if fileexists(winpfolder+'OpenOffice '+inttostr(iooo)+'\program\impress.exe') then
    begin
    StringGridCustedit.Cells[1,9]:='Impress';
-   custedit9:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\impress.exe';
+   custedit[9]:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\impress.exe';
    end;
 if fileexists(winpfolder+'OpenOffice '+inttostr(iooo)+'\program\base.exe') then
    begin
    StringGridCustedit.Cells[1,10]:='Base';
-   custedit10:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\base.exe';
+   custedit[10]:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\base.exe';
    end;
 if fileexists(winpfolder+'OpenOffice '+inttostr(iooo)+'\program\draw.exe') then
    begin
    StringGridCustedit.Cells[1,12]:='Draw';
-   custedit12:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\draw.exe';
+   custedit[12]:=winpfolder+'OpenOffice '+inttostr(iooo)+'\program\draw.exe';
    end;
 end;
 for ioff:=8 to 29 do
@@ -21402,88 +21413,88 @@ begin
 if fileexists(winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\winword.exe') then
    begin
    StringGridCustedit.Cells[1,7]:='Word';
-   custedit7:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\winword.exe';
+   custedit[7]:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\winword.exe';
    end;
 if fileexists(winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\winword.exe') then
    begin
    StringGridCustedit.Cells[1,7]:='Word';
-   custedit7:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\winword.exe';
+   custedit[7]:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\winword.exe';
    end;
 if fileexists(winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\excel.exe') then
    begin
    StringGridCustedit.Cells[1,8]:='Excel';
-   custedit8:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\excel.exe';
+   custedit[8]:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\excel.exe';
    end;
 if fileexists(winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\excel.exe') then
    begin
    StringGridCustedit.Cells[1,8]:='Excel';
-   custedit8:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\excel.exe';
+   custedit[8]:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\excel.exe';
    end;
 if fileexists(winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\powerpnt.exe') then
    begin
    StringGridCustedit.Cells[1,9]:='PowerPoint';
-   custedit9:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\powerpnt.exe';
+   custedit[9]:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\powerpnt.exe';
    end;
 if fileexists(winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\powerpnt.exe') then
    begin
    StringGridCustedit.Cells[1,9]:='PowerPoint';
-   custedit9:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\powerpnt.exe';
+   custedit[9]:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\powerpnt.exe';
    end;
 if fileexists(winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\msaccess.exe') then
    begin
    StringGridCustedit.Cells[1,10]:='Access';
-   custedit10:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\msaccess.exe';
+   custedit[10]:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\msaccess.exe';
    end;
 if fileexists(winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\msaccess.exe') then
    begin
    StringGridCustedit.Cells[1,10]:='Access';
-   custedit10:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\msaccess.exe';
+   custedit[10]:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\msaccess.exe';
    end;
 if fileexists(winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\outlook.exe') then
    begin
    StringGridCustedit.Cells[1,11]:='Outlook';
-   custedit11:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\outlook.exe';
+   custedit[11]:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\outlook.exe';
    end;
 if fileexists(winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\outlook.exe') then
    begin
    StringGridCustedit.Cells[1,11]:='Outlook';
-   custedit11:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\outlook.exe';
+   custedit[11]:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\outlook.exe';
    end;
 if fileexists(winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\visio.exe') then
    begin
    StringGridCustedit.Cells[1,12]:='Visio';
-   custedit12:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\visio.exe';
+   custedit[12]:=winpfolder32+'Microsoft Office\Office'+inttostr(ioff)+'\visio.exe';
    end;
 if fileexists(winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\visio.exe') then
    begin
    StringGridCustedit.Cells[1,12]:='Visio';
-   custedit12:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\visio.exe';
+   custedit[12]:=winpfolder+'Microsoft Office\Office'+inttostr(ioff)+'\visio.exe';
    end;
 end;
 //13 Internet Explorer
 StringGridCustedit.Cells[1,13]:='Internet Explorer';
-custedit13:='iexplore.exe';
+custedit[13]:='iexplore.exe';
 //14 Chrome
 if fileexists(extractfilepath((GetEnvironmentVariable('APPDATA')))+'Local\Google\Chrome\Application\chrome.exe') then
    begin
    StringGridCustedit.Cells[1,14]:='Chrome';
-   custedit14:=extractfilepath((GetEnvironmentVariable('APPDATA')))+'Local\Google\Chrome\Application\chrome.exe';
+   custedit[14]:=extractfilepath((GetEnvironmentVariable('APPDATA')))+'Local\Google\Chrome\Application\chrome.exe';
    end;
 if fileexists(winpfolder+'Google\Chrome\Application\chrome.exe') then
    begin
    StringGridCustedit.Cells[1,14]:='Chrome';
-   custedit14:=winpfolder+'Google\Chrome\Application\chrome.exe';
+   custedit[14]:=winpfolder+'Google\Chrome\Application\chrome.exe';
    end;
 //15 other browsers: FF then Opera
 if fileexists(winpfolder+'Opera\opera.exe') then
    begin
    StringGridCustedit.Cells[1,15]:='Opera';
-   custedit15:=winpfolder+'Opera\opera.exe';
+   custedit[15]:=winpfolder+'Opera\opera.exe';
    end;
 if fileexists(winpfolder+'Mozilla Firefox\firefox.exe') then
    begin
    StringGridCustedit.Cells[1,15]:='Mozilla Firefox';
-   custedit15:=winpfolder+'Mozilla Firefox\firefox.exe';
+   custedit[15]:=winpfolder+'Mozilla Firefox\firefox.exe';
    end;
 set_win_antivirus;
 {$ELSE}
@@ -22710,6 +22721,7 @@ end;
 procedure load_custedit;
 var
    s:ansistring;
+   yCounter : byte;
 begin
 if fileexists(confpath+'custedit.txt')=false then
    begin
@@ -22732,6 +22744,11 @@ readln(cedit,s); if s<>'[custom editors/players, override system''s file associa
    end;
 with form_peach do
 begin
+  for yCounter := 1 to 16 do
+  begin
+    readln(cedit,s); StringGridCustedit.Cells[1,yCounter]:=s;
+  end;
+{ Removed by Improver69
 readln(cedit,s); StringGridCustedit.Cells[1,1]:=s;
 readln(cedit,s); StringGridCustedit.Cells[1,2]:=s;
 readln(cedit,s); StringGridCustedit.Cells[1,3]:=s;
@@ -22748,6 +22765,12 @@ readln(cedit,s); StringGridCustedit.Cells[1,13]:=s;
 readln(cedit,s); StringGridCustedit.Cells[1,14]:=s;
 readln(cedit,s); StringGridCustedit.Cells[1,15]:=s;
 readln(cedit,s); StringGridCustedit.Cells[1,16]:=s;
+}
+  for yCounter := 1 to 16 do
+  begin
+    readln(cedit,s); custedit[yCounter]:=s;
+  end;
+{ Removed by Improver69
 readln(cedit,s); custedit1:=s;
 readln(cedit,s); custedit2:=s;
 readln(cedit,s); custedit3:=s;
@@ -22764,6 +22787,10 @@ readln(cedit,s); custedit13:=s;
 readln(cedit,s); custedit14:=s;
 readln(cedit,s); custedit15:=s;
 readln(cedit,s); custedit16:=s;
+}
+  for yCounter := 1 to 8 do
+      readln(cedit,s); StringGridCustedit1.Cells[1,yCounter]:=s;
+{ Removed by Improver69
 readln(cedit,s); StringGridCustedit1.Cells[1,1]:=s;
 readln(cedit,s); StringGridCustedit1.Cells[1,2]:=s;
 readln(cedit,s); StringGridCustedit1.Cells[1,3]:=s;
@@ -22772,6 +22799,10 @@ readln(cedit,s); StringGridCustedit1.Cells[1,5]:=s;
 readln(cedit,s); StringGridCustedit1.Cells[1,6]:=s;
 readln(cedit,s); StringGridCustedit1.Cells[1,7]:=s;
 readln(cedit,s); StringGridCustedit1.Cells[1,8]:=s;
+}
+for yCounter := 1 to 8 do
+    readln(cedit,s); adveditbefore[yCounter]:=s;
+{ Removed by Improver69
 readln(cedit,s); advedit1before:=s;
 readln(cedit,s); advedit2before:=s;
 readln(cedit,s); advedit3before:=s;
@@ -22780,6 +22811,10 @@ readln(cedit,s); advedit5before:=s;
 readln(cedit,s); advedit6before:=s;
 readln(cedit,s); advedit7before:=s;
 readln(cedit,s); advedit8before:=s;
+}
+for yCounter := 1 to 8 do
+    readln(cedit,s); adveditafter[yCounter]:=s;
+{ Removed by Improver69
 readln(cedit,s); advedit1after:=s;
 readln(cedit,s); advedit2after:=s;
 readln(cedit,s); advedit3after:=s;
@@ -22788,6 +22823,10 @@ readln(cedit,s); advedit5after:=s;
 readln(cedit,s); advedit6after:=s;
 readln(cedit,s); advedit7after:=s;
 readln(cedit,s); advedit8after:=s;
+}
+for yCounter := 1 to 8 do
+    readln(cedit,s); adveditalt[yCounter]:=s;
+{ Removed by Improver69
 readln(cedit,s); advedit1alt:=s;
 readln(cedit,s); advedit2alt:=s;
 readln(cedit,s); advedit3alt:=s;
@@ -22796,6 +22835,7 @@ readln(cedit,s); advedit5alt:=s;
 readln(cedit,s); advedit6alt:=s;
 readln(cedit,s); advedit7alt:=s;
 readln(cedit,s); advedit8alt:=s;
+}
 end;
 set_custedit_totable;
 set_custedit_menus;
@@ -22838,11 +22878,11 @@ begin
    load_default_theme;
    graphicsfolder:=graphicsfolderd;
    opacity:=opacityd;
-   color1:=color1d;
-   color2:=color2d;
-   color3:=color3d;
-   color4:=color4d;
-   color5:=color5d;
+   color1:=colord[1];
+   color2:=colord[2];
+   color3:=colord[3];
+   color4:=colord[4];
+   color5:=colord[5];
    pspacing:=pspacingd;
    pzooming:=pzoomingd;
    ensmall:=ensmalld;
@@ -22889,11 +22929,11 @@ default_defaults;
 load_default_theme;
 graphicsfolder:=graphicsfolderd;
 opacity:=opacityd;
-color1:=color1d;
-color2:=color2d;
-color3:=color3d;
-color4:=color4d;
-color5:=color5d;
+color1:=colord[1];
+color2:=colord[2];
+color3:=colord[3];
+color4:=colord[4];
+color5:=colord[5];
 pspacing:=pspacingd;
 pzooming:=pzoomingd;
 ensmall:=ensmalld;
@@ -23216,6 +23256,19 @@ end;
 
 procedure set_multi(s:ansistring); //sets multithreading option for 7za
 begin
+  // Modified by Improver69
+  with Form_peach do
+  case s of
+        'on'  : begin  //allow multithread selection for Compression (LZMA/2 and BZip2), may be replaced by code more oriented toward processors number
+                  cbMaxCPUThreads.Enabled:=true;
+                  cbMaxCPUThreads.ItemIndex:=multi_option;
+                end;
+        'off' : begin //disallow multithread selection since Compression algorithms used are not supported
+                  cbMaxCPUThreads.Enabled:=false;
+                  cbMaxCPUThreads.ItemIndex:=0;
+                end;
+  end;
+{
 if s='on' then //allow multithread selection for Compression (LZMA/2 and BZip2), may be replaced by code more oriented toward processors number
    begin
    Form_peach.cbMaxCPUThreads.Enabled:=true;
@@ -23226,7 +23279,9 @@ if s='off' then //disallow multithread selection since Compression algorithms us
    Form_peach.cbMaxCPUThreads.Enabled:=false;
    //Form_peach.cbMaxCPUThreads.ItemIndex:=0;
    end;
+}
 end;
+
 // Added procedures by Improver69 for smallest code and speed
 // cbDictionarySize
 
