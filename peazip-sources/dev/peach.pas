@@ -5758,24 +5758,26 @@ var
 
    devname:array [1..26] of ansistring;
    patchclip:array of array [0..15] of ansistring;
+
+   // modified by Improver69
+   CustEdit : array [1..16] of ansistring;
+   AdvEditBefore : array [1..8] of ansistring;
+   AdvEditAfter : array [1..8] of ansistring;
+   AdvEditAlt : array [1..8] of ansistring;
+   // ColorA : array [1..5] of ansistring;
+   ColorD : array [1..5] of ansistring;
+
    israr5,browse_option,caption_release,caption_build,tempstring,alt_tempstring,archive_type,archive_t,
    compression_method,compression_level,parameters,kdir,in_name,in_file,in_folder,
    output_name,out_qualified_name,size_u,cks,data_compression,save_cks,bcomp,
    keyfname,themedir,theme_name,theme_author,theme_license,theme_path,wrk_path,executable_path,resource_path,binpath,sharepath,
-   persistent_source,fun,subfun,btfun,tools_path,color1,color2,color3,color4,color5,color1d,
-   color2d,color3d,color4d,color5d,prev_type,
+   persistent_source,fun,subfun,btfun,tools_path,prev_type,
    prev_method,prev_level,method_7z,dmethod_7z,method_zip,dmethod_zip,ptmpcode,ptmpdir,pstmpdir,graphicsfolder,graphicsfolderd,
    archive_content,wincomspec,delimiter,desktop_path,prevpanel,winver,majmin,indir,destdir,
    prev_destdir,local_desktop,home_path,confpath,currentcomp,currentfs,usr_documents,usr_music,usr_videos,usr_pictures,users_root,
    public_documents,public_home,usr_recent,usr_searches,usr_libraries,usr_downloads,usr_sendto,
    shared_dropbox,shared_googledrive,shared_onedrive,shared_skydrive,shared_ubuntuone,shared_myboxfiles,
-   usr_name,lastobj,lastobjarch,custedit1,custedit2,custedit3,custedit4,custedit5,
-   custedit6,custedit7,custedit8,custedit9,custedit10,custedit11,custedit12,custedit13,
-   custedit14,custedit15,custedit16,prevcaption,advedit1before,advedit2before,advedit3before,
-   advedit4before,advedit5before,advedit6before,advedit7before,advedit8before,advedit1after,
-   advedit2after,advedit3after,advedit4after,advedit5after,advedit6after,advedit7after,
-   advedit8after,advedit1alt,advedit2alt,advedit3alt,advedit4alt,advedit5alt,advedit6alt,
-   advedit7alt,advedit8alt,
+   usr_name,lastobj,lastobjarch,prevcaption,
    winpfolder,winpfolder32,winsysfolder,winappdatafolder,fun_status,lastoutpath,lastextractionpath,
    status0,status1,status_curfilesystem,status_curarchive,statuss,statusw,statust,statusr,
    checkver,extsel,defaultextractpath,defaultarchivepath,dn,dn1,
@@ -8024,6 +8026,8 @@ end;
 
 procedure set_adveditcl(i:integer);
 begin
+  Form_peach.Labelcbsampleadvanced.caption:=adveditbefore[i]+stringdelim+'%f'+delimiter+adveditafter[i];
+{ Removed by Improver69
 case i of
    1: Form_peach.Labelcbsampleadvanced.caption:=advedit1before+stringdelim('%f')+advedit1after;
    2: Form_peach.Labelcbsampleadvanced.caption:=advedit2before+stringdelim('%f')+advedit2after;
@@ -8034,6 +8038,7 @@ case i of
    7: Form_peach.Labelcbsampleadvanced.caption:=advedit7before+stringdelim('%f')+advedit7after;
    8: Form_peach.Labelcbsampleadvanced.caption:=advedit8before+stringdelim('%f')+advedit8after;
    end;
+   }
 end;
 
 procedure setdescription_advcustedit;
@@ -14927,7 +14932,9 @@ if graphicsfolderd<>'' then
 //if opacityd<0 then opacityd:=0;
 if opacityd>100 then opacityd:=100;
 if opacityd=0 then opacityd:=100;
-if color1d='' then color1d:=ColorToString(PAPPCOL);
+// Changed by Improver69
+if colord[1]='' then 
+   colord[1]:=ColorToString(PAPPCOL);
 if (usealtcolord<0) or (usealtcolord>1) then usealtcolord:=0;
 if (highlighttabsd<0) or (highlighttabsd>5) then highlighttabsd:=0;
 if (accenttoolbard<0) or (accenttoolbard>8) then accenttoolbard:=0;
@@ -16799,15 +16806,21 @@ end;
 procedure readconf_default_colors;
 var
    s:ansistring;
+   yCount : Byte;
 begin
 readln(conf,graphicsfolderd);
 dodirseparators(graphicsfolderd);
 readln(conf,opacityd);
+  // Chanched by Improver69
+  for yCount := 1 to 5 do
+      readln(conf,colord[yCount]);
+{ Removed by Improver69
 readln(conf,color1d);
 readln(conf,color2d);
 readln(conf,color3d);
 readln(conf,color4d);
 readln(conf,color5d);
+}
 readln(conf,s); decodebintheming(s,usealtcolord,highlighttabsd,accenttoolbard,toolcenteredd,altaddressstyled,solidaddressstyled,alttabstyled,ensmalld,contrastd);
 readln(conf,s); pzoomingd:=strtoint(s);
 readln(conf,s); pspacingd:=strtoint(s);
@@ -16823,9 +16836,20 @@ else
 end;
 
 procedure set_ow_custedit_menu;
+var
+  xPos, yPos : byte;
 begin
 with Form_peach do
 begin
+  for yPos := 1 to 16 do
+      if StringGridCustedit.Cells[1,yPos]<>'' then 
+      owcustom1.Caption:=StringGridCustedit.Cells[1,yPos]
+  else
+      if extractfilename(custedit[yPos])<>'' then 
+         owcustom1.Caption:=extractfilename(custedit[yPos])
+      else 
+         owcustom1.Caption:=custedit[yPos];
+{ Removed by Improver69
 if StringGridCustedit.Cells[1,1]<>'' then owcustom1.Caption:=StringGridCustedit.Cells[1,1]
 else
    if extractfilename(custedit1)<>'' then owcustom1.Caption:=extractfilename(custedit1)
@@ -16890,6 +16914,14 @@ if StringGridCustedit.Cells[1,16]<>'' then owcustom_16.Caption:=StringGridCusted
 else
    if extractfilename(custedit16)<>'' then owcustom_16.Caption:=extractfilename(custedit16)
    else owcustom_16.Caption:=custedit16;
+}
+// Changed by Improver69
+   for yPos := 1 to 8 do
+       if StringGridCustedit1.Cells[1,yPos]<>'' then 
+          owcustom9.Caption:=StringGridCustedit1.Cells[1,yPos]
+       else 
+          owcustom9.Caption:=adveditbefore[yPos]+delimiter+'%f'+stringdelim+adveditafter[yPos];
+{ Removed by Improver69
 if StringGridCustedit1.Cells[1,1]<>'' then owcustom9.Caption:=StringGridCustedit1.Cells[1,1]
 else owcustom9.Caption:=advedit1before+stringdelim('%f')+advedit1after;
 if StringGridCustedit1.Cells[1,2]<>'' then owcustom10.Caption:=StringGridCustedit1.Cells[1,2]
@@ -16906,30 +16938,32 @@ if StringGridCustedit1.Cells[1,7]<>'' then owcustom15.Caption:=StringGridCustedi
 else owcustom15.Caption:=advedit7before+stringdelim('%f')+advedit7after;
 if StringGridCustedit1.Cells[1,8]<>'' then owcustom16.Caption:=StringGridCustedit1.Cells[1,8]
 else owcustom16.Caption:=advedit8before+stringdelim('%f')+advedit8after;
-if custedit1<>'' then owcustom1.visible:=true else owcustom1.visible:=false;
-if custedit2<>'' then owcustom2.visible:=true else owcustom2.visible:=false;
-if custedit3<>'' then owcustom3.visible:=true else owcustom3.visible:=false;
-if custedit4<>'' then owcustom4.visible:=true else owcustom4.visible:=false;
-if custedit5<>'' then owcustom5.visible:=true else owcustom5.visible:=false;
-if custedit6<>'' then owcustom6.visible:=true else owcustom6.visible:=false;
-if custedit7<>'' then owcustom7.visible:=true else owcustom7.visible:=false;
-if custedit8<>'' then owcustom8.visible:=true else owcustom8.visible:=false;
-if custedit9<>'' then owcustom_9.visible:=true else owcustom_9.visible:=false;
-if custedit10<>'' then owcustom_10.visible:=true else owcustom_10.visible:=false;
-if custedit11<>'' then owcustom_11.visible:=true else owcustom_11.visible:=false;
-if custedit12<>'' then owcustom_12.visible:=true else owcustom_12.visible:=false;
-if custedit13<>'' then owcustom_13.visible:=true else owcustom_13.visible:=false;
-if custedit14<>'' then owcustom_14.visible:=true else owcustom_14.visible:=false;
-if custedit15<>'' then owcustom_15.visible:=true else owcustom_15.visible:=false;
-if custedit16<>'' then owcustom_16.visible:=true else owcustom_16.visible:=false;
-if advedit1before+advedit1after<>'' then owcustom9.visible:=true else owcustom9.visible:=false;
-if advedit2before+advedit2after<>'' then owcustom10.visible:=true else owcustom10.visible:=false;
-if advedit3before+advedit3after<>'' then owcustom11.visible:=true else owcustom11.visible:=false;
-if advedit4before+advedit4after<>'' then owcustom12.visible:=true else owcustom12.visible:=false;
-if advedit5before+advedit5after<>'' then owcustom13.visible:=true else owcustom13.visible:=false;
-if advedit6before+advedit6after<>'' then owcustom14.visible:=true else owcustom14.visible:=false;
-if advedit7before+advedit7after<>'' then owcustom15.visible:=true else owcustom15.visible:=false;
-if advedit8before+advedit8after<>'' then owcustom16.visible:=true else owcustom16.visible:=false;
+}
+// Changed by Improver69
+if custedit[1]<>'' then owcustom1.visible:=true else owcustom1.visible:=false;
+if custedit[2]<>'' then owcustom2.visible:=true else owcustom2.visible:=false;
+if custedit[3]<>'' then owcustom3.visible:=true else owcustom3.visible:=false;
+if custedit[4]<>'' then owcustom4.visible:=true else owcustom4.visible:=false;
+if custedit[5]<>'' then owcustom5.visible:=true else owcustom5.visible:=false;
+if custedit[6]<>'' then owcustom6.visible:=true else owcustom6.visible:=false;
+if custedit[7]<>'' then owcustom7.visible:=true else owcustom7.visible:=false;
+if custedit[8]<>'' then owcustom8.visible:=true else owcustom8.visible:=false;
+if custedit[9]<>'' then owcustom_9.visible:=true else owcustom_9.visible:=false;
+if custedit[10]<>'' then owcustom_10.visible:=true else owcustom_10.visible:=false;
+if custedit[11]<>'' then owcustom_11.visible:=true else owcustom_11.visible:=false;
+if custedit[12]<>'' then owcustom_12.visible:=true else owcustom_12.visible:=false;
+if custedit[13]<>'' then owcustom_13.visible:=true else owcustom_13.visible:=false;
+if custedit[14]<>'' then owcustom_14.visible:=true else owcustom_14.visible:=false;
+if custedit[15]<>'' then owcustom_15.visible:=true else owcustom_15.visible:=false;
+if custedit[16]<>'' then owcustom_16.visible:=true else owcustom_16.visible:=false;
+if adveditbefore[1]+adveditafter[1]<>'' then owcustom9.visible:=true else owcustom9.visible:=false;
+if adveditbefore[2]+adveditafter[2]<>'' then owcustom10.visible:=true else owcustom10.visible:=false;
+if adveditbefore[3]+adveditafter[3]<>'' then owcustom11.visible:=true else owcustom11.visible:=false;
+if adveditbefore[4]+adveditafter[4]<>'' then owcustom12.visible:=true else owcustom12.visible:=false;
+if adveditbefore[5]+adveditafter[5]<>'' then owcustom13.visible:=true else owcustom13.visible:=false;
+if adveditbefore[6]+adveditafter[6]<>'' then owcustom14.visible:=true else owcustom14.visible:=false;
+if adveditbefore[7]+adveditafter[7]<>'' then owcustom15.visible:=true else owcustom15.visible:=false;
+if adveditbefore[8]+adveditafter[8]<>'' then owcustom16.visible:=true else owcustom16.visible:=false;
 pmmore1.caption:=owcustom9.caption;
 pmmore2.caption:=owcustom10.caption;
 pmmore3.caption:=owcustom11.caption;
@@ -16998,9 +17032,17 @@ end;
 end;
 
 procedure set_eow_custedit_menu;
+var
+  xPos, yPos : byte;
 begin
 with Form_peach do
 begin
+  for yPos := 1 to 16 do
+      if StringGridCustedit.Cells[1,yPos]<>'' then eowcustom1.Caption:=StringGridCustedit.Cells[1,yPos]
+      else
+         if extractfilename(custedit[yPos])<>'' then eowcustom1.Caption:=extractfilename(custedit[yPos])
+         else eowcustom1.Caption:=custedit[yPos];
+{ Removed by Improver69
 if StringGridCustedit.Cells[1,1]<>'' then eowcustom1.Caption:=StringGridCustedit.Cells[1,1]
 else
    if extractfilename(custedit1)<>'' then eowcustom1.Caption:=extractfilename(custedit1)
@@ -17065,6 +17107,11 @@ if StringGridCustedit.Cells[1,16]<>'' then eowcustom_16.Caption:=StringGridCuste
 else
    if extractfilename(custedit16)<>'' then eowcustom_16.Caption:=extractfilename(custedit16)
    else eowcustom_16.Caption:=custedit16;
+}
+  for yPos := 1 to 8 do
+      if StringGridCustedit1.Cells[1,yPos]<>'' then eowcustom9.Caption:=StringGridCustedit1.Cells[1,yPos]
+      else eowcustom9.Caption:=adveditbefore[yPos]+stringdelim+'%f'+stringdelim+adveditafter[yPos];
+{ Removed by Improver69
 if StringGridCustedit1.Cells[1,1]<>'' then eowcustom9.Caption:=StringGridCustedit1.Cells[1,1]
 else eowcustom9.Caption:=advedit1before+stringdelim('%f')+advedit1after;
 if StringGridCustedit1.Cells[1,2]<>'' then eowcustom10.Caption:=StringGridCustedit1.Cells[1,2]
