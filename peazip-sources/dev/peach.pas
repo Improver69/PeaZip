@@ -17387,32 +17387,35 @@ else aowcustom15.Caption:=advedit7before+stringdelim('%f')+advedit7after;
 if StringGridCustedit1.Cells[1,8]<>'' then aowcustom16.Caption:=StringGridCustedit1.Cells[1,8]
 else aowcustom16.Caption:=advedit8before+stringdelim('%f')+advedit8after;
 }
-if custedit1<>'' then aowcustom1.visible:=true else aowcustom1.visible:=false;
-if custedit2<>'' then aowcustom2.visible:=true else aowcustom2.visible:=false;
-if custedit3<>'' then aowcustom3.visible:=true else aowcustom3.visible:=false;
-if custedit4<>'' then aowcustom4.visible:=true else aowcustom4.visible:=false;
-if custedit5<>'' then aowcustom5.visible:=true else aowcustom5.visible:=false;
-if custedit6<>'' then aowcustom6.visible:=true else aowcustom6.visible:=false;
-if custedit7<>'' then aowcustom7.visible:=true else aowcustom7.visible:=false;
-if custedit8<>'' then aowcustom8.visible:=true else aowcustom8.visible:=false;
-if custedit9<>'' then aowcustom_9.visible:=true else aowcustom_9.visible:=false;
-if custedit10<>'' then aowcustom_10.visible:=true else aowcustom_10.visible:=false;
-if custedit11<>'' then aowcustom_11.visible:=true else aowcustom_11.visible:=false;
-if custedit12<>'' then aowcustom_12.visible:=true else aowcustom_12.visible:=false;
-if custedit13<>'' then aowcustom_13.visible:=true else aowcustom_13.visible:=false;
-if custedit14<>'' then aowcustom_14.visible:=true else aowcustom_14.visible:=false;
-if custedit15<>'' then aowcustom_15.visible:=true else aowcustom_15.visible:=false;
-if custedit16<>'' then aowcustom_16.visible:=true else aowcustom_16.visible:=false;
-if advedit1before+advedit1after<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
-if advedit2before+advedit2after<>'' then aowcustom10.visible:=true else aowcustom10.visible:=false;
-if advedit3before+advedit3after<>'' then aowcustom11.visible:=true else aowcustom11.visible:=false;
-if advedit4before+advedit4after<>'' then aowcustom12.visible:=true else aowcustom12.visible:=false;
-if advedit5before+advedit5after<>'' then aowcustom13.visible:=true else aowcustom13.visible:=false;
-if advedit6before+advedit6after<>'' then aowcustom14.visible:=true else aowcustom14.visible:=false;
-if advedit7before+advedit7after<>'' then aowcustom15.visible:=true else aowcustom15.visible:=false;
-if advedit8before+advedit8after<>'' then aowcustom16.visible:=true else aowcustom16.visible:=false;
-if advedit1before+advedit2before+advedit3before+advedit4before+advedit5before+advedit6before+advedit7before+advedit8before+
-   advedit1after+advedit2after+advedit3after+advedit4after+advedit5after+advedit6after+advedit7after+advedit8after<>'' then aowseparator2.visible:=true else aowseparator2.visible:=false;
+if custedit[1]<>'' then aowcustom1.visible:=true else aowcustom1.visible:=false;
+if custedit[2]<>'' then aowcustom2.visible:=true else aowcustom2.visible:=false;
+if custedit[3]<>'' then aowcustom3.visible:=true else aowcustom3.visible:=false;
+if custedit[4]<>'' then aowcustom4.visible:=true else aowcustom4.visible:=false;
+if custedit[5]<>'' then aowcustom5.visible:=true else aowcustom5.visible:=false;
+if custedit[6]<>'' then aowcustom6.visible:=true else aowcustom6.visible:=false;
+if custedit[7]<>'' then aowcustom7.visible:=true else aowcustom7.visible:=false;
+if custedit[8]<>'' then aowcustom8.visible:=true else aowcustom8.visible:=false;
+if custedit[9]<>'' then aowcustom_9.visible:=true else aowcustom_9.visible:=false;
+if custedit[10]<>'' then aowcustom_10.visible:=true else aowcustom_10.visible:=false;
+if custedit[11]<>'' then aowcustom_11.visible:=true else aowcustom_11.visible:=false;
+if custedit[12]<>'' then aowcustom_12.visible:=true else aowcustom_12.visible:=false;
+if custedit[13]<>'' then aowcustom_13.visible:=true else aowcustom_13.visible:=false;
+if custedit[14]<>'' then aowcustom_14.visible:=true else aowcustom_14.visible:=false;
+if custedit[15]<>'' then aowcustom_15.visible:=true else aowcustom_15.visible:=false;
+if custedit[16]<>'' then aowcustom_16.visible:=true else aowcustom_16.visible:=false;
+
+if adveditbefore[1]+adveditafter[1]<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
+if adveditbefore[2]+adveditafter[2]<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
+if adveditbefore[3]+adveditafter[3]<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
+if adveditbefore[4]+adveditafter[4]<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
+if adveditbefore[5]+adveditafter[5]<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
+if adveditbefore[6]+adveditafter[6]<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
+if adveditbefore[7]+adveditafter[7]<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
+if adveditbefore[8]+adveditafter[8]<>'' then aowcustom9.visible:=true else aowcustom9.visible:=false;
+
+if adveditbefore[1]+adveditbefore[2]+adveditbefore[3]+adveditbefore[4]+adveditbefore[5]+adveditbefore[6]+adveditbefore[7]+adveditbefore[8]+
+   adveditafter[1]+adveditafter[2]+adveditafter[3]+adveditafter[4]+adveditafter[5]+adveditafter[6]+adveditafter[7]+adveditafter[8]<>'' then aowseparator2.visible:=true
+   else aowseparator2.visible:=false;
 end;
 end;
 
@@ -17426,9 +17429,14 @@ populatetree;
 end;
 
 procedure set_custedit_fromtable;
+var
+  xPos, yPos : byte;
 begin
 with form_peach do
 begin
+  for yPos := 1 to 16 do
+    custedit[yPos]:=StringGridCustedit.Cells[2,yPos];
+{ Removed by Improver69
 custedit1:=StringGridCustedit.Cells[2,1];
 custedit2:=StringGridCustedit.Cells[2,2];
 custedit3:=StringGridCustedit.Cells[2,3];
@@ -17445,6 +17453,10 @@ custedit13:=StringGridCustedit.Cells[2,13];
 custedit14:=StringGridCustedit.Cells[2,14];
 custedit15:=StringGridCustedit.Cells[2,15];
 custedit16:=StringGridCustedit.Cells[2,16];
+}
+   for yPos := 1 to 8 do
+       adveditbefore[yPos]:=StringGridCustedit1.Cells[2,yPos];
+{ Removed by Improver69
 advedit1before:=StringGridCustedit1.Cells[2,1];
 advedit2before:=StringGridCustedit1.Cells[2,2];
 advedit3before:=StringGridCustedit1.Cells[2,3];
@@ -17453,6 +17465,10 @@ advedit5before:=StringGridCustedit1.Cells[2,5];
 advedit6before:=StringGridCustedit1.Cells[2,6];
 advedit7before:=StringGridCustedit1.Cells[2,7];
 advedit8before:=StringGridCustedit1.Cells[2,8];
+}
+   for yPos := 1 to 8 do
+       adveditafter[yPos]:=StringGridCustedit1.Cells[3,yPos];
+{
 advedit1after:=StringGridCustedit1.Cells[3,1];
 advedit2after:=StringGridCustedit1.Cells[3,2];
 advedit3after:=StringGridCustedit1.Cells[3,3];
@@ -17461,6 +17477,10 @@ advedit5after:=StringGridCustedit1.Cells[3,5];
 advedit6after:=StringGridCustedit1.Cells[3,6];
 advedit7after:=StringGridCustedit1.Cells[3,7];
 advedit8after:=StringGridCustedit1.Cells[3,8];
+}
+   for yPos := 1 to 8 do
+       adveditalt[yPos]:=StringGridCustedit1.Cells[4,yPos];
+{
 advedit1alt:=StringGridCustedit1.Cells[4,1];
 advedit2alt:=StringGridCustedit1.Cells[4,2];
 advedit3alt:=StringGridCustedit1.Cells[4,3];
@@ -17469,13 +17489,19 @@ advedit5alt:=StringGridCustedit1.Cells[4,5];
 advedit6alt:=StringGridCustedit1.Cells[4,6];
 advedit7alt:=StringGridCustedit1.Cells[4,7];
 advedit8alt:=StringGridCustedit1.Cells[4,8];
+}
 end;
 end;
 
 procedure set_custedit_totable;
+var
+  xPos, yPos : byte;
 begin
 with form_peach do
 begin
+  for yPos := 1 to 16 do
+    StringGridCustedit.Cells[2,yPos]:=custedit[yPos];
+{ Removed by Improver69
 StringGridCustedit.Cells[2,1]:=custedit1;
 StringGridCustedit.Cells[2,2]:=custedit2;
 StringGridCustedit.Cells[2,3]:=custedit3;
@@ -17492,7 +17518,11 @@ StringGridCustedit.Cells[2,13]:=custedit13;
 StringGridCustedit.Cells[2,14]:=custedit14;
 StringGridCustedit.Cells[2,15]:=custedit15;
 StringGridCustedit.Cells[2,16]:=custedit16;
+}
 StringGridCustedit.AutoSizeColumns;
+for yPos := 1 to 8 do
+    StringGridCustedit1.Cells[2,yPos]:=adveditbefore[yPos];
+{
 StringGridCustedit1.Cells[2,1]:=advedit1before;
 StringGridCustedit1.Cells[2,2]:=advedit2before;
 StringGridCustedit1.Cells[2,3]:=advedit3before;
@@ -17501,6 +17531,10 @@ StringGridCustedit1.Cells[2,5]:=advedit5before;
 StringGridCustedit1.Cells[2,6]:=advedit6before;
 StringGridCustedit1.Cells[2,7]:=advedit7before;
 StringGridCustedit1.Cells[2,8]:=advedit8before;
+}
+for yPos := 1 to 8 do
+    StringGridCustedit1.Cells[3,yPos]:=adveditafter[yPos];
+{
 StringGridCustedit1.Cells[3,1]:=advedit1after;
 StringGridCustedit1.Cells[3,2]:=advedit2after;
 StringGridCustedit1.Cells[3,3]:=advedit3after;
@@ -17509,6 +17543,10 @@ StringGridCustedit1.Cells[3,5]:=advedit5after;
 StringGridCustedit1.Cells[3,6]:=advedit6after;
 StringGridCustedit1.Cells[3,7]:=advedit7after;
 StringGridCustedit1.Cells[3,8]:=advedit8after;
+}
+for yPos := 1 to 8 do
+  StringGridCustedit1.Cells[4,yPos]:=adveditalt[yPos];
+{
 StringGridCustedit1.Cells[4,1]:=advedit1alt;
 StringGridCustedit1.Cells[4,2]:=advedit2alt;
 StringGridCustedit1.Cells[4,3]:=advedit3alt;
@@ -17517,6 +17555,7 @@ StringGridCustedit1.Cells[4,5]:=advedit5alt;
 StringGridCustedit1.Cells[4,6]:=advedit6alt;
 StringGridCustedit1.Cells[4,7]:=advedit7alt;
 StringGridCustedit1.Cells[4,8]:=advedit8alt;
+}
 StringGridCustedit1.AutoSizeColumns;
 end;
 end;
@@ -18576,18 +18615,24 @@ writeln(conf,inttostr(temperature));
 end;
 
 procedure writeconf_default_colors;
+  var
+     i : byte;
 begin
 writeln(conf,graphicsfolderd);
 writeln(conf,opacityd);
+for i := 1 to 5 do
+    writeln(conf,colord[i]);
+{
 writeln(conf,color1d);
 writeln(conf,color2d);
 writeln(conf,color3d);
 writeln(conf,color4d);
 writeln(conf,color5d);
-writeln(conf,inttostr(usealtcolord)+inttostr(highlighttabsd)+inttostr(accenttoolbard)+inttostr(toolcenteredd)+inttostr(altaddressstyled)+inttostr(solidaddressstyled)+inttostr(alttabstyled)+inttostr(ensmalld)+inttostr(contrast));
-writeln(conf,inttostr(pzoomingd));
-writeln(conf,inttostr(pspacingd));
-writeln(conf,inttostr(temperatured));
+}
+writeln(conf,themetoolbarsd);
+writeln(conf,'');
+writeln(conf,'');
+writeln(conf,inttostr(autosizetoolbarbuttond));
 end;
 
 procedure writeconf_defaults;
@@ -20631,11 +20676,11 @@ if (upcase(theme_name)=upcase(DEFAULT_THEME)) then
    graphicsfolderd:='themes'+DirectorySeparator+'main-embedded'+DirectorySeparator;
    dodirseparators(graphicsfolderd);
    opacityd:=100;
-   color1d:=ColorToString(PAPPCOL);
-   color2d:=ColorToString(clWindow);
-   color3d:=ColorToString(PTACOL);
-   color4d:=ColorToString(clAppWorkspace);
-   color5d:=ColorToString(clWindowText);
+   colord[1]:=ColorToString(PAPPCOL);
+   colord[2]:=ColorToString(clWindow);
+   colord[3]:=ColorToString(PTACOL);
+   colord[4]:=ColorToString(clAppWorkspace);
+   colord[5]:=ColorToString(clWindowText);
    usealtcolord:=0;
    highlighttabsd:=0;
    accenttoolbard:=0;
@@ -20737,14 +20782,20 @@ end;
 end;
 
 procedure save_custedit;
+var
+ x1, y1 : Byte;
 begin
-try
-assignfile(cedit,(confpath+'custedit.txt'));
-rewrite(cedit);
-write_header(cedit);
-writeln(cedit,'[custom editors/players, override system''s file associations, 4.2+]');
-with form_peach do
-begin
+  try
+    assignfile(cedit,(confpath+'custedit.txt'));
+    rewrite(cedit);
+    write_header(cedit);
+    writeln(cedit,'[custom editors/players, override system''s file associations, 4.2+]');
+    with form_peach do
+    begin
+      for x1 := 1 to 2 do
+          for y1 := 1 to 16 do
+              writeln(cedit,StringGridCustedit.Cells[x1,y1]);
+{ 
 writeln(cedit,StringGridCustedit.Cells[1,1]);
 writeln(cedit,StringGridCustedit.Cells[1,2]);
 writeln(cedit,StringGridCustedit.Cells[1,3]);
@@ -20777,6 +20828,12 @@ writeln(cedit,StringGridCustedit.Cells[2,13]);
 writeln(cedit,StringGridCustedit.Cells[2,14]);
 writeln(cedit,StringGridCustedit.Cells[2,15]);
 writeln(cedit,StringGridCustedit.Cells[2,16]);
+}
+      for x1 := 1 to 4 do
+          for y1 := 1 to 8 do
+              writeln(cedit,StringGridCustedit1.Cells[x1,y1]);
+
+{
 writeln(cedit,StringGridCustedit1.Cells[1,1]);
 writeln(cedit,StringGridCustedit1.Cells[1,2]);
 writeln(cedit,StringGridCustedit1.Cells[1,3]);
@@ -20809,6 +20866,7 @@ writeln(cedit,StringGridCustedit1.Cells[4,5]);
 writeln(cedit,StringGridCustedit1.Cells[4,6]);
 writeln(cedit,StringGridCustedit1.Cells[4,7]);
 writeln(cedit,StringGridCustedit1.Cells[4,8]);
+}
 end;
 CloseFile(cedit);
 except
@@ -21025,6 +21083,14 @@ if fileexists(winpfolder+'VirusTotalUploader2\VirusTotalUpload2.exe') then
 
 with form_peach do
 begin
+for i := 1 to 8 do
+begin
+  StringGridCustedit1.Cells[1,i]:=astr[i];
+  adveditbefore[i]:=bstr[i];
+  adveditafter[i]:=cstr[i];
+  adveditalt[i]:=dstr[i];
+end;
+{
 StringGridCustedit1.Cells[1,1]:=astr[1];
 advedit1before:=bstr[1];
 advedit1after:=cstr[1];
@@ -21057,6 +21123,7 @@ StringGridCustedit1.Cells[1,8]:=astr[8];
 advedit8before:=bstr[8];
 advedit8after:=cstr[8];
 advedit8alt:=dstr[8];
+}
 end;
 {$ENDIF}
 end;
