@@ -23530,6 +23530,12 @@ if archive_type='7z' then
    begin
    Form_peach.CheckBoxMQS.Enabled:=true;
    Form_peach.ComboBoxArchiveSolid.Enabled:=true;
+   
+   SetcbCompressionType;
+   SetcbCompressionLevel;
+   
+   { Removed by DelpiTemple
+   
    Form_peach.cbCompressionMethod.Clear;
    Form_peach.cbCompressionMethod.DropDownCount:=15;
    Form_peach.cbCompressionMethod.Items.Append('LZMA');
@@ -23555,6 +23561,7 @@ if archive_type='7z' then
    Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
+   }
    Form_peach.Label7za18.Visible:=true;
    Form_peach.Subtitle7zaopt2.Visible:=true;
    Form_peach.Combobox7zalgo.Visible:=true;
@@ -23581,6 +23588,9 @@ if archive_type='7z' then
       begin
       set_multi('on');
       Form_peach.cbCompressionMethod.ItemIndex:=0;
+      SetcbDictionarySize;
+      setcbWordSize;
+      { removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=25;
       Form_peach.cbDictionarySize.Items.Append('256 KB');
@@ -23622,11 +23632,21 @@ if archive_type='7z' then
       Form_peach.cbWordSize.Items.Append('192');
       Form_peach.cbWordSize.Items.Append('256');
       Form_peach.cbWordSize.Items.Append('273');
+      }
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=false;
+      // Added by Improver69
+      case compression_level of
+         'txt_level_fastest' : SetCompressionLevel(1,0,4,4,0);
+         'txt_level_fast'    : SetCompressionLevel(2,1,4,8,0);
+         'txt_level_normal'  : SetCompressionLevel(3,8,4,12,0);
+         'txt_level_maximum' : SetCompressionLevel(4,10,6,13,0);
+         'txt_level_ultra'   : SetCompressionLevel(5,12,6,18,0);
+
+      end;
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -23667,6 +23687,9 @@ if archive_type='7z' then
       begin
       set_multi('on');
       Form_peach.cbCompressionMethod.ItemIndex:=1;
+      SetcbDictionarySize;
+      setcbWordSize;
+      { removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=25;
       Form_peach.cbDictionarySize.Items.Append('256 KB');
@@ -23708,51 +23731,70 @@ if archive_type='7z' then
       Form_peach.cbWordSize.Items.Append('192');
       Form_peach.cbWordSize.Items.Append('256');
       Form_peach.cbWordSize.Items.Append('273');
+      }
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=false;
       if compression_level=txt_level_fastest then
+         SetCompressionLevel (1, 0, 4, 4, 0);
+         {
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
          Form_peach.cbDictionarySize.ItemIndex:=0;
          Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=7;
          end;
+         }
       if compression_level=txt_level_fast then
+         SetCompressionLevel (2, 1, 4, 8, 0);
+         {
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=2;
          Form_peach.cbDictionarySize.ItemIndex:=4;
          Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=11;
          end;
+         }
       if compression_level=txt_level_normal then
+         SetCompressionLevel (3, 8, 4, 12, 0);
+         {
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=3;
          Form_peach.cbDictionarySize.ItemIndex:=8;
          Form_peach.cbWordSize.ItemIndex:=4;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
+         }
       if compression_level=txt_level_maximum then
+         SetCompressionLevel (4, 10, 6, 13, 0);
+         {
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=4;
          Form_peach.cbDictionarySize.ItemIndex:=10;
          Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=14;
          end;
+         }
       if compression_level=txt_level_ultra then
+         SetCompressionLevel (5, 17, 11, 18, 0);
+         {
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=5;
          Form_peach.cbDictionarySize.ItemIndex:=12;
          Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=15;
          end;
+         }
       end;
    if compression_method='PPMd' then
       begin
       set_multi('off');
       Form_peach.cbCompressionMethod.ItemIndex:=2;
+      SetcbDictionarySize;
+      setcbWordSize;
+      { removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=21;
       Form_peach.cbDictionarySize.Items.Append('1 MB');
@@ -23793,11 +23835,21 @@ if archive_type='7z' then
       Form_peach.cbWordSize.Items.Append('24');
       Form_peach.cbWordSize.Items.Append('28');
       Form_peach.cbWordSize.Items.Append('32');
+      }
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=false;
+      // Added by Improver69
+      case compression_level of
+           'txt_level_fastest' : SetCompressionLevel(1,3,2,10,0);
+           'txt_level_fast'    : SetCompressionLevel(2,3,2,11,0);
+           'txt_level_normal'  : SetCompressionLevel(3,7,4,12,0);
+           'txt_level_maximum' : SetCompressionLevel(4,11,10,18,0);
+           'txt_level_ultra'   : SetCompressionLevel(5,14,14,18,0);
+      end;
+      {
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -23838,6 +23890,10 @@ if archive_type='7z' then
       begin
       set_multi('on');
       Form_peach.cbCompressionMethod.ItemIndex:=3;
+      SetcbDictionarySize;
+      setcbWordSize;
+      SetcbArchivePasses;
+      { removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=9;
       Form_peach.cbDictionarySize.Items.Append('100 KB');
@@ -23862,10 +23918,20 @@ if archive_type='7z' then
       Form_peach.cbArchivePasses.Items.Append('8');
       Form_peach.cbArchivePasses.Items.Append('9');
       Form_peach.cbArchivePasses.Items.Append('10');
+	  }	
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=false;
       Form_peach.cbArchivePasses.Enabled:=true;
+      // Added by Improver69
+      case compression_level of
+           'txt_level_fastest' : SetCompressionLevel(1,0,0,4,0);
+           'txt_level_fast'    : SetCompressionLevel(2,4,0,6,0);
+           'txt_level_normal'  : SetCompressionLevel(3,8,0,7,0);
+           'txt_level_maximum' : SetCompressionLevel(4,8,0,7,1);
+           'txt_level_ultra'   : SetCompressionLevel(5,8,0,7,6);
+      end;
+      { Removed by Improver69
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -23906,6 +23972,7 @@ if archive_type='7z' then
          Form_peach.cbArchivePasses.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=7;
          end;
+         }
       end;
    end;
    if (compression_method='Brotli') or
@@ -23969,6 +24036,9 @@ if archive_type='7z' then
       begin
       set_multi('on');
       Form_peach.cbCompressionMethod.ItemIndex:=5;
+      SetcbDictionarysize;
+      SetcbWordSize;
+      { Removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=22;
       Form_peach.cbDictionarySize.Items.Append('64 KB');
@@ -24007,11 +24077,21 @@ if archive_type='7z' then
       Form_peach.cbWordSize.Items.Append('192');
       Form_peach.cbWordSize.Items.Append('256');
       Form_peach.cbWordSize.Items.Append('273');
+      }
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=false;
+      // Added by Improver69
+      case compression_level of
+            'txt_level_fastest' : SetCompressionLevel(1,0,4,4,0);
+            'txt_level_fast'    : SetCompressionLevel(2,1,4,8,0);
+            'txt_level_normal'  : SetCompressionLevel(3,8,4,12,0);
+            'txt_level_maximum' : SetCompressionLevel(4,10,6,13,0);
+            'txt_level_ultra'   : SetCompressionLevel(5,12,6,13,0);
+      end;
+      { Removed by Improver69
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -24047,6 +24127,7 @@ if archive_type='7z' then
          Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
+      }
       end;
 if compression_method='Deflate' then
    begin
@@ -24221,6 +24302,9 @@ if archive_type='xz' then
    Form_peach.cbCompressionMethod.DropDownCount:=1;
    Form_peach.cbCompressionMethod.Items.Append('LZMA2');
    Form_peach.cbCompressionMethod.ItemIndex:=0;
+   // Added by Improver69
+   SetcbCompressionLevel;
+   { Removed by Improver69
    Form_peach.cbCompressionLevel.Clear;
    Form_peach.cbCompressionLevel.DropDownCount:=5;
    Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
@@ -24228,13 +24312,20 @@ if archive_type='xz' then
    Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
+   }
+   { Disabled by Improver69
    Form_peach.Label7za18.Visible:=true;
+   }
    Form_peach.Label7za18.Visible:=false;
    Form_peach.Combobox7zalgo.Visible:=false;
    if compression_method='LZMA2' then
       begin
       set_multi('on');
       Form_peach.cbCompressionMethod.ItemIndex:=1;
+      // Added by Improver69
+      SetcbDictionarySize;
+      setcbWordSize;
+      { Removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=25;
       Form_peach.cbDictionarySize.Items.Append('256 KB');
@@ -24276,11 +24367,21 @@ if archive_type='xz' then
       Form_peach.cbWordSize.Items.Append('192');
       Form_peach.cbWordSize.Items.Append('256');
       Form_peach.cbWordSize.Items.Append('273');
+      }
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=false;
+      // Added by Improver69
+      case compression_level of
+            'txt_level_fastest' : SetCompressionLevel(0,0,4,4,0);
+            'txt_level_fast'    : SetCompressionLevel(1,1,4,8,0);
+            'txt_level_normal'  : SetCompressionLevel(2,8,4,12,0);
+            'txt_level_maximum' : SetCompressionLevel(3,10,6,13,0);
+            'txt_level_ultra'   : SetCompressionLevel(4,12,6,13,0);
+      end;
+      {
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=0;
@@ -24316,6 +24417,7 @@ if archive_type='xz' then
          Form_peach.cbWordSize.ItemIndex:=6;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=15;
          end;
+      }
       end;
    end;
 if archive_type='wim' then
@@ -24376,6 +24478,9 @@ if archive_type='tar' then
    end;
 if archive_type='zip' then
    begin
+   // Added by Improver69
+   SetcbCompressionMethod;
+   { Removed by Improver69
    Form_peach.cbCompressionMethod.Clear;
    {$IFDEF MSWINDOWS}
    Form_peach.cbCompressionMethod.DropDownCount:=6;
@@ -24391,6 +24496,10 @@ if archive_type='zip' then
    {$IFNDEF MSWINDOWS}
    Form_peach.cbCompressionMethod.Items.Append('Zstd');
    {$ENDIF}
+   }
+   // Added by Improver69
+   SetcbCompressionLevel;
+   {
    Form_peach.cbCompressionLevel.Clear;
    Form_peach.cbCompressionLevel.DropDownCount:=6;
    Form_peach.cbCompressionLevel.Items.Append(txt_level_store);
@@ -24399,6 +24508,7 @@ if archive_type='zip' then
    Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
+   }
    Form_peach.Label7za18.Visible:=true;
    Form_peach.Subtitle7zaopt2.Visible:=true;
    Form_peach.Combobox7zalgo.Visible:=true;
@@ -24428,6 +24538,9 @@ if archive_type='zip' then
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=1;
       Form_peach.cbDictionarySize.Items.Append('32 KB');
+      // Added by Improver69
+      setcbWordSize;
+      {
       Form_peach.cbWordSize.Clear;
       Form_peach.cbWordSize.DropDownCount:=12;
       Form_peach.cbWordSize.Items.Append('8');
@@ -24442,6 +24555,10 @@ if archive_type='zip' then
       Form_peach.cbWordSize.Items.Append('192');
       Form_peach.cbWordSize.Items.Append('256');
       Form_peach.cbWordSize.Items.Append('258');
+      }
+      // Added by Improver69
+      SetcbArchivePasses;
+      { Removed by Improver69
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbArchivePasses.DropDownCount:=15;
       Form_peach.cbArchivePasses.Items.Append('1');
@@ -24459,10 +24576,21 @@ if archive_type='zip' then
       Form_peach.cbArchivePasses.Items.Append('13');
       Form_peach.cbArchivePasses.Items.Append('14');
       Form_peach.cbArchivePasses.Items.Append('15');
+      }
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=true;
+      // Added by Improver69
+      case compression_level of
+         'txt_level_fastest' : SetCompressionLevel(1,0,4,0,0);
+         'txt_level_fast'    : SetCompressionLevel(2,0,4,0,0);
+         'txt_level_normal'  : SetCompressionLevel(3,0,4,0,0);
+         'txt_level_maximum' : SetCompressionLevel(4,0,6,2,0);
+         'txt_level_ultra'   : SetCompressionLevel(5,0,8,9,0);
+
+      end;
+      { Removed by Improver69
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -24498,6 +24626,7 @@ if archive_type='zip' then
          Form_peach.cbWordSize.ItemIndex:=8;
          Form_peach.cbArchivePasses.ItemIndex:=9;
          end;
+         }
       end;
    if compression_method='Deflate64' then
       begin
@@ -24506,6 +24635,9 @@ if archive_type='zip' then
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=1;
       Form_peach.cbDictionarySize.Items.Append('64 KB');
+      // Added by Improver69
+      setcbWordSize;
+      { Removed by Improver69
       Form_peach.cbWordSize.Clear;
       Form_peach.cbWordSize.DropDownCount:=12;
       Form_peach.cbWordSize.Items.Append('8');
@@ -24520,6 +24652,10 @@ if archive_type='zip' then
       Form_peach.cbWordSize.Items.Append('192');
       Form_peach.cbWordSize.Items.Append('256');
       Form_peach.cbWordSize.Items.Append('257');
+      }
+      // Added by Improver69
+      SetcbArchivePasses;
+      { Removed by Improver69
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbArchivePasses.DropDownCount:=15;
       Form_peach.cbArchivePasses.Items.Append('1');
@@ -24537,10 +24673,19 @@ if archive_type='zip' then
       Form_peach.cbArchivePasses.Items.Append('13');
       Form_peach.cbArchivePasses.Items.Append('14');
       Form_peach.cbArchivePasses.Items.Append('15');
+      }
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=true;
+      case compression_level of
+         'txt_level_fastest' : SetCompressionLevel(1,0,4,0,0);
+         'txt_level_fast'    : SetCompressionLevel(2,0,4,0,0);
+         'txt_level_normal'  : SetCompressionLevel(3,0,4,0,0);
+         'txt_level_maximum' : SetCompressionLevel(4,0,6,2,0);
+         'txt_level_ultra'   : SetCompressionLevel(5,0,8,9,0);
+      end;
+      { Removed by Improver69
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -24576,11 +24721,15 @@ if archive_type='zip' then
          Form_peach.cbWordSize.ItemIndex:=8;
          Form_peach.cbArchivePasses.ItemIndex:=9;
          end;
+         }
       end;
    if compression_method='BZip2' then
       begin
       set_multi('on');
       Form_peach.cbCompressionMethod.ItemIndex:=2;
+      // Added by Improver69
+      SetcbDictionarySize;
+      { Removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=9;
       Form_peach.cbDictionarySize.Items.Append('100 KB');
@@ -24592,7 +24741,11 @@ if archive_type='zip' then
       Form_peach.cbDictionarySize.Items.Append('700 KB');
       Form_peach.cbDictionarySize.Items.Append('800 KB');
       Form_peach.cbDictionarySize.Items.Append('900 KB');
+      }
       Form_peach.cbWordSize.Clear;
+      // Added by Improver69
+      SetcbArchivePasses;
+      { Removed by Improver69
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbArchivePasses.DropDownCount:=10;
       Form_peach.cbArchivePasses.Items.Append('1');
@@ -24605,10 +24758,20 @@ if archive_type='zip' then
       Form_peach.cbArchivePasses.Items.Append('8');
       Form_peach.cbArchivePasses.Items.Append('9');
       Form_peach.cbArchivePasses.Items.Append('10');
+      }
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=false;
       Form_peach.cbArchivePasses.Enabled:=true;
+      // Added by Improver69
+      case compression_level of
+         'txt_level_fastest' : SetCompressionLevel(1,0,0,0,0);
+         'txt_level_fast'    : SetCompressionLevel(2,4,0,0,0);
+         'txt_level_normal'  : SetCompressionLevel(3,8,0,0,0);
+         'txt_level_maximum' : SetCompressionLevel(4,8,0,1,0);
+         'txt_level_ultra'   : SetCompressionLevel(5,8,0,6,0);
+      end;
+      { Removed by Improver69
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -24644,11 +24807,15 @@ if archive_type='zip' then
          Form_peach.cbWordSize.ItemIndex:=0;
          Form_peach.cbArchivePasses.ItemIndex:=6;
          end;
-      end;
+       }
+       end;
    if compression_method='LZMA' then
       begin
       set_multi('on');
       Form_peach.cbCompressionMethod.ItemIndex:=3;
+      // Added by Improver69
+      SetcbDictionarySize;
+      { Removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=25;
       Form_peach.cbDictionarySize.Items.Append('256 KB');
@@ -24676,6 +24843,10 @@ if archive_type='zip' then
       Form_peach.cbDictionarySize.Items.Append('2048 MB');
       Form_peach.cbDictionarySize.Items.Append('3072 MB');
       Form_peach.cbDictionarySize.Items.Append('4096 MB');
+      }
+      // Added by Improver69
+      setcbWordSize;
+      { Removed by Improver69
       Form_peach.cbWordSize.Clear;
       Form_peach.cbWordSize.DropDownCount:=12;
       Form_peach.cbWordSize.Items.Append('8');
@@ -24690,11 +24861,20 @@ if archive_type='zip' then
       Form_peach.cbWordSize.Items.Append('192');
       Form_peach.cbWordSize.Items.Append('256');
       Form_peach.cbWordSize.Items.Append('273');
+      }
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=false;
+      case compression_level of
+         'txt_level_fastest' : SetCompressionLevel(1,0,4,0,0);
+         'txt_level_fast'    : SetCompressionLevel(2,1,4,0,0);
+         'txt_level_normal'  : SetCompressionLevel(3,8,4,0,0);
+         'txt_level_maximum' : SetCompressionLevel(4,10,6,0,0);
+         'txt_level_ultra'   : SetCompressionLevel(5,12,6,0,0);
+      end;
+      { Removed by Improver69
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -24725,11 +24905,15 @@ if archive_type='zip' then
          Form_peach.cbDictionarySize.ItemIndex:=12;
          Form_peach.cbWordSize.ItemIndex:=6;
          end;
+         }
       end;
    if compression_method='PPMd' then
       begin
       set_multi('on');
       Form_peach.cbCompressionMethod.ItemIndex:=4;
+      // Added by Improver69
+      SetcbDictionarySize;
+      { Removed by Improver69
       Form_peach.cbDictionarySize.Clear;
       Form_peach.cbDictionarySize.DropDownCount:=9;
       Form_peach.cbDictionarySize.Items.Append('1 MB');
@@ -24741,6 +24925,10 @@ if archive_type='zip' then
       Form_peach.cbDictionarySize.Items.Append('64 MB');
       Form_peach.cbDictionarySize.Items.Append('128 MB');
       Form_peach.cbDictionarySize.Items.Append('256 MB');
+      }
+      // Added by Improver69
+      setcbWordSize;
+      { Removed by Improver69
       Form_peach.cbWordSize.Clear;
       Form_peach.cbWordSize.DropDownCount:=15;
       Form_peach.cbWordSize.Items.Append('2');
@@ -24758,11 +24946,21 @@ if archive_type='zip' then
       Form_peach.cbWordSize.Items.Append('14');
       Form_peach.cbWordSize.Items.Append('15');
       Form_peach.cbWordSize.Items.Append('16');
+      }
       Form_peach.cbArchivePasses.Clear;
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=true;
       Form_peach.cbArchivePasses.Enabled:=false;
+      // Added by Improver69
+      case compression_level of
+         'txt_level_fastest' : SetCompressionLevel(1,0,2,0,0);
+         'txt_level_fast'    : SetCompressionLevel(2,2,4,0,0);
+         'txt_level_normal'  : SetCompressionLevel(3,4,6,0,0);
+         'txt_level_maximum' : SetCompressionLevel(4,6,8,0,0);
+         'txt_level_ultra'   : SetCompressionLevel(5,7,10,0,0);
+      end;
+      { Removed by Improver69
       if compression_level=txt_level_fastest then
          begin
          Form_peach.cbCompressionLevel.ItemIndex:=1;
@@ -24793,6 +24991,7 @@ if archive_type='zip' then
          Form_peach.cbDictionarySize.ItemIndex:=7;
          Form_peach.cbWordSize.ItemIndex:=10;
          end;
+      }
       end;
 
    if compression_method='XZ' then
@@ -24929,6 +25128,9 @@ if archive_type='bz2' then
    Form_peach.cbCompressionMethod.DropDownCount:=1;
    Form_peach.cbCompressionMethod.Items.Append('BZip2');
    Form_peach.cbCompressionMethod.ItemIndex:=0;
+   // Added by Improver69
+   SetcbCompressionLevel;
+   { Removed by Improver69
    Form_peach.cbCompressionLevel.Clear;
    Form_peach.cbCompressionLevel.DropDownCount:=5;
    Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
@@ -24936,6 +25138,10 @@ if archive_type='bz2' then
    Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
+   }
+   // Added by Improver69
+   SetcbDictionarySize;
+   { Removed by Improver69
    Form_peach.cbDictionarySize.Clear;
    Form_peach.cbDictionarySize.DropDownCount:=9;
    Form_peach.cbDictionarySize.Items.Append('100 KB');
@@ -24947,7 +25153,11 @@ if archive_type='bz2' then
    Form_peach.cbDictionarySize.Items.Append('700 KB');
    Form_peach.cbDictionarySize.Items.Append('800 KB');
    Form_peach.cbDictionarySize.Items.Append('900 KB');
+   }
    Form_peach.cbWordSize.Clear;
+   // Added by Improver69
+   SetcbArchivePasses;
+   { Removed by Improver69
    Form_peach.cbArchivePasses.Clear;
    Form_peach.cbArchivePasses.DropDownCount:=10;
    Form_peach.cbArchivePasses.Items.Append('1');
@@ -24960,12 +25170,22 @@ if archive_type='bz2' then
    Form_peach.cbArchivePasses.Items.Append('8');
    Form_peach.cbArchivePasses.Items.Append('9');
    Form_peach.cbArchivePasses.Items.Append('10');
+   }
    Form_peach.cbCompressionMethod.Enabled:=true;
    Form_peach.cbDictionarySize.Enabled:=true;
    Form_peach.cbWordSize.Enabled:=false;
    Form_peach.Label7za18.Visible:=false;
    Form_peach.Combobox7zalgo.Visible:=false;
    Form_peach.cbArchivePasses.Enabled:=true;
+   // Added by Improver69
+   case compression_level of
+      'txt_level_fastest' : SetCompressionLevel(0,0,0,0,0);
+      'txt_level_fast'    : SetCompressionLevel(1,4,0,0,0);
+      'txt_level_normal'  : SetCompressionLevel(2,8,0,0,0);
+      'txt_level_maximum' : SetCompressionLevel(3,8,0,1,0);
+      'txt_level_ultra'   : SetCompressionLevel(4,8,0,6,0);
+   end;
+   {
    if compression_level=txt_level_fastest then
       begin
       Form_peach.cbCompressionLevel.ItemIndex:=0;
@@ -25001,6 +25221,7 @@ if archive_type='bz2' then
       Form_peach.cbWordSize.ItemIndex:=0;
       Form_peach.cbArchivePasses.ItemIndex:=6;
       end;
+   }
    end;
 if archive_type='gz' then
    begin
@@ -25009,6 +25230,9 @@ if archive_type='gz' then
    Form_peach.cbCompressionMethod.DropDownCount:=1;
    Form_peach.cbCompressionMethod.Items.Append('Deflate');
    Form_peach.cbCompressionMethod.ItemIndex:=0;
+   // Added by Improver69
+   SetcbCompressionLevel;
+   { Removed by Improver69
    Form_peach.cbCompressionLevel.Clear;
    Form_peach.cbCompressionLevel.DropDownCount:=5;
    Form_peach.cbCompressionLevel.Items.Append(txt_level_fastest);
@@ -25016,9 +25240,13 @@ if archive_type='gz' then
    Form_peach.cbCompressionLevel.Items.Append(txt_level_normal);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_maximum);
    Form_peach.cbCompressionLevel.Items.Append(txt_level_ultra);
+   }
    Form_peach.cbDictionarySize.Clear;
    Form_peach.cbDictionarySize.DropDownCount:=1;
    Form_peach.cbDictionarySize.Items.Append('32 KB');
+   // Added by Improver69
+   setcbWordSize;
+   { Removed by Improver69
    Form_peach.cbWordSize.Clear;
    Form_peach.cbWordSize.DropDownCount:=12;
    Form_peach.cbWordSize.Items.Append('8');
@@ -25033,6 +25261,10 @@ if archive_type='gz' then
    Form_peach.cbWordSize.Items.Append('192');
    Form_peach.cbWordSize.Items.Append('256');
    Form_peach.cbWordSize.Items.Append('258');
+   }
+   // Added by Improver69
+   SetcbArchivePasses;
+   { Removed by Improver69
    Form_peach.cbArchivePasses.Clear;
    Form_peach.cbArchivePasses.DropDownCount:=15;
    Form_peach.cbArchivePasses.Items.Append('1');
@@ -25050,12 +25282,22 @@ if archive_type='gz' then
    Form_peach.cbArchivePasses.Items.Append('13');
    Form_peach.cbArchivePasses.Items.Append('14');
    Form_peach.cbArchivePasses.Items.Append('15');
+   }
    Form_peach.cbCompressionMethod.Enabled:=true;
    Form_peach.cbDictionarySize.Enabled:=true;
    Form_peach.cbWordSize.Enabled:=true;
    Form_peach.Label7za18.Visible:=false;
    Form_peach.Combobox7zalgo.Visible:=false;
    Form_peach.cbArchivePasses.Enabled:=true;
+   // Added by Improver69
+   case compression_level of
+      'txt_level_fastest' : SetCompressionLevel(0,0,0,0,0);
+      'txt_level_fast'    : SetCompressionLevel(1,0,4,0,0);
+      'txt_level_normal'  : SetCompressionLevel(2,0,4,0,0);
+      'txt_level_maximum' : SetCompressionLevel(3,0,6,2,0);
+      'txt_level_ultra'   : SetCompressionLevel(4,0,8,9,0);
+   end;
+{ Removed by Improver69
    if compression_level=txt_level_fastest then
       begin
       Form_peach.cbCompressionLevel.ItemIndex:=0;
@@ -25091,6 +25333,7 @@ if archive_type='gz' then
       Form_peach.cbWordSize.ItemIndex:=8;
       Form_peach.cbArchivePasses.ItemIndex:=9;
       end;
+   }
    end;
 if openw_all7z=1 then Form_peach.CheckBoxArchiveOF.State:=cbChecked
 else Form_peach.CheckBoxArchiveOF.State:=cbUnChecked;
