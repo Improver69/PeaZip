@@ -17128,37 +17128,49 @@ if StringGridCustedit1.Cells[1,7]<>'' then eowcustom15.Caption:=StringGridCusted
 else eowcustom15.Caption:=advedit7before+stringdelim('%f')+advedit7after;
 if StringGridCustedit1.Cells[1,8]<>'' then eowcustom16.Caption:=StringGridCustedit1.Cells[1,8]
 else eowcustom16.Caption:=advedit8before+stringdelim('%f')+advedit8after;
-if custedit1<>'' then eowcustom1.visible:=true else eowcustom1.visible:=false;
-if custedit2<>'' then eowcustom2.visible:=true else eowcustom2.visible:=false;
-if custedit3<>'' then eowcustom3.visible:=true else eowcustom3.visible:=false;
-if custedit4<>'' then eowcustom4.visible:=true else eowcustom4.visible:=false;
-if custedit5<>'' then eowcustom5.visible:=true else eowcustom5.visible:=false;
-if custedit6<>'' then eowcustom6.visible:=true else eowcustom6.visible:=false;
-if custedit7<>'' then eowcustom7.visible:=true else eowcustom7.visible:=false;
-if custedit8<>'' then eowcustom8.visible:=true else eowcustom8.visible:=false;
-if custedit9<>'' then eowcustom_9.visible:=true else eowcustom_9.visible:=false;
-if custedit10<>'' then eowcustom_10.visible:=true else eowcustom_10.visible:=false;
-if custedit11<>'' then eowcustom_11.visible:=true else eowcustom_11.visible:=false;
-if custedit12<>'' then eowcustom_12.visible:=true else eowcustom_12.visible:=false;
-if custedit13<>'' then eowcustom_13.visible:=true else eowcustom_13.visible:=false;
-if custedit14<>'' then eowcustom_14.visible:=true else eowcustom_14.visible:=false;
-if custedit15<>'' then eowcustom_15.visible:=true else eowcustom_15.visible:=false;
-if custedit16<>'' then eowcustom_16.visible:=true else eowcustom_16.visible:=false;
-if advedit1before+advedit1after<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
-if advedit2before+advedit2after<>'' then eowcustom10.visible:=true else eowcustom10.visible:=false;
-if advedit3before+advedit3after<>'' then eowcustom11.visible:=true else eowcustom11.visible:=false;
-if advedit4before+advedit4after<>'' then eowcustom12.visible:=true else eowcustom12.visible:=false;
-if advedit5before+advedit5after<>'' then eowcustom13.visible:=true else eowcustom13.visible:=false;
-if advedit6before+advedit6after<>'' then eowcustom14.visible:=true else eowcustom14.visible:=false;
-if advedit7before+advedit7after<>'' then eowcustom15.visible:=true else eowcustom15.visible:=false;
-if advedit8before+advedit8after<>'' then eowcustom16.visible:=true else eowcustom16.visible:=false;
+}
+// Modified by Improver69
+if custedit[1]<>'' then eowcustom1.visible:=true else eowcustom1.visible:=false;
+if custedit[2]<>'' then eowcustom2.visible:=true else eowcustom2.visible:=false;
+if custedit[3]<>'' then eowcustom3.visible:=true else eowcustom3.visible:=false;
+if custedit[4]<>'' then eowcustom4.visible:=true else eowcustom4.visible:=false;
+if custedit[5]<>'' then eowcustom5.visible:=true else eowcustom5.visible:=false;
+if custedit[6]<>'' then eowcustom6.visible:=true else eowcustom6.visible:=false;
+if custedit[7]<>'' then eowcustom7.visible:=true else eowcustom7.visible:=false;
+if custedit[8]<>'' then eowcustom8.visible:=true else eowcustom8.visible:=false;
+if custedit[9]<>'' then eowcustom_9.visible:=true else eowcustom_9.visible:=false;
+if custedit[10]<>'' then eowcustom_10.visible:=true else eowcustom_10.visible:=false;
+if custedit[11]<>'' then eowcustom_11.visible:=true else eowcustom_11.visible:=false;
+if custedit[12]<>'' then eowcustom_12.visible:=true else eowcustom_12.visible:=false;
+if custedit[13]<>'' then eowcustom_13.visible:=true else eowcustom_13.visible:=false;
+if custedit[14]<>'' then eowcustom_14.visible:=true else eowcustom_14.visible:=false;
+if custedit[15]<>'' then eowcustom_15.visible:=true else eowcustom_15.visible:=false;
+if custedit[16]<>'' then eowcustom_16.visible:=true else eowcustom_16.visible:=false;
+// Modified by Improver69
+if adveditbefore[1]+adveditafter[1]<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
+if adveditbefore[2]+adveditafter[2]<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
+if adveditbefore[3]+adveditafter[3]<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
+if adveditbefore[4]+adveditafter[4]<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
+if adveditbefore[5]+adveditafter[5]<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
+if adveditbefore[6]+adveditafter[6]<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
+if adveditbefore[7]+adveditafter[7]<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
+if adveditbefore[8]+adveditafter[8]<>'' then eowcustom9.visible:=true else eowcustom9.visible:=false;
 end;
 end;
 
 procedure set_pow_custedit_menu;
+var
+  xPos, yPos : byte;
+
 begin
 with Form_peach do
 begin
+  for yPos := 1 to 16 do
+      if StringGridCustedit.Cells[1,yPos]<>'' then powcustom1.Caption:=StringGridCustedit.Cells[1,yPos]
+      else
+         if extractfilename(custedit[yPos])<>'' then powcustom1.Caption:=extractfilename(custedit[yPos])
+         else powcustom1.Caption:=custedit[yPos];
+{ Removed by Improver69
 if StringGridCustedit.Cells[1,1]<>'' then powcustom1.Caption:=StringGridCustedit.Cells[1,1]
 else
    if extractfilename(custedit1)<>'' then powcustom1.Caption:=extractfilename(custedit1)
@@ -17223,6 +17235,13 @@ if StringGridCustedit.Cells[1,16]<>'' then powcustom_16.Caption:=StringGridCuste
 else
    if extractfilename(custedit16)<>'' then powcustom_16.Caption:=extractfilename(custedit16)
    else powcustom_16.Caption:=custedit16;
+}
+for yPos := 1 to 8 do
+    if StringGridCustedit1.Cells[1,yPos]<>'' then 
+       powcustom9.Caption:=StringGridCustedit1.Cells[1,yPos]
+    else 
+       powcustom9.Caption:=adveditbefore[yPos]+stringdelim+'%f'+stringdelim+adveditafter[yPos];
+{
 if StringGridCustedit1.Cells[1,1]<>'' then powcustom9.Caption:=StringGridCustedit1.Cells[1,1]
 else powcustom9.Caption:=advedit1before+stringdelim('%f')+advedit1after;
 if StringGridCustedit1.Cells[1,2]<>'' then powcustom10.Caption:=StringGridCustedit1.Cells[1,2]
@@ -17239,37 +17258,47 @@ if StringGridCustedit1.Cells[1,7]<>'' then powcustom15.Caption:=StringGridCusted
 else powcustom15.Caption:=advedit7before+stringdelim('%f')+advedit7after;
 if StringGridCustedit1.Cells[1,8]<>'' then powcustom16.Caption:=StringGridCustedit1.Cells[1,8]
 else powcustom16.Caption:=advedit8before+stringdelim('%f')+advedit8after;
-if custedit1<>'' then powcustom1.visible:=true else powcustom1.visible:=false;
-if custedit2<>'' then powcustom2.visible:=true else powcustom2.visible:=false;
-if custedit3<>'' then powcustom3.visible:=true else powcustom3.visible:=false;
-if custedit4<>'' then powcustom4.visible:=true else powcustom4.visible:=false;
-if custedit5<>'' then powcustom5.visible:=true else powcustom5.visible:=false;
-if custedit6<>'' then powcustom6.visible:=true else powcustom6.visible:=false;
-if custedit7<>'' then powcustom7.visible:=true else powcustom7.visible:=false;
-if custedit8<>'' then powcustom8.visible:=true else powcustom8.visible:=false;
-if custedit9<>'' then powcustom_9.visible:=true else powcustom_9.visible:=false;
-if custedit10<>'' then powcustom_10.visible:=true else powcustom_10.visible:=false;
-if custedit11<>'' then powcustom_11.visible:=true else powcustom_11.visible:=false;
-if custedit12<>'' then powcustom_12.visible:=true else powcustom_12.visible:=false;
-if custedit13<>'' then powcustom_13.visible:=true else powcustom_13.visible:=false;
-if custedit14<>'' then powcustom_14.visible:=true else powcustom_14.visible:=false;
-if custedit15<>'' then powcustom_15.visible:=true else powcustom_15.visible:=false;
-if custedit16<>'' then powcustom_16.visible:=true else powcustom_16.visible:=false;
-if advedit1before+advedit1after<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
-if advedit2before+advedit2after<>'' then powcustom10.visible:=true else powcustom10.visible:=false;
-if advedit3before+advedit3after<>'' then powcustom11.visible:=true else powcustom11.visible:=false;
-if advedit4before+advedit4after<>'' then powcustom12.visible:=true else powcustom12.visible:=false;
-if advedit5before+advedit5after<>'' then powcustom13.visible:=true else powcustom13.visible:=false;
-if advedit6before+advedit6after<>'' then powcustom14.visible:=true else powcustom14.visible:=false;
-if advedit7before+advedit7after<>'' then powcustom15.visible:=true else powcustom15.visible:=false;
-if advedit8before+advedit8after<>'' then powcustom16.visible:=true else powcustom16.visible:=false;
+}
+if custedit[1]<>'' then powcustom1.visible:=true else powcustom1.visible:=false;
+if custedit[2]<>'' then powcustom2.visible:=true else powcustom2.visible:=false;
+if custedit[3]<>'' then powcustom3.visible:=true else powcustom3.visible:=false;
+if custedit[4]<>'' then powcustom4.visible:=true else powcustom4.visible:=false;
+if custedit[5]<>'' then powcustom5.visible:=true else powcustom5.visible:=false;
+if custedit[6]<>'' then powcustom6.visible:=true else powcustom6.visible:=false;
+if custedit[7]<>'' then powcustom7.visible:=true else powcustom7.visible:=false;
+if custedit[8]<>'' then powcustom8.visible:=true else powcustom8.visible:=false;
+if custedit[9]<>'' then powcustom_9.visible:=true else powcustom_9.visible:=false;
+if custedit[10]<>'' then powcustom_10.visible:=true else powcustom_10.visible:=false;
+if custedit[11]<>'' then powcustom_11.visible:=true else powcustom_11.visible:=false;
+if custedit[12]<>'' then powcustom_12.visible:=true else powcustom_12.visible:=false;
+if custedit[13]<>'' then powcustom_13.visible:=true else powcustom_13.visible:=false;
+if custedit[14]<>'' then powcustom_14.visible:=true else powcustom_14.visible:=false;
+if custedit[15]<>'' then powcustom_15.visible:=true else powcustom_15.visible:=false;
+if custedit[16]<>'' then powcustom_16.visible:=true else powcustom_16.visible:=false;
+if adveditbefore[1]+adveditafter[1]<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
+if adveditbefore[2]+adveditafter[2]<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
+if adveditbefore[3]+adveditafter[3]<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
+if adveditbefore[4]+adveditafter[4]<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
+if adveditbefore[5]+adveditafter[5]<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
+if adveditbefore[6]+adveditafter[6]<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
+if adveditbefore[7]+adveditafter[7]<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
+if adveditbefore[8]+adveditafter[8]<>'' then powcustom9.visible:=true else powcustom9.visible:=false;
 end;
 end;
 
 procedure set_aow_custedit_menu;
+var
+  xPos, yPos : byte;
+
 begin
 with Form_peach do
 begin
+  for yPos := 1 to 16 do
+      if StringGridCustedit.Cells[1,yPos]<>'' then aowcustom1.Caption:=StringGridCustedit.Cells[1,yPos]
+      else
+         if extractfilename(custedit[yPos])<>'' then aowcustom1.Caption:=extractfilename(custedit[yPos])
+         else aowcustom1.Caption:=custedit[yPos];
+{ Removed by Improver69
 if StringGridCustedit.Cells[1,1]<>'' then aowcustom1.Caption:=StringGridCustedit.Cells[1,1]
 else
    if extractfilename(custedit1)<>'' then aowcustom1.Caption:=extractfilename(custedit1)
@@ -17334,6 +17363,13 @@ if StringGridCustedit.Cells[1,16]<>'' then aowcustom_16.Caption:=StringGridCuste
 else
    if extractfilename(custedit16)<>'' then aowcustom_16.Caption:=extractfilename(custedit16)
    else aowcustom_16.Caption:=custedit16;
+}
+for yPos := 1 to 8 do
+    if StringGridCustedit1.Cells[1,yPos]<>'' then 
+       aowcustom9.Caption:=StringGridCustedit1.Cells[1,yPos]
+    else 
+       aowcustom9.Caption:=adveditbefore[yPos]+stringdelim+'%f'+stringdelim+adveditafter[yPos];
+{ Removed by Improver69
 if StringGridCustedit1.Cells[1,1]<>'' then aowcustom9.Caption:=StringGridCustedit1.Cells[1,1]
 else aowcustom9.Caption:=advedit1before+stringdelim('%f')+advedit1after;
 if StringGridCustedit1.Cells[1,2]<>'' then aowcustom10.Caption:=StringGridCustedit1.Cells[1,2]
@@ -17350,6 +17386,7 @@ if StringGridCustedit1.Cells[1,7]<>'' then aowcustom15.Caption:=StringGridCusted
 else aowcustom15.Caption:=advedit7before+stringdelim('%f')+advedit7after;
 if StringGridCustedit1.Cells[1,8]<>'' then aowcustom16.Caption:=StringGridCustedit1.Cells[1,8]
 else aowcustom16.Caption:=advedit8before+stringdelim('%f')+advedit8after;
+}
 if custedit1<>'' then aowcustom1.visible:=true else aowcustom1.visible:=false;
 if custedit2<>'' then aowcustom2.visible:=true else aowcustom2.visible:=false;
 if custedit3<>'' then aowcustom3.visible:=true else aowcustom3.visible:=false;
