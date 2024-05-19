@@ -18600,6 +18600,8 @@ readln(conf,s); if strtoint(s)=1 then smartsortenabled:=true else smartsortenabl
 end;
 
 procedure writeconf_colors;
+Var
+  i : Byte;
 begin
 writeln(conf,graphicsfolder);
 writeln(conf,opacity);
@@ -62669,6 +62671,7 @@ end;
 procedure ComboBoxTheme_onchange;
 var
    s,s1:ansistring;
+   i  : Byte;
 begin
 with Form_peach do
 begin
@@ -62761,13 +62764,15 @@ if ((s<>'') and (theme_path<>'')) then
       rewrite(conf);
       write_header(conf);
       writeln(conf,s);
-      writeln(conf,graphicsfolderd);
-      writeln(conf,opacityd);
+      for i := 1 to 5 do
+          writeln(conf,colord[i]);
+      { Removed by Improver69
       writeln(conf,color1d);
       writeln(conf,color2d);
       writeln(conf,color3d);
       writeln(conf,color4d);
       writeln(conf,color5d);
+      }
       writeln(conf,inttostr(usealtcolord)+inttostr(highlighttabsd)+inttostr(accenttoolbard)+inttostr(toolcenteredd)+inttostr(altaddressstyled)+inttostr(solidaddressstyled)+inttostr(alttabstyled)+inttostr(ensmalld)+inttostr(contrastd));
       writeln(conf,pzoomingd);
       writeln(conf,pspacingd);
@@ -62782,11 +62787,11 @@ if ((s<>'') and (theme_path<>'')) then
    end;
 graphicsfolder:=graphicsfolderd;
 opacity:=opacityd;
-color1:=color1d;
-color2:=color2d;
-color3:=color3d;
-color4:=color4d;
-color5:=color5d;
+color1:=colord[1];
+color2:=colord[2];
+color3:=colord[3];
+color4:=colord[4];
+color5:=colord[5];
 pspacing:=pspacingd;
 pzooming:=pzoomingd;
 ensmall:=ensmalld;
@@ -65094,7 +65099,7 @@ end;
 
 procedure TForm_peach.LabelDefaultColor3Click(Sender: TObject);
 begin
-color3:=color3d;
+color3:=colord[3];
 if openstarted=true then apply_theme;
 end;
 
@@ -65290,7 +65295,7 @@ end;
 
 procedure TForm_peach.lightdimClick(Sender: TObject);
 begin
-color2:=color2d;
+color2:=colord[2];
 color2:=colortostring(modpropcolor(stringtocolor(color2),-16,temperature));
 if openstarted=true then apply_theme;
 saverestartclosepeaapp;
@@ -65298,7 +65303,7 @@ end;
 
 procedure TForm_peach.lightgraphiteClick(Sender: TObject);
 begin
-color2:=color2d;
+color2:=colord[2];
 color2:=colortostring(modpropcolor(modcolor(stringtocolor(color2),0.88,0.90,0.90),0,temperature));
 if openstarted=true then apply_theme;
 saverestartclosepeaapp;
@@ -65306,7 +65311,7 @@ end;
 
 procedure TForm_peach.lightmochaClick(Sender: TObject);
 begin
-color2:=color2d;
+color2:=colord[2];
 color2:=colortostring(modpropcolor(modcolor(stringtocolor(color2),0.90,0.89,0.89),0,temperature));
 if openstarted=true then apply_theme;
 saverestartclosepeaapp;
@@ -65314,7 +65319,7 @@ end;
 
 procedure TForm_peach.lightplumClick(Sender: TObject);
 begin
-color2:=color2d;
+color2:=colord[3];
 color2:=colortostring(modpropcolor(modcolor(stringtocolor(color2),0.92,0.90,0.92),0,temperature));
 if openstarted=true then apply_theme;
 saverestartclosepeaapp;
@@ -65322,7 +65327,7 @@ end;
 
 procedure TForm_peach.lightsenapeClick(Sender: TObject);
 begin
-color2:=color2d;
+color2:=colord[2];
 color2:=colortostring(modpropcolor(modcolor(stringtocolor(color2),0.90,0.90,0.88),0,temperature));
 if openstarted=true then apply_theme;
 saverestartclosepeaapp;
@@ -65745,7 +65750,7 @@ end;
 
 procedure TForm_peach.lightlowClick(Sender: TObject);
 begin
-color2:=color2d;
+color2:=colord[2];
 color2:=colortostring(modpropcolor(stringtocolor(color2),-72,temperature));
 if openstarted=true then apply_theme;
 saverestartclosepeaapp;
@@ -70134,13 +70139,13 @@ end;
 
 procedure TForm_peach.LabelDefaultColor1Click(Sender: TObject);
 begin
-color1:=color1d;
+color1:=colord[1];
 if openstarted=true then apply_theme;
 end;
 
 procedure TForm_peach.LabelDefaultColor2Click(Sender: TObject);
 begin
-color2:=color2d;
+color2:=colord[2];
 temperature:=0;
 if openstarted=true then apply_theme;
 saverestartclosepeaapp;
@@ -76497,7 +76502,7 @@ begin
 if openstarted=true then
    begin
    temperature:=tbtemperature.Position;
-   color2:=color2d;
+   color2:=colord[2];
    apply_theme;
    end;
 end;
