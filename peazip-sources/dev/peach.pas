@@ -8026,7 +8026,7 @@ end;
 
 procedure set_adveditcl(i:integer);
 begin
-  Form_peach.Labelcbsampleadvanced.caption:=adveditbefore[i]+stringdelim+'%f'+delimiter+adveditafter[i];
+  Form_peach.Labelcbsampleadvanced.caption:=adveditbefore[i]+stringdelim('%f')+adveditafter[i];
 { Removed by Improver69
 case i of
    1: Form_peach.Labelcbsampleadvanced.caption:=advedit1before+stringdelim('%f')+advedit1after;
@@ -16920,7 +16920,7 @@ else
        if StringGridCustedit1.Cells[1,yPos]<>'' then 
           owcustom9.Caption:=StringGridCustedit1.Cells[1,yPos]
        else 
-          owcustom9.Caption:=adveditbefore[yPos]+delimiter+'%f'+stringdelim+adveditafter[yPos];
+          owcustom9.Caption:=adveditbefore[yPos]+stringdelim('%f')+adveditafter[yPos];
 { Removed by Improver69
 if StringGridCustedit1.Cells[1,1]<>'' then owcustom9.Caption:=StringGridCustedit1.Cells[1,1]
 else owcustom9.Caption:=advedit1before+stringdelim('%f')+advedit1after;
@@ -17110,7 +17110,7 @@ else
 }
   for yPos := 1 to 8 do
       if StringGridCustedit1.Cells[1,yPos]<>'' then eowcustom9.Caption:=StringGridCustedit1.Cells[1,yPos]
-      else eowcustom9.Caption:=adveditbefore[yPos]+stringdelim+'%f'+stringdelim+adveditafter[yPos];
+      else eowcustom9.Caption:=adveditbefore[yPos]+stringdelim('%f')+adveditafter[yPos];
 { Removed by Improver69
 if StringGridCustedit1.Cells[1,1]<>'' then eowcustom9.Caption:=StringGridCustedit1.Cells[1,1]
 else eowcustom9.Caption:=advedit1before+stringdelim('%f')+advedit1after;
@@ -17240,7 +17240,7 @@ for yPos := 1 to 8 do
     if StringGridCustedit1.Cells[1,yPos]<>'' then 
        powcustom9.Caption:=StringGridCustedit1.Cells[1,yPos]
     else 
-       powcustom9.Caption:=adveditbefore[yPos]+stringdelim+'%f'+stringdelim+adveditafter[yPos];
+       powcustom9.Caption:=adveditbefore[yPos]+stringdelim('%f')+adveditafter[yPos];
 {
 if StringGridCustedit1.Cells[1,1]<>'' then powcustom9.Caption:=StringGridCustedit1.Cells[1,1]
 else powcustom9.Caption:=advedit1before+stringdelim('%f')+advedit1after;
@@ -17368,7 +17368,7 @@ for yPos := 1 to 8 do
     if StringGridCustedit1.Cells[1,yPos]<>'' then 
        aowcustom9.Caption:=StringGridCustedit1.Cells[1,yPos]
     else 
-       aowcustom9.Caption:=adveditbefore[yPos]+stringdelim+'%f'+stringdelim+adveditafter[yPos];
+       aowcustom9.Caption:=adveditbefore[yPos]+stringdelim('%f')+adveditafter[yPos];
 { Removed by Improver69
 if StringGridCustedit1.Cells[1,1]<>'' then aowcustom9.Caption:=StringGridCustedit1.Cells[1,1]
 else aowcustom9.Caption:=advedit1before+stringdelim('%f')+advedit1after;
@@ -18615,24 +18615,24 @@ writeln(conf,inttostr(temperature));
 end;
 
 procedure writeconf_default_colors;
-  var
-     i : byte;
+var
+   i : byte;
 begin
-writeln(conf,graphicsfolderd);
-writeln(conf,opacityd);
-for i := 1 to 5 do
-    writeln(conf,colord[i]);
+  writeln(conf,graphicsfolderd);
+  writeln(conf,opacityd);
+  for i := 1 to 5 do
+      writeln(conf,colord[i]);
 {
-writeln(conf,color1d);
-writeln(conf,color2d);
-writeln(conf,color3d);
-writeln(conf,color4d);
-writeln(conf,color5d);
+  writeln(conf,color1d);
+  writeln(conf,color2d);
+  writeln(conf,color3d);
+  writeln(conf,color4d);
+  writeln(conf,color5d);
 }
-writeln(conf,themetoolbarsd);
-writeln(conf,'');
-writeln(conf,'');
-writeln(conf,inttostr(autosizetoolbarbuttond));
+  writeln(conf,inttostr(usealtcolord)+inttostr(highlighttabsd)+inttostr(accenttoolbard)+inttostr(toolcenteredd)+inttostr(altaddressstyled)+inttostr(solidaddressstyled)+inttostr(alttabstyled)+inttostr(ensmalld)+inttostr(contrast));
+  writeln(conf,inttostr(pzoomingd));
+  writeln(conf,inttostr(pspacingd));
+  writeln(conf,inttostr(temperatured));
 end;
 
 procedure writeconf_defaults;
@@ -20702,7 +20702,7 @@ if (upcase(theme_name)=upcase('nographic-embedded')) then
    graphicsfolderd:='themes'+DirectorySeparator+'nographic-embedded'+DirectorySeparator;
    dodirseparators(graphicsfolderd);
    opacityd:=100;
-   color1d:=ColorToString(PAPPCOL);
+   colord[1]:=ColorToString(PAPPCOL);
    usealtcolord:=0;
    highlighttabsd:=0;
    accenttoolbard:=0;
@@ -20882,6 +20882,7 @@ var
   avgver,istr:integer;
   comodopath,mbampath,esetdir:ansistring;
   astr,bstr,cstr,dstr:array [1..8] of ansistring;
+  i : Byte;
 begin
 {$IFDEF MSWINDOWS}
 istr:=0;
@@ -23407,9 +23408,9 @@ begin
   end;
 end;
 
-procedure SetcbCompressionType;
+procedure SetcbCompressionMethod;
 begin
-  Form_peach.cbCompressionType.Clear;
+  Form_peach.cbCompressionMethod.Clear;
   // Modified by Improver69
   {
   if (archive_type<>'zip') then
@@ -23428,34 +23429,34 @@ begin
   Form_peach.cbCompressionType.Items.Append('BZip2');
   }
   {$IFDEF MSWINDOWS}
-     Form_peach.cbCompressionType.DropDownCount:=13;
+     Form_peach.cbCompressionMethod.DropDownCount:=13;
   {$ELSE}
-     Form_peach.cbCompressionType.DropDownCount:=13;
+     Form_peach.cbCompressionMethod.DropDownCount:=13;
   {$ENDIF}
-   Form_peach.cbCompressionType.Items.Append('LZMA');
-   Form_peach.cbCompressionType.Items.Append('LZMA2');
-   Form_peach.cbCompressionType.Items.Append('PPMd');
-   Form_peach.cbCompressionType.Items.Append('BZip2');
+   Form_peach.cbCompressionMethod.Items.Append('LZMA');
+   Form_peach.cbCompressionMethod.Items.Append('LZMA2');
+   Form_peach.cbCompressionMethod.Items.Append('PPMd');
+   Form_peach.cbCompressionMethod.Items.Append('BZip2');
    {$IFDEF MSWINDOWS}
-      Form_peach.cbCompressionType.Items.Append('Brotli');
-      Form_peach.cbCompressionType.Items.Append('FLZMA2');
-      Form_peach.cbCompressionType.Items.Append('Lizard_fastLZ4');
-      Form_peach.cbCompressionType.Items.Append('Lizard_LIZv1');
-      Form_peach.cbCompressionType.Items.Append('Lizard_fastLZ4+Huffman');
-      Form_peach.cbCompressionType.Items.Append('Lizard_LIZv1+Huffman');
-      Form_peach.cbCompressionType.Items.Append('LZ4');
-      Form_peach.cbCompressionType.Items.Append('LZ5');
-      Form_peach.cbCompressionType.Items.Append('Zstd');
+      Form_peach.cbCompressionMethod.Items.Append('Brotli');
+      Form_peach.cbCompressionMethod.Items.Append('FLZMA2');
+      Form_peach.cbCompressionMethod.Items.Append('Lizard_fastLZ4');
+      Form_peach.cbCompressionMethod.Items.Append('Lizard_LIZv1');
+      Form_peach.cbCompressionMethod.Items.Append('Lizard_fastLZ4+Huffman');
+      Form_peach.cbCompressionMethod.Items.Append('Lizard_LIZv1+Huffman');
+      Form_peach.cbCompressionMethod.Items.Append('LZ4');
+      Form_peach.cbCompressionMethod.Items.Append('LZ5');
+      Form_peach.cbCompressionMethod.Items.Append('Zstd');
    {$ELSE}
-      Form_peach.cbCompressionType.Items.Append('/Brotli');
-      Form_peach.cbCompressionType.Items.Append('FLZMA2');
-      Form_peach.cbCompressionType.Items.Append('/Lizard_fastLZ4');
-      Form_peach.cbCompressionType.Items.Append('/Lizard_LIZv1');
-      Form_peach.cbCompressionType.Items.Append('/Lizard_fastLZ4+Huffman');
-      Form_peach.cbCompressionType.Items.Append('/Lizard_LIZv1+Huffman');
-      Form_peach.cbCompressionType.Items.Append('LZ4');
-      Form_peach.cbCompressionType.Items.Append('/LZ5');
-      Form_peach.cbCompressionType.Items.Append('Zstd');
+      Form_peach.cbCompressionMethod.Items.Append('/Brotli');
+      Form_peach.cbCompressionMethod.Items.Append('FLZMA2');
+      Form_peach.cbCompressionMethod.Items.Append('/Lizard_fastLZ4');
+      Form_peach.cbCompressionMethod.Items.Append('/Lizard_LIZv1');
+      Form_peach.cbCompressionMethod.Items.Append('/Lizard_fastLZ4+Huffman');
+      Form_peach.cbCompressionMethod.Items.Append('/Lizard_LIZv1+Huffman');
+      Form_peach.cbCompressionMethod.Items.Append('LZ4');
+      Form_peach.cbCompressionMethod.Items.Append('/LZ5');
+      Form_peach.cbCompressionMethod.Items.Append('Zstd');
    {$ENDIF}
 end;
 
@@ -23531,7 +23532,7 @@ if archive_type='7z' then
    Form_peach.CheckBoxMQS.Enabled:=true;
    Form_peach.ComboBoxArchiveSolid.Enabled:=true;
    
-   SetcbCompressionType;
+   SetcbCompressionMethod;
    SetcbCompressionLevel;
    
    { Removed by DelpiTemple
@@ -23885,6 +23886,7 @@ if archive_type='7z' then
          Form_peach.cbWordSize.ItemIndex:=14;
          Form_peach.ComboBoxArchiveSolid.ItemIndex:=13;
          end;
+      }
       end;
    if compression_method='BZip2' then
       begin
@@ -23918,7 +23920,7 @@ if archive_type='7z' then
       Form_peach.cbArchivePasses.Items.Append('8');
       Form_peach.cbArchivePasses.Items.Append('9');
       Form_peach.cbArchivePasses.Items.Append('10');
-	  }	
+      }
       Form_peach.cbCompressionMethod.Enabled:=true;
       Form_peach.cbDictionarySize.Enabled:=true;
       Form_peach.cbWordSize.Enabled:=false;
@@ -45533,12 +45535,18 @@ end;
 
 procedure open_custedit_empty(i:integer);
 {$IFNDEF MSWINDOWS}
-   var
-   P:tprocessutf8;
-   cl:ansistring;
-   {$ENDIF}
+var
+  P:tprocessutf8;
+  cl:ansistring;
+{$ENDIF}
 begin
 {$IFDEF MSWINDOWS}
+  if validatecl(custedit[i])<>0 then
+  begin 
+    pMessageWarningOK(txt_2_7_validatecl+' '+custedit[i]); 
+    exit; 
+  end;
+{ Removed by Improver69
 case i of
    1: if validatecl(custedit1)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit1); exit; end;
    2: if validatecl(custedit2)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit2); exit; end;
@@ -45557,6 +45565,9 @@ case i of
    15: if validatecl(custedit15)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit15); exit; end;
    16: if validatecl(custedit16)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit16); exit; end;
    end;
+}
+  ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit[i])+'"'), PWideChar (''), PWideChar (''), SW_SHOWNORMAL);
+{ Removed by Improver69
 case i of
    1: ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit1)+'"'), PWideChar (''), PWideChar (''), SW_SHOWNORMAL);
    2: ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit2)+'"'), PWideChar (''), PWideChar (''), SW_SHOWNORMAL);
@@ -45575,29 +45586,35 @@ case i of
    15: ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit15)+'"'), PWideChar (''), PWideChar (''), SW_SHOWNORMAL);
    16: ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit16)+'"'), PWideChar (''), PWideChar (''), SW_SHOWNORMAL);
    end;
+}
 {$ELSE}
 try
-P:=tprocessutf8.Create(nil);
+  P:=tprocessutf8.Create(nil);
 {$IFDEF DARWIN}
-case i of
-   1: cl:=(custedit1);
-   2: cl:=(custedit2);
-   3: cl:=(custedit3);
-   4: cl:=(custedit4);
-   5: cl:=(custedit5);
-   6: cl:=(custedit6);
-   7: cl:=(custedit7);
-   8: cl:=(custedit8);
-   9: cl:=(custedit9);
-   10: cl:=(custedit10);
-   11: cl:=(custedit11);
-   12: cl:=(custedit12);
-   13: cl:=(custedit13);
-   14: cl:=(custedit14);
-   15: cl:=(custedit15);
-   16: cl:=(custedit16);
-   end;
+  cl:=(custedit[i]);
+  { Removed by Improver69
+  case i of
+     1: cl:=(custedit1);
+     2: cl:=(custedit2);
+     3: cl:=(custedit3);
+     4: cl:=(custedit4);
+     5: cl:=(custedit5);
+     6: cl:=(custedit6);
+     7: cl:=(custedit7);
+     8: cl:=(custedit8);
+     9: cl:=(custedit9);
+     10: cl:=(custedit10);
+     11: cl:=(custedit11);
+     12: cl:=(custedit12);
+     13: cl:=(custedit13);
+     14: cl:=(custedit14);
+     15: cl:=(custedit15);
+     16: cl:=(custedit16);
+  end;
+  }
 {$ELSE}
+  cl:=stringdelim(custedit[i]);
+{
 case i of
    1: cl:=stringdelim(custedit1);
    2: cl:=stringdelim(custedit2);
@@ -45616,6 +45633,7 @@ case i of
    15: cl:=stringdelim(custedit15);
    16: cl:=stringdelim(custedit16);
    end;
+}
 {$ENDIF}
 P.CommandLine:=cl;
 if validatecl(cl)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+cl); exit; end;
@@ -45642,6 +45660,8 @@ if s='' then
    end;
 if checkfiledirname(s)<>0 then begin pMessageWarningOK(txt_2_7_validatefn+' '+s); exit; end;
 {$IFDEF MSWINDOWS}
+if validatecl(custedit[i])<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit[i]); exit; end;
+{
 case i of
    1: if validatecl(custedit1)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit1); exit; end;
    2: if validatecl(custedit2)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit2); exit; end;
@@ -45660,9 +45680,15 @@ case i of
    15: if validatecl(custedit15)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit15); exit; end;
    16: if validatecl(custedit16)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+custedit16); exit; end;
    end;
+}
 w:=utf8decode(s);
 w1:=utf8decode(extractfilename(s));
 //web service, pass only file name; local or remote program/script, pass full qualified name
+if isawebservice(custedit[i]) then
+    ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit[i])+w1+'"'), PWideChar (''), PWideChar (''), SW_SHOWNORMAL)
+else
+    ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit[i])+'"'), PWideChar ('"'+w+'"'), PWideChar (''), SW_SHOWNORMAL);
+{ Removed by Improver69
 case i of
    1: if isawebservice(custedit1) then
          ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit1)+w1+'"'), PWideChar (''), PWideChar (''), SW_SHOWNORMAL)
@@ -45729,10 +45755,16 @@ case i of
       else
          ShellExecuteW(Form_peach.Handle, PWideChar ('open'), PWideChar('"'+utf8decode(custedit16)+'"'), PWideChar ('"'+w+'"'), PWideChar (''), SW_SHOWNORMAL);
    end;
+}
 {$ELSE}
 try
 P:=tprocessutf8.Create(nil);
 {$IFDEF DARWIN}
+  if isawebservice(custedit[i]) then
+     cl:=delimiter+custedit[i]+extractfilename(s)+delimiter
+  else
+     cl:=delimiter+custedit[i]+delimiter+' '+delimiter+s+delimiter;
+{ Removed by Improver69
 case i of
    1: if isawebservice(custedit1) then
          cl:=stringdelim(custedit1+extractfilename(s))
@@ -45799,7 +45831,13 @@ case i of
       else
          cl:=(custedit16)+' '+stringdelim(s);
    end;
+   }
 {$ELSE}
+   if isawebservice(custedit[1]) then
+      cl:=stringdelim(custedit[1]+extractfilename(s))
+   else
+      cl:=stringdelim(custedit[1])+' '+stringdelim(s);
+{
 case i of
    1: if isawebservice(custedit1) then
          cl:=stringdelim(custedit1+extractfilename(s))
@@ -45865,6 +45903,7 @@ case i of
          cl:=stringdelim(custedit16+extractfilename(s))
       else
          cl:=stringdelim(custedit16)+' '+stringdelim(s);
+}
    end;
 {$ENDIF}
 P.CommandLine:=cl;
@@ -45887,6 +45926,8 @@ else
 try
 P:=tprocessutf8.Create(nil);
 if s='' then
+   cl:=adveditalt[i]
+   { Removed by Improver69
    case i of
    1: cl:=advedit1alt;
    2: cl:=advedit2alt;
@@ -45897,7 +45938,10 @@ if s='' then
    7: cl:=advedit7alt;
    8: cl:=advedit8alt;
    end
+   }
 else
+   cl:=adveditbefore[i]+stringdelim(s)+adveditafter[i];
+{ Removed by Improver69
    case i of
    1: cl:=advedit1before+stringdelim(s)+advedit1after;
    2: cl:=advedit2before+stringdelim(s)+advedit2after;
@@ -45908,6 +45952,7 @@ else
    7: cl:=advedit7before+stringdelim(s)+advedit7after;
    8: cl:=advedit8before+stringdelim(s)+advedit8after;
    end;
+}
 P.CommandLine:=cl;
 if validatecl(cl)<>0 then begin pMessageWarningOK(txt_2_7_validatecl+' '+cl); exit; end;
 P.Execute;
